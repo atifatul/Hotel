@@ -434,11 +434,60 @@ h2 {
     padding: 0 20px;
   }
   /* Make the menu single item links use full width and be block level */
-  header.style-1 .main-menu > ul > li .mega-menu .menu-row .menu-single-item ul li > a {
+  header.style-1
+    .main-menu
+    > ul
+    > li
+    .mega-menu
+    .menu-row
+    .menu-single-item
+    ul
+    li
+    > a {
     display: block;
     width: 100%;
     padding: 6px 0;
   }
+}
+
+header.style-1
+  .main-menu
+  > ul
+  > li
+  .mega-menu
+  .menu-row
+  .menu-single-item
+  ul.destination-list-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-left: 0 !important;
+}
+
+header.style-1
+  .main-menu
+  > ul
+  > li
+  .mega-menu
+  .menu-row
+  .menu-single-item
+  ul.destination-list-horizontal
+  li {
+  margin-bottom: 0 !important;
+  display: list-item; /* Override display: block */
+}
+
+header.style-1
+  .main-menu
+  > ul
+  > li
+  .mega-menu
+  .menu-row
+  .menu-single-item
+  ul.destination-list-horizontal
+  li
+  a {
+  padding: 8px 12px;
 }
 
 h3 {

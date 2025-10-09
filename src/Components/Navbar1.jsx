@@ -1,8 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import axios from "axios";
+
 const Navbar1 = () => {
   const [isDestinationOpen, setIsDestinationOpen] = useState(false);
+  const [destinations, setDestinations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+
+  useEffect(() => {
+    // API URL
+    const url = "https://travbizz.online/crmv4/API/contact_info.php";
+
+    // Request body
+    const requestBody = {
+      EndUserIp: "192.168.1.33",
+      type: "all",
+      TokenId: "1",
+    };
+
+    // POST API call
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    })
+      .then((response) => response.json()) // convert response to JSON
+      .then((result) => {
+        console.log("API Response:", result);
+        const destinationList = result.Destination || [];
+        setDestinations(destinationList); // store data in state
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
   return (
     <>
       <div className="progress-wrap">
@@ -281,76 +317,34 @@ const Navbar1 = () => {
                           <h5>India</h5>
                         </div>
                         <i className="bi bi-plus dropdown-icon "></i>
-                        <ul style={{ paddingLeft: "15px" }}>
-                          <li style={{ marginBottom: "10px" }}>
-                            <Link
-                              to="/destination/jammu-and-kashmir"
-                              onClick={() => setIsDestinationOpen(false)}
-                            >
-                              <img
-                                src="/assets/img/home1/france-flag.png"
-                                alt=""
-                              />
-                              Jammu & Kashmir - “Paradise on Earth”
-                            </Link>
-                          </li>
-                          <li style={{ marginBottom: "10px" }}>
-                            <Link
-                              to="/destination/rajasthan"
-                              onClick={() => setIsDestinationOpen(false)}
-                            >
-                              <img src="/assets/img/home1/uk-flag.png" alt="" />
-                              Rajasthan - “The Land of Kings”
-                            </Link>
-                          </li>
-                          <li style={{ marginBottom: "10px" }}>
-                            <Link
-                              to="/destination/himachal-pradesh"
-                              onClick={() => setIsDestinationOpen(false)}
-                            >
-                              <img
-                                src="/assets/img/home1/netherland-flag.png"
-                                alt=""
-                              />
-                              Himachal Pradesh - “Land of the Himalayas”
-                            </Link>
-                          </li>
-                          <li style={{ marginBottom: "10px" }}>
-                            <Link
-                              to="/destination/kerala"
-                              onClick={() => setIsDestinationOpen(false)}
-                            >
-                              <img
-                                src="/assets/img/home1/italy-flag.png"
-                                alt=""
-                              />
-                              Kerala - “God's Own Country”
-                            </Link>
-                          </li>
-                          <li style={{ marginBottom: "10px" }}>
-                            <Link
-                              to="/destination/goa"
-                              onClick={() => setIsDestinationOpen(false)}
-                            >
-                              <img
-                                src="/assets/img/home1/greece-flag.png"
-                                alt=""
-                              />
-                              Goa - “Beaches and Beyond”
-                            </Link>
-                          </li>
-                          <li style={{ marginBottom: "10px" }}>
-                            <Link
-                              to="/destination/uttar-pradesh"
-                              onClick={() => setIsDestinationOpen(false)}
-                            >
-                              <img
-                                src="/assets/img/home1/romania-flag.png"
-                                alt=""
-                              />
-                              Uttar Pradesh - “Land of Heritage & Spirituality”
-                            </Link>
-                          </li>
+                        <ul className="destination-list-horizontal">
+                          {loading ? (
+                            <li>Loading...</li>
+                          ) : error ? (
+                            <li>{error}</li>
+                          ) : (
+                            destinations.map((dest) => {
+                              // API se aa rahe naam ko URL-friendly format mein convert karein
+                              const slug = dest.name
+                                .toLowerCase()
+                                .replace(/ & /g, "-and-")
+                                .replace(/ /g, "-");
+                              return (
+                                <li key={dest.id}>
+                                  <Link
+                                    to={`/destination/${slug}`}
+                                    onClick={() => setIsDestinationOpen(false)}
+                                  >
+                                    <img
+                                      src="/assets/img/home1/india-flag.png"
+                                      alt=""
+                                    />
+                                    {dest.name}
+                                  </Link>
+                                </li>
+                              );
+                            })
+                          )}
                         </ul>
                       </div>
                       {/* <div className="menu-single-item">
