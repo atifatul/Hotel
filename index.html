@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/jquery-ui.css" rel="stylesheet" />
+    <!-- Bootstrap Icon CSS -->
+    <link href="assets/css/bootstrap-icons.css" rel="stylesheet" />
+    <!-- CSS -->
+    <link href="assets/css/animate.min.css" rel="stylesheet" />
+    <!-- FancyBox CSS -->
+    <link href="assets/css/jquery.fancybox.min.css" rel="stylesheet" />
+    <!-- Swiper slider CSS -->
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+    <!-- Slick slider CSS -->
+    <link rel="stylesheet" href="assets/css/slick.css" />
+    <link rel="stylesheet" href="assets/css/slick-theme.css" />
+    <link rel="stylesheet" href="assets/css/daterangepicker.css" />
+    <!-- BoxIcon  CSS -->
+    <link href="assets/css/boxicons.min.css" rel="stylesheet" />
+    <!--  Style CSS  -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- Title -->
+    <title>Gofly - Tour & Travel Booking Website.</title>
+    <link
+      rel="icon"
+      href="assets/img/fav-icon.svg"
+      type="image/gif"
+      sizes="20x20"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
+    <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/daterangepicker.min.js"></script>
+
+    <!-- Popper and Bootstrap JS -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <!-- Swiper slider JS -->
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/slick.js"></script>
+    <!-- Waypoints JS -->
+    <script src="assets/js/waypoints.min.js"></script>
+    <!-- Counterup JS -->
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <!-- Wow JS -->
+    <script src="assets/js/wow.min.js"></script>
+    <!-- Gsap  JS -->
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="assets/js/jquery.fancybox.min.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/select-dropdown.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <!-- Deferred: ensure Swiper in React-rendered components initializes after load -->
+    <script>
+      window.addEventListener("load", function () {
+        try {
+          if (
+            typeof Swiper !== "undefined" &&
+            document.querySelector(".home3-guide-slider")
+          ) {
+            new Swiper(".home3-guide-slider", {
+              slidesPerView: 1,
+              speed: 1500,
+              spaceBetween: 24,
+              autoplay: {
+                delay: 2500,
+                pauseOnMouseEnter: true,
+                disableOnInteraction: false,
+              },
+              pagination: {
+                el: ".swiper-pagination1",
+                clickable: true,
+              },
+              breakpoints: {
+                280: { slidesPerView: 1 },
+                386: { slidesPerView: 1 },
+                576: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                992: { slidesPerView: 4, spaceBetween: 15 },
+                1200: { slidesPerView: 4, spaceBetween: 15 },
+                1400: { slidesPerView: 4 },
+              },
+            });
+          }
+        } catch (e) {
+          console.error("Deferred Swiper init failed:", e);
+        }
+      });
+    </script>
+  </body>
+</html>
