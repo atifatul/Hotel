@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 const Navbar1 = () => {
-    const [isDestinationOpen,setIsDestinationOpen]=useState(false);
+  const [isDestinationOpen, setIsDestinationOpen] = useState(false);
   return (
     <>
       <div className="progress-wrap">
@@ -71,7 +71,7 @@ const Navbar1 = () => {
               </li>
             </ul>
             <a href="#" className="header-logo">
-              <img src="assets/img/header-logo2.svg" alt="" />
+              <img src="/assets/img/header-logo2.svg" alt="" />
             </a>
 
             <div className="topbar-right">
@@ -98,14 +98,14 @@ const Navbar1 = () => {
                   <ul className="language-list">
                     <li>
                       <a href="#">
-                        <img src="assets/img/home1/england-flag.png" alt="" />
+                        <img src="/assets/img/home1/england-flag.png" alt="" />
                         English
                       </a>
                     </li>
                     <li>
                       <a href="#">
                         <img
-                          src="assets/img/home1/netherlands-flag.png"
+                          src="/assets/img/home1/netherlands-flag.png"
                           alt=""
                         />
                         Dutch
@@ -113,19 +113,19 @@ const Navbar1 = () => {
                     </li>
                     <li>
                       <a href="#">
-                        <img src="assets/img/home1/japan-flag.png" alt="" />
+                        <img src="/assets/img/home1/japan-flag.png" alt="" />
                         Japanese
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <img src="assets/img/home1/korea-flag.png" alt="" />
+                        <img src="/assets/img/home1/korea-flag.png" alt="" />
                         Korean
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <img src="assets/img/home1/china-flag.png" alt="" />
+                        <img src="/assets/img/home1/china-flag.png" alt="" />
                         Chinese
                       </a>
                     </li>
@@ -231,12 +231,12 @@ const Navbar1 = () => {
       <header className="style-1 two">
         <div className="container d-flex flex-nowrap align-items-center justify-content-lg-center justify-content-between">
           <a href="index.html" className="header-logo d-lg-none d-block">
-            <img src="assets/img/header-logo3.svg" alt="" />
+            <img src="/assets/img/header-logo3.svg" alt="" />
           </a>
           <div className="main-menu">
             <div className="mobile-logo-area d-lg-none d-flex align-items-center justify-content-between">
               <a href="index.html" className="mobile-logo-wrap">
-                <img src="assets/img/header-logo2.svg" alt="" />
+                <img src="/assets/img/header-logo2.svg" alt="" />
               </a>
               <div className="menu-close-btn">
                 <i className="bi bi-x"></i>
@@ -260,16 +260,20 @@ const Navbar1 = () => {
                             <li><a href="visa-agency.html">Visa Agency</a></li>
                         </ul> */}
               </li>
-              <li className="menu-item-has-children position-inherit"
-              onMouseEnter={()=> setIsDestinationOpen(true)}
-              onMouseLeave={()=>setIsDestinationOpen(false)}>
+              <li
+                className="menu-item-has-children position-inherit"
+                onMouseEnter={() => setIsDestinationOpen(true)}
+                onMouseLeave={() => setIsDestinationOpen(false)}
+              >
                 <a href="destination-01.html" className="drop-down">
                   Destination
                   <i className="bi bi-caret-down-fill"></i>
                 </a>
                 <i className="bi bi-plus dropdown-icon"></i>
-                <div className="mega-menu"
-                 style={{ display: isDestinationOpen ? "block" : "none" }} >
+                <div
+                  className="mega-menu"
+                  style={{ display: isDestinationOpen ? "block" : "none" }}
+                >
                   <div className="container">
                     <div className="menu-row">
                       <div className="menu-single-item ">
@@ -277,53 +281,71 @@ const Navbar1 = () => {
                           <h5>India</h5>
                         </div>
                         <i className="bi bi-plus dropdown-icon "></i>
-                        <ul style={{ paddingLeft: '15px' }}>
-                          <li style={{ marginBottom: '10px' }}>
-                            <Link to="/jammu-and-kashmir" onClick={() => setIsDestinationOpen(false)}>
+                        <ul style={{ paddingLeft: "15px" }}>
+                          <li style={{ marginBottom: "10px" }}>
+                            <Link
+                              to="/destination/jammu-and-kashmir"
+                              onClick={() => setIsDestinationOpen(false)}
+                            >
                               <img
-                                src="assets/img/home1/france-flag.png"
+                                src="/assets/img/home1/france-flag.png"
                                 alt=""
                               />
                               Jammu & Kashmir - “Paradise on Earth”
                             </Link>
                           </li>
-                          <li style={{ marginBottom: '10px' }}>
-                            <Link to="/rajasthan" onClick={() => setIsDestinationOpen(false)}>
-                              <img src="assets/img/home1/uk-flag.png" alt="" />
+                          <li style={{ marginBottom: "10px" }}>
+                            <Link
+                              to="/destination/rajasthan"
+                              onClick={() => setIsDestinationOpen(false)}
+                            >
+                              <img src="/assets/img/home1/uk-flag.png" alt="" />
                               Rajasthan - “The Land of Kings”
                             </Link>
                           </li>
-                          <li style={{ marginBottom: '10px' }}>
-                            <Link to="/himachal-pradesh" onClick={() => setIsDestinationOpen(false)}>
+                          <li style={{ marginBottom: "10px" }}>
+                            <Link
+                              to="/destination/himachal-pradesh"
+                              onClick={() => setIsDestinationOpen(false)}
+                            >
                               <img
-                                src="assets/img/home1/netherland-flag.png"
+                                src="/assets/img/home1/netherland-flag.png"
                                 alt=""
                               />
                               Himachal Pradesh - “Land of the Himalayas”
                             </Link>
                           </li>
-                          <li style={{ marginBottom: '10px' }}>
-                            <Link to="/kerala" onClick={() => setIsDestinationOpen(false)}>
+                          <li style={{ marginBottom: "10px" }}>
+                            <Link
+                              to="/destination/kerala"
+                              onClick={() => setIsDestinationOpen(false)}
+                            >
                               <img
-                                src="assets/img/home1/italy-flag.png"
+                                src="/assets/img/home1/italy-flag.png"
                                 alt=""
                               />
                               Kerala - “God's Own Country”
                             </Link>
                           </li>
-                          <li style={{ marginBottom: '10px' }}>
-                            <Link to="/goa" onClick={() => setIsDestinationOpen(false)}>
+                          <li style={{ marginBottom: "10px" }}>
+                            <Link
+                              to="/destination/goa"
+                              onClick={() => setIsDestinationOpen(false)}
+                            >
                               <img
-                                src="assets/img/home1/greece-flag.png"
+                                src="/assets/img/home1/greece-flag.png"
                                 alt=""
                               />
                               Goa - “Beaches and Beyond”
                             </Link>
                           </li>
-                          <li style={{ marginBottom: '10px' }}>
-                            <Link to="/uttar-pradesh" onClick={() => setIsDestinationOpen(false)}>
+                          <li style={{ marginBottom: "10px" }}>
+                            <Link
+                              to="/destination/uttar-pradesh"
+                              onClick={() => setIsDestinationOpen(false)}
+                            >
                               <img
-                                src="assets/img/home1/romania-flag.png"
+                                src="/assets/img/home1/romania-flag.png"
                                 alt=""
                               />
                               Uttar Pradesh - “Land of Heritage & Spirituality”
@@ -530,12 +552,12 @@ const Navbar1 = () => {
                     </div>
                   </div>
                   <img
-                    src="assets/img/home1/mega-menu-vector1.svg"
+                    src="/assets/img/home1/mega-menu-vector1.svg"
                     alt=""
                     className="vector1"
                   />
                   <img
-                    src="assets/img/home1/mega-menu-vector2.svg"
+                    src="/assets/img/home1/mega-menu-vector2.svg"
                     alt=""
                     className="vector2"
                   />
@@ -737,31 +759,34 @@ const Navbar1 = () => {
                 <ul className="language-list">
                   <li>
                     <a href="#">
-                      <img src="assets/img/home1/england-flag.png" alt="" />
+                      <img src="/assets/img/home1/england-flag.png" alt="" />
                       English
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img src="assets/img/home1/netherlands-flag.png" alt="" />
+                      <img
+                        src="/assets/img/home1/netherlands-flag.png"
+                        alt=""
+                      />
                       Dutch
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img src="assets/img/home1/japan-flag.png" alt="" />
+                      <img src="/assets/img/home1/japan-flag.png" alt="" />
                       Japanese
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img src="assets/img/home1/korea-flag.png" alt="" />
+                      <img src="/assets/img/home1/korea-flag.png" alt="" />
                       Korean
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img src="assets/img/home1/china-flag.png" alt="" />
+                      <img src="/assets/img/home1/china-flag.png" alt="" />
                       Chinese
                     </a>
                   </li>

@@ -1,13 +1,10 @@
+// src/Components/Routing/Routing.jsx
+
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "../Home";
-import J_K from "../Destination/J_K";
-import Rajasthan from "../Destination/Rajasthan";
-import HimachalPradesh from "../Destination/HimachalPradesh";
-import Kerala from "../Destination/Kerala";
-import Goa from "../Destination/Goa";
-import UttarPradesh from "../Destination/UttarPradesh";
+import DestinationDetails from "../Destination/DestinationDetails"; // Naya component import karein
 
 let myroutes = createBrowserRouter([
   {
@@ -18,31 +15,11 @@ let myroutes = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      // Saare purane routes ko is ek dynamic route se replace karein
       {
-        path:"/jammu-and-kashmir",
-        element:<J_K/>
-
+        path: "/destination/:destinationName",
+        element: <DestinationDetails />,
       },
-      {
-        path:"/rajasthan",
-        element:<Rajasthan/>
-      },
-      {
-        path:"/himachal-pradesh",
-        element:<HimachalPradesh/>
-      },
-      {
-        path:"/kerala",
-        element:<Kerala/>
-      },
-      {
-        path:"/goa",
-        element:<Goa/>
-      },
-      {
-        path:"/uttar-pradesh",
-        element:<UttarPradesh/>
-      }
     ],
   },
 ]);
