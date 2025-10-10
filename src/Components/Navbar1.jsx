@@ -8,36 +8,37 @@ const Navbar1 = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+ 
+  // useEffect(() => {
+  //   // Use the proxied URL
+  //   const url = "http://localhost/crm/API/destinationlist.php";
+  //   const requestBody = {
+  //     EndUserIp: "192.168.1.33",
+  //     type: "domestic",
+  //     TokenId: "1",
+  //   };
 
-  useEffect(() => {
-    // API URL
-    const url = "https://travbizz.online/crmv4/API/contact_info.php";
+  //   axios
+  //     .post(url, requestBody)
+  //     .then((response) => {
+  //       console.log("API Response:", response.data.data);
+  //       // API response se 'Destination' array ko nikalein.
+  //       // Agar 'Destination' property nahi hai, to ek empty array use karein.
+  //       const destinationList = response.data.data || [];
 
-    // Request body
-    const requestBody = {
-      EndUserIp: "192.168.1.33",
-      type: "all",
-      TokenId: "1",
-    };
-
-    // POST API call
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    })
-      .then((response) => response.json()) // convert response to JSON
-      .then((result) => {
-        console.log("API Response:", result);
-        const destinationList = result.Destination || [];
-        setDestinations(destinationList); // store data in state
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+  //       if (destinationList.length === 0) {
+  //         setError("No destinations found.");
+  //       }
+  //       setDestinations(destinationList);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //       setError("Failed to fetch destinations.");
+  //     })
+  //     .finally(() => {
+  //       setLoading(false);
+  //     });
+  // }, []);
 
   return (
     <>
@@ -323,14 +324,14 @@ const Navbar1 = () => {
                           ) : error ? (
                             <li>{error}</li>
                           ) : (
-                            destinations.map((dest) => {
+                            destinations.map((dest, index) => {
                               // API se aa rahe naam ko URL-friendly format mein convert karein
-                              const slug = dest.name
+                              const slug = dest.destination
                                 .toLowerCase()
                                 .replace(/ & /g, "-and-")
                                 .replace(/ /g, "-");
                               return (
-                                <li key={dest.id}>
+                                <li key={index}>
                                   <Link
                                     to={`/destination/${slug}`}
                                     onClick={() => setIsDestinationOpen(false)}
@@ -339,7 +340,7 @@ const Navbar1 = () => {
                                       src="/assets/img/home1/india-flag.png"
                                       alt=""
                                     />
-                                    {dest.name}
+                                    {dest.destination}
                                   </Link>
                                 </li>
                               );

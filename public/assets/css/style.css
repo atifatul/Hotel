@@ -23038,6 +23038,7 @@ header.style-3.two .main-menu > ul > li.active > a i {
   border-radius: 20px;
   -o-object-fit: cover;
   object-fit: cover;
+  /* object-fit: fill; Changed from cover to fill */
 }
 @media (max-width: 767px) {
   .destination-card3 img {
