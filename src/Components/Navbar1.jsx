@@ -750,7 +750,7 @@ const Navbar1 = () => {
                     <a href="#">
                       <img
                         src="/assets/img/home1/netherlands-flag.png"
-                        alt=""
+                        alt="This is Me."
                       />
                       Dutch
                     </a>
