@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "../Home";
 import DestinationDetails from "../Destination/DestinationDetails"; // Naya component import karein
+import Contact from "../Contact";
 
 let myroutes = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ let myroutes = createBrowserRouter([
         path: "/destination/:destinationName",
         element: <DestinationDetails />,
       },
+      {
+        path:"/contact",
+        element:<Contact/>
+      }
     ],
   },
 ]);

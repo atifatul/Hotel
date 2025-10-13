@@ -11,7 +11,8 @@ import Faq_section from "./Faq_section";
 import Blog_section from "./Blog_section";
 import Newletter_section from "../Newletter_section";
 import PartnerArea_section from "../PartnerArea_section";
-import Footer_section from './Footer_section';
+import Contact from './Contact';
+
 
 const Home = () => {
   return (
@@ -28,7 +29,7 @@ const Home = () => {
       <Blog_section />
       <Newletter_section />
       <PartnerArea_section />
-      {/* <Footer_section/> */}
+      {/* <Contact/> */}
     </>
   );
 };

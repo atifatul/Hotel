@@ -9,36 +9,36 @@ const Navbar1 = () => {
   const [error, setError] = useState(null);
 
  
-  // useEffect(() => {
-  //   // Use the proxied URL
-  //   const url = "http://localhost/crm/API/destinationlist.php";
-  //   const requestBody = {
-  //     EndUserIp: "192.168.1.33",
-  //     type: "domestic",
-  //     TokenId: "1",
-  //   };
+  useEffect(() => {
+    // Use the proxied URL
+    const url = "http://localhost/crm/API/destinationlist.php";
+    const requestBody = {
+      EndUserIp: "192.168.1.33",
+      type: "domestic",
+      TokenId: "1",
+    };
 
-  //   axios
-  //     .post(url, requestBody)
-  //     .then((response) => {
-  //       console.log("API Response:", response.data.data);
-  //       // API response se 'Destination' array ko nikalein.
-  //       // Agar 'Destination' property nahi hai, to ek empty array use karein.
-  //       const destinationList = response.data.data || [];
+    axios
+      .post(url, requestBody)
+      .then((response) => {
+        console.log("API Response:", response.data.data);
+        // API response se 'Destination' array ko nikalein.
+        // Agar 'Destination' property nahi hai, to ek empty array use karein.
+        const destinationList = response.data.data || [];
 
-  //       if (destinationList.length === 0) {
-  //         setError("No destinations found.");
-  //       }
-  //       setDestinations(destinationList);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //       setError("Failed to fetch destinations.");
-  //     })
-  //     .finally(() => {
-  //       setLoading(false);
-  //     });
-  // }, []);
+        if (destinationList.length === 0) {
+          setError("No destinations found.");
+        }
+        setDestinations(destinationList);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setError("Failed to fetch destinations.");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <>
@@ -727,7 +727,7 @@ const Navbar1 = () => {
                 </ul>
               </li>
               <li>
-                <a href="contact.html">Contact</a>
+                <Link to="/contact">Contact</Link>
               </li>
             </ul>
             <div className="language-and-login-area d-lg-none d-block">
