@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import HomeBanner_section from "./HomeBanner_section";
 import Home1destination_section from "./Home1destination_section";
 import Home1travel_package from "./Home1travel_package";
@@ -11,8 +11,6 @@ import Faq_section from "./Faq_section";
 import Blog_section from "./Blog_section";
 import Newletter_section from "../Newletter_section";
 import PartnerArea_section from "../PartnerArea_section";
-import Contact from './Contact';
-
 
 const Home = () => {
   return (
@@ -29,7 +27,6 @@ const Home = () => {
       <Blog_section />
       <Newletter_section />
       <PartnerArea_section />
-      {/* <Contact/> */}
     </>
   );
 };

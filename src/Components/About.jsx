@@ -1,85 +1,1129 @@
-import React from 'react'
+import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+// Swiper ke CSS ko import karein
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import Faq_section from "./Faq_section";
 
 const About = () => {
+  // Active tab ko manage karne ke liye state
+  const [activeTab, setActiveTab] = useState("pills-one");
+
+  const journeyData = [
+    {
+      id: "pills-one",
+      year: "1986",
+      img: "/assets/img/innerpages/about-page-journey-img1.jpg",
+      title: "1986 – The Birth of Travel Agencies",
+      description:
+        "The first-ever travel agency was founded by <span>Thomas Cook</span> in England. He organized group trips, starting with a railway excursion for <span>500 people</span>. Thomas Cook expanded his services internationally, arranging trips to Paris and beyond. He introduced the <span>first-ever travel brochure, guiding travelers on destinations & routes.</span> Luxury cruises and organized tours gained popularity, especially among the elite.",
+    },
+    {
+      id: "pills-two",
+      year: "1996",
+      img: "/assets/img/innerpages/about-page-journey-img2.jpg",
+      title: "1996 – A New Era of Exploration",
+      description:
+        "The first-ever travel agency was founded by <span>Thomas Cook</span> in England. He organized group trips, starting with a railway excursion for <span>500 people</span>. Thomas Cook expanded his services internationally, arranging trips to Paris and beyond. He introduced the <span>first-ever travel brochure, guiding travelers on destinations & routes.</span> Luxury cruises and organized tours gained popularity, especially among the elite.",
+    },
+    {
+      id: "pills-three",
+      year: "2006",
+      img: "/assets/img/innerpages/about-page-journey-img3.jpg",
+      title: "2006 – We Took Travel Beyond Borders",
+      description:
+        "The first-ever travel agency was founded by <span>Thomas Cook</span> in England. He organized group trips, starting with a railway excursion for <span>500 people</span>. Thomas Cook expanded his services internationally, arranging trips to Paris and beyond. He introduced the <span>first-ever travel brochure, guiding travelers on destinations & routes.</span> Luxury cruises and organized tours gained popularity, especially among the elite.",
+    },
+    {
+      id: "pills-four",
+      year: "2016",
+      img: "/assets/img/innerpages/about-page-journey-img4.jpg",
+      title: "2016 – Embracing Technology to Transform Travel",
+      description:
+        "The first-ever travel agency was founded by <span>Thomas Cook</span> in England. He organized group trips, starting with a railway excursion for <span>500 people</span>. Thomas Cook expanded his services internationally, arranging trips to Paris and beyond. He introduced the <span>first-ever travel brochure, guiding travelers on destinations & routes.</span> Luxury cruises and organized tours gained popularity, especially among the elite.",
+    },
+    {
+      id: "pills-five",
+      year: "2022",
+      img: "/assets/img/innerpages/about-page-journey-img5.jpg",
+      title: "2022 – A New Era of Personalized Journeys",
+      description:
+        "The first-ever travel agency was founded by <span>Thomas Cook</span> in England. He organized group trips, starting with a railway excursion for <span>500 people</span>. Thomas Cook expanded his services internationally, arranging trips to Paris and beyond. He introduced the <span>first-ever travel brochure, guiding travelers on destinations & routes.</span> Luxury cruises and organized tours gained popularity, especially among the elite.",
+    },
+    {
+      id: "pills-six",
+      year: "2023",
+      img: "/assets/img/innerpages/about-page-journey-img6.jpg",
+      title: "2023 – Expanding Our Global Footprint",
+      description:
+        "The first-ever travel agency was founded by <span>Thomas Cook</span> in England. He organized group trips, starting with a railway excursion for <span>500 people</span>. Thomas Cook expanded his services internationally, arranging trips to Paris and beyond. He introduced the <span>first-ever travel brochure, guiding travelers on destinations & routes.</span> Luxury cruises and organized tours gained popularity, especially among the elite.",
+    },
+    {
+      id: "pills-seven",
+      year: "2025",
+      img: "/assets/img/innerpages/about-page-journey-img7.jpg",
+      title: "2025 – Pioneering Next-Gen Travel Solutions",
+      description:
+        "The first-ever travel agency was founded by <span>Thomas Cook</span> in England. He organized group trips, starting with a railway excursion for <span>500 people</span>. Thomas Cook expanded his services internationally, arranging trips to Paris and beyond. He introduced the <span>first-ever travel brochure, guiding travelers on destinations & routes.</span> Luxury cruises and organized tours gained popularity, especially among the elite.",
+    },
+  ];
+
+  const testimonials = [
+    {
+      name: "Robert Kcarery",
+      role: "GoFly Traveler",
+      title: "Excellent Tourist Place!",
+      text: "Our honeymoon package to the Maldives was beyond amazing! The travel agency took care of every detail.",
+      img: "/assets/img/home1/testimonial-author-img1.png",
+      videoUrl: "https://www.youtube.com/watch?v=MLpWrANjFbI",
+      rating: 5,
+    },
+    {
+      name: "Selina Henry",
+      role: "GoFly Traveler",
+      title: "Great Experience!",
+      text: "This was the best trip of my life! Everything was perfectly planned, from airport pickup to guided tours. The accommodations were fantastic, and the itinerary was well-balanced. Highly recommended!",
+      img: "/assets/img/home1/testimonial-author-img2.png",
+      rating: 5,
+      isTrustpilot: true,
+    },
+    {
+      name: "James Bonde",
+      role: "GoFly Traveler",
+      title: "Average Experience",
+      text: "The tour was well-organized, and we enjoyed every bit of it. However, I wish we had more free time to explore on our own. Overall, a great experience!",
+      img: "/assets/img/home1/testimonial-author-img3.png",
+      videoUrl: "https://www.youtube.com/watch?v=MLpWrANjFbI",
+      rating: 4.5,
+    },
+    {
+      name: "Michael D Linda",
+      role: "GoFly Traveler",
+      title: "Great Visitors Venue!",
+      text: "Thank you so much for your work on our honeymoon. We really did have such a great time and it was everything we were hoping!",
+      img: "/assets/img/home1/testimonial-author-img4.png",
+      videoUrl: "https://www.youtube.com/watch?v=MLpWrANjFbI",
+      rating: 4.5,
+    },
+    {
+      name: "Amber Lashley",
+      role: "GoFly Traveler",
+      title: "Fantastic Service!",
+      text: "We have returned from Greece and want to let you know how terrific the trip was! Everything was great. We highly recommend them. Thank you so much!",
+      img: "/assets/img/home1/testimonial-author-img5.png",
+      rating: 5,
+      isTrustpilot: true,
+    },
+  ];
+
+  const renderRating = (rating, isTrustpilot = false) => {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < Math.floor(rating)) {
+        stars.push(
+          <li key={i}>
+            <i className="bi bi-circle-fill"></i>
+          </li>
+        );
+      } else if (i < rating) {
+        stars.push(
+          <li key={i}>
+            <i className="bi bi-circle-half"></i>
+          </li>
+        );
+      } else {
+        // You can add an empty star if you want
+      }
+    }
+    if (isTrustpilot) {
+      // Special rendering for trustpilot if needed, for now, it's the same.
+    }
+    return (
+      <ul className={`rating-area ${isTrustpilot ? "trustpilot" : ""}`}>
+        {stars}
+      </ul>
+    );
+  };
+
   return (
     <>
-    <div className="home6-about-section mb-100">
+      {/* Start Breadcrumb section */}
+      <div
+        className="breadcrumb-section"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/assets/img/innerpages/breadcrumb-bg2.jpg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div className="container">
-            <div className="row justify-content-center wow animate fadeInDown" data-wow-delay="200ms" data-wow-duration="1500ms">
-                <div className="col-xl-6 col-lg-8">
-                    <div className="section-title text-center">
-                        <span>#1 Booking Agency</span>
-                        <h2>Why to do Booking travel Package With GoFly.</h2>
-                    </div>
-                </div>
-            </div>
-            <svg className="divider" height="6" viewBox="0 0 1320 6" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M5 2.5L0 0.113249V5.88675L5 3.5V2.5ZM1315 3.5L1320 5.88675V0.113249L1315 2.5V3.5ZM4.5 3.5H1315.5V2.5H4.5V3.5Z"/>
-            </svg>
-            <div className="about-wrapper">
-                <div className="row justify-content-between gy-5">
-                    <div className="col-xl-6 col-lg-7 wow animate fadeInLeft" data-wow-delay="200ms" data-wow-duration="1500ms">
-                        <div className="about-content">
-                            <p>GoFly Travel Agency is a trusted name in the travel industry, offering seamless travel planning, personalized itineraries, and unforgettable adventures. With years of experience and a network of global partners, we ensure a hassle-free and memorable journey for every traveler.</p>
-                            <p>It’s your ultimate gateway to thrilling travel experiences, specializing in adventure tourism, paragliding tours, and mountain expeditions. Whether you seek breathtaking sky-high journeys, serene nature escapes, or cultural explorations, we craft tailor-made itineraries to fuel your wanderlust.</p>
-                            <div className="btn-and-counter-area">
-                                <a href="about.html" className="primary-btn1 two black-bg three">
-                                    <span>
-                                        About More GoFly
-                                        <svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.73535 1.14746C9.57033 1.97255 9.32924 3.26406 9.24902 4.66797C9.16817 6.08312 9.25559 7.5453 9.70214 8.73633C9.84754 9.12406 9.65129 9.55659 9.26367 9.70215C8.9001 9.83849 8.4969 9.67455 8.32812 9.33398L8.29785 9.26367L8.19921 8.98438C7.73487 7.5758 7.67054 5.98959 7.75097 4.58203C7.77875 4.09598 7.82525 3.62422 7.87988 3.17969L1.53027 9.53027C1.23738 9.82317 0.762615 9.82317 0.469722 9.53027C0.176829 9.23738 0.176829 8.76262 0.469722 8.46973L6.83593 2.10254C6.3319 2.16472 5.79596 2.21841 5.25 2.24902C3.8302 2.32862 2.2474 2.26906 0.958003 1.79102L0.704097 1.68945L0.635738 1.65527C0.303274 1.47099 0.157578 1.06102 0.310542 0.704102C0.463655 0.347333 0.860941 0.170391 1.22363 0.28418L1.29589 0.310547L1.48828 0.387695C2.47399 0.751207 3.79966 0.827571 5.16601 0.750977C6.60111 0.670504 7.97842 0.428235 8.86132 0.262695L9.95312 0.0585938L9.73535 1.14746Z"/>
-                                        </svg>
-                                    </span>
-                                    <span>
-                                        About More GoFly
-                                        <svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.73535 1.14746C9.57033 1.97255 9.32924 3.26406 9.24902 4.66797C9.16817 6.08312 9.25559 7.5453 9.70214 8.73633C9.84754 9.12406 9.65129 9.55659 9.26367 9.70215C8.9001 9.83849 8.4969 9.67455 8.32812 9.33398L8.29785 9.26367L8.19921 8.98438C7.73487 7.5758 7.67054 5.98959 7.75097 4.58203C7.77875 4.09598 7.82525 3.62422 7.87988 3.17969L1.53027 9.53027C1.23738 9.82317 0.762615 9.82317 0.469722 9.53027C0.176829 9.23738 0.176829 8.76262 0.469722 8.46973L6.83593 2.10254C6.3319 2.16472 5.79596 2.21841 5.25 2.24902C3.8302 2.32862 2.2474 2.26906 0.958003 1.79102L0.704097 1.68945L0.635738 1.65527C0.303274 1.47099 0.157578 1.06102 0.310542 0.704102C0.463655 0.347333 0.860941 0.170391 1.22363 0.28418L1.29589 0.310547L1.48828 0.387695C2.47399 0.751207 3.79966 0.827571 5.16601 0.750977C6.60111 0.670504 7.97842 0.428235 8.86132 0.262695L9.95312 0.0585938L9.73535 1.14746Z"/>
-                                        </svg>
-                                    </span>
-                                </a>
-                                <div className="counter-area">
-                                    <ul className="counter-img-grp">
-                                        <li><img src="assets/img/home3/counter-people-img1.png" alt=""/></li>
-                                        <li><img src="assets/img/home3/counter-people-img2.png" alt=""/></li>
-                                        <li><img src="assets/img/home3/counter-people-img3.png" alt=""/></li>
-                                        <li><img src="assets/img/home3/counter-people-img4.png" alt=""/></li>
-                                    </ul>
-                                    <h6> <strong><span className="counter">25</span>k+</strong> Customer <br/> in Worldwide.</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-5 wow animate fadeInRight" data-wow-delay="200ms" data-wow-duration="1500ms">
-                        <div className="about-img-area">
-                            <div className="icon">
-                                <svg width="46" height="46" viewBox="0 0 46 46" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M18.6771 27.9289C18.6799 27.9291 18.6826 27.9299 18.6854 27.93C18.6912 27.9301 18.6969 27.9323 18.7027 27.9323L18.7033 27.9322L18.7039 27.9323C18.7076 27.9323 18.7112 27.9309 18.7149 27.9309C18.73 27.931 18.7445 27.9331 18.7596 27.9331H18.76C23.336 27.9331 27.0588 24.2103 27.0588 19.6342C27.0588 15.058 23.336 11.3352 18.76 11.3352C18.7514 11.3352 18.743 11.3365 18.7344 11.3365C18.724 11.336 18.7136 11.3375 18.7032 11.3375C18.6833 11.3376 18.6634 11.3386 18.6435 11.3406C18.6321 11.3417 18.6206 11.3411 18.6092 11.3428C14.1032 11.4244 10.461 15.1088 10.461 19.6342C10.461 24.1823 14.1395 27.8837 18.6771 27.9289ZM12.3046 22.4714H14.1902C14.6282 23.9014 15.3929 25.2074 16.4381 26.2893C14.5894 25.6422 13.0899 24.251 12.3046 22.4714ZM25.8155 19.6341C25.8155 20.1829 25.7462 20.715 25.6271 21.2282H23.5043C23.5913 20.7026 23.6407 20.1657 23.6407 19.6187C23.6407 19.0831 23.5924 18.5566 23.5073 18.0404H25.6273C25.7463 18.5535 25.8155 19.0854 25.8155 19.6341ZM22.3975 19.6495C22.3975 20.1865 22.346 20.7143 22.2481 21.2283H19.3813V18.0405H22.2454C22.3467 18.5708 22.3977 19.1096 22.3975 19.6495ZM15.5035 22.4714H18.1382V26.1577C16.9203 25.1847 16.0188 23.9112 15.5035 22.4714ZM19.3813 26.0619V22.4713H21.9064C21.408 23.8621 20.5437 25.0999 19.3813 26.0619ZM19.3813 16.7972V13.2064C20.5413 14.1667 21.4044 15.4031 21.9033 16.7972H19.3813ZM18.1382 13.1105V16.7972H15.5001C16.0147 15.3608 16.9175 14.0853 18.1382 13.1105ZM18.1382 18.0404V21.2282H15.1611C15.0598 20.6977 15.0088 20.1588 15.009 19.6187C15.009 19.0819 15.0605 18.5541 15.1583 18.0404H18.1382ZM13.8993 21.2282H11.8926C11.7735 20.715 11.7042 20.1829 11.7042 19.6341C11.7042 19.0853 11.7734 18.5534 11.8925 18.0404H13.9023C13.8153 18.5658 13.7659 19.1026 13.7659 19.6494C13.7659 20.1852 13.8144 20.7119 13.8993 21.2282ZM20.8993 26.3562C21.9727 25.2669 22.7666 23.934 23.213 22.4713H25.2151C24.4038 24.3099 22.8326 25.7393 20.8993 26.3562ZM25.2153 16.7972H23.2165C22.7691 15.3343 21.9744 14.0014 20.9001 12.9123C22.8332 13.5293 24.4041 14.9588 25.2153 16.7972ZM16.4388 12.9787C15.3958 14.0589 14.632 15.364 14.1934 16.7972H12.3044C13.0898 15.0173 14.5896 13.6258 16.4388 12.9787ZM40.6427 8.16075C40.2167 7.33518 39.4976 6.72613 38.6178 6.44527L18.9497 0.165376C18.0703 -0.116284 17.131 -0.0361433 16.3055 0.390345C15.4801 0.816114 14.8709 1.53522 14.5901 2.41497L13.2847 6.50277H8.43676C6.5238 6.50277 4.96753 8.05923 4.96753 9.97218V42.531C4.96753 44.444 6.5238 46 8.43676 46H29.0829C30.9959 46 32.5522 44.444 32.5522 42.531V36.8481L40.8675 10.805C41.1483 9.92564 41.0686 8.98632 40.6427 8.16075ZM31.3089 42.531C31.3089 43.7585 30.3103 44.7568 29.0829 44.7568H8.43676C7.20931 44.7568 6.21079 43.7585 6.21079 42.531V9.97218C6.21079 8.74473 7.2094 7.74603 8.43676 7.74603H29.0829C30.3104 7.74603 31.3089 8.74482 31.3089 9.97218V42.531ZM39.6833 10.4271L32.5522 32.7615V9.97218C32.5522 8.05923 30.9959 6.50277 29.0829 6.50277H14.5894L15.7741 2.79304C15.954 2.22972 16.3452 1.76873 16.8755 1.49479C17.4057 1.22122 18.0078 1.16983 18.5718 1.34952L38.2398 7.6295C38.8031 7.80955 39.2643 8.20055 39.5379 8.73108C39.8115 9.26116 39.8632 9.86374 39.6833 10.4271ZM27.1446 32.7388C27.1446 32.9036 27.0791 33.0617 26.9626 33.1783C26.846 33.2949 26.6879 33.3604 26.523 33.3604H10.9964C10.8334 33.3576 10.6779 33.2909 10.5636 33.1746C10.4493 33.0584 10.3853 32.9018 10.3853 32.7388C10.3853 32.5757 10.4493 32.4192 10.5636 32.3029C10.6779 32.1866 10.8334 32.1199 10.9964 32.1171H26.5231C26.6047 32.1171 26.6856 32.1332 26.761 32.1645C26.8364 32.1957 26.9049 32.2415 26.9626 32.2992C27.0204 32.3569 27.0661 32.4255 27.0974 32.5009C27.1286 32.5763 27.1447 32.6571 27.1446 32.7388ZM27.1446 37.1267C27.1446 37.2916 27.0791 37.4497 26.9626 37.5663C26.846 37.6828 26.6879 37.7483 26.523 37.7484H10.9964C10.8334 37.7456 10.6779 37.6789 10.5636 37.5626C10.4493 37.4463 10.3853 37.2898 10.3853 37.1267C10.3853 36.9637 10.4493 36.8071 10.5636 36.6909C10.6779 36.5746 10.8334 36.5079 10.9964 36.5051H26.5231C26.688 36.5051 26.846 36.5707 26.9626 36.6872C27.0791 36.8038 27.1446 36.9619 27.1446 37.1267ZM23.623 41.5148C23.623 41.6796 23.5575 41.8377 23.4409 41.9543C23.3244 42.0709 23.1663 42.1364 23.0014 42.1364H14.5181C14.3551 42.1336 14.1996 42.0669 14.0853 41.9507C13.971 41.8344 13.9069 41.6778 13.9069 41.5148C13.9069 41.3517 13.971 41.1952 14.0853 41.0789C14.1996 40.9626 14.3551 40.8959 14.5181 40.8932H23.0014C23.1663 40.8932 23.3244 40.9586 23.441 41.0752C23.5576 41.1918 23.623 41.3499 23.623 41.5148Z"/>
-                                </svg>
-                            </div>
-                            <div className="row g-xl-4 g-lg-3 g-md-4 g-2">
-                                <div className="col-5">
-                                    <div className="single-img">
-                                        <img src="assets/img/home6/about-img1.jpg" alt=""/>
-                                    </div>
-                                </div>
-                                <div className="col-7">
-                                    <div className="single-img">
-                                        <img src="assets/img/home6/about-img2.jpg" alt=""/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <div className="banner-content">
+            <h1>About Go Fly</h1>
+          </div>
         </div>
-    </div>
-    </>
-  )
-}
+      </div>
+      {/* End Breadcrumb section */}
 
-export default About
+      {/* About section start */}
+      <div className="about-section pt-100 mb-100">
+        <div className="container">
+          <div className="about-wrapper">
+            <div className="row align-items-center justify-content-between">
+              <div
+                className="col-xl-6 col-lg-7 wow animate fadeInLeft"
+                data-wow-delay="200ms"
+                data-wow-duration="1500ms"
+              >
+                <div className="about-content">
+                  <div className="section-title">
+                    <h2>Why We’re Best Agency</h2>
+                    <h4>
+                      Welcome to GoFly Travel Agency – Your Gateway to
+                      Unforgettable Journeys!
+                    </h4>
+                    <p>
+                      GoFly Travel Agency is a trusted name in the travel
+                      industry, offering seamless travel planning, personalized
+                      itineraries, and unforgettable adventures. With years of
+                      experience and a network of global partners, we ensure a
+                      hassle-free and memorable journey for every traveler.
+                    </p>
+                    <p>
+                      We believe that travel is more than just moving from one
+                      place to another—it’s about discovering new cultures,
+                      creating unforgettable experiences, and making lifelong
+                      memories.
+                    </p>
+                  </div>
+                  <div className="founder-area">
+                    <img
+                      src="/assets/img/innerpages/about-page-founder-signature.png"
+                      alt="Founder Signature"
+                    />
+                    <div className="founder-info">
+                      <h6>Robert Harringson</h6>
+                      <span>Founder at GoFly</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="col-lg-5 d-lg-block d-none wow animate fadeInRight"
+                data-wow-delay="200ms"
+                data-wow-duration="1500ms"
+              >
+                <div className="about-img">
+                  <img
+                    src="/assets/img/home3/about-img.png"
+                    alt="About GoFly"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* About section end  */}
+
+      {/* home1 service Section Start */}
+      <div className="home1-service-section mb-100">
+        <div className="container">
+          <div className="service-wrapper">
+            <div
+              className="row justify-content-center wow animate fadeInDown"
+              data-wow-delay="200ms"
+              data-wow-duration="1500ms"
+            >
+              <div className="col-lg-9">
+                <div className="section-title">
+                  <h2>We’re Providing Best Service Ever!</h2>
+                  <svg
+                    height="6"
+                    viewBox="0 0 872 6"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M5 2.5L0 0.113249V5.88675L5 3.5V2.5ZM867 3.5L872 5.88675V0.113249L867 2.5V3.5ZM4.5 3.5H867.5V2.5H4.5V3.5Z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <ul
+              className="service-list wow animate fadeInUp"
+              data-wow-delay="200ms"
+              data-wow-duration="1500ms"
+            >
+              <li className="single-service">
+                <div className="icon">
+                  <svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 30 30"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M15 0C21.4662 0 26.7081 5.24194 26.7081 11.7081C26.7081 18.1743 21.4662 23.4163 15 23.4163C8.53375 23.4163 3.29187 18.1743 3.29187 11.7081C3.29187 5.24194 8.53375 0 15 0ZM23.7899 20.886C22.1639 22.4438 20.1246 23.5736 17.8531 24.0947L19.8539 28.7401L22.0141 25.2591L26.0274 26.081L23.7899 20.886ZM12.758 24.2191C10.4637 23.8108 8.38243 22.7867 6.69112 21.324L3.97262 27.1631L8.00831 26.4579L10.0666 30L12.758 24.2191ZM15.1981 7.58544C15.1294 7.40431 14.8707 7.40431 14.8019 7.58544L13.7848 10.2644C13.7706 10.3033 13.7451 10.337 13.7117 10.3613C13.6782 10.3856 13.6383 10.3994 13.597 10.4009L10.7348 10.5404C10.5401 10.5498 10.4604 10.7951 10.6124 10.9172L12.8459 12.7124C12.8785 12.7379 12.9027 12.7726 12.9154 12.8119C12.9282 12.8512 12.929 12.8934 12.9177 12.9332L12.1659 15.6984C12.1147 15.8865 12.3233 16.0381 12.4864 15.9313L14.8839 14.3618C14.9182 14.3387 14.9586 14.3264 15 14.3264C15.0413 14.3264 15.0817 14.3387 15.116 14.3618L17.5136 15.9313C17.6767 16.0381 17.8853 15.8865 17.8341 15.6984L17.0823 12.9333C17.071 12.8935 17.0717 12.8513 17.0845 12.8119C17.0973 12.7726 17.1215 12.738 17.154 12.7125L19.3876 10.9172C19.5395 10.7951 19.4598 10.5499 19.2652 10.5404L16.403 10.4009C16.3617 10.3994 16.3218 10.3856 16.2883 10.3613C16.2549 10.337 16.2294 10.3033 16.2152 10.2645L15.1981 7.58544ZM16.1065 3.43C15.4404 2.93137 14.5596 2.93137 13.8935 3.43C12.1593 4.72812 12.5526 4.58494 10.3897 4.70525C9.55893 4.75144 8.88418 5.31763 8.69443 6.12775C8.20037 8.23687 8.40962 7.87438 6.83012 9.35688C6.22343 9.92631 6.0705 10.7937 6.44587 11.5363C7.42312 13.4695 7.35043 13.0574 7.09337 15.2083C6.99462 16.0344 7.43506 16.7972 8.19987 17.1248C10.1912 17.9776 9.87056 17.7085 11.0562 19.5215C11.5116 20.2179 12.3392 20.5191 13.1357 20.2784C15.2093 19.6517 14.7908 19.6517 16.8644 20.2784C17.6609 20.5191 18.4886 20.2178 18.9439 19.5215C20.1296 17.7086 19.809 17.9776 21.8002 17.1248C22.5651 16.7972 23.0055 16.0344 22.9067 15.2083C22.6497 13.0573 22.577 13.4695 23.5542 11.5363C23.9296 10.7937 23.7766 9.92631 23.17 9.35688C21.5904 7.87444 21.7997 8.23687 21.3057 6.12775C21.1159 5.31763 20.4412 4.7515 19.6104 4.70525C17.4474 4.58494 17.8407 4.72806 16.1065 3.43Z"
+                    />
+                  </svg>
+                </div>
+                <div className="content">
+                  <h4>Local Guidance</h4>
+                  <p>
+                    Travel agencies have experienced professionals guidance.
+                  </p>
+                </div>
+              </li>
+              <li className="single-service">
+                <div className="icon">
+                  <svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 30 30"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M20.4896 4.14404C19.8384 3.81275 19.0419 4.07233 18.7107 4.72379L8.87091 24.0772C8.53971 24.7285 8.79929 25.5249 9.45066 25.8561C9.63601 25.9507 9.84112 26 10.0492 26C10.5313 26 10.996 25.7356 11.2296 25.2763L21.0694 5.92297C21.4006 5.27161 21.141 4.47523 20.4896 4.14404ZM13.4243 10.5172C13.4243 7.75042 11.1733 5.49943 8.40653 5.49943C5.63991 5.49943 3.38892 7.75042 3.38892 10.5172C3.38892 13.2839 5.63991 15.5349 8.40662 15.5349C11.1734 15.5349 13.4243 13.2839 13.4243 10.5172ZM8.40662 12.8889C7.09894 12.8889 6.03496 11.8249 6.03496 10.5172C6.03496 9.20945 7.09894 8.14548 8.40662 8.14548C9.71438 8.14548 10.7784 9.20937 10.7784 10.5172C10.7783 11.8249 9.71438 12.8889 8.40662 12.8889ZM21.5934 14.4653C18.8266 14.4653 16.5756 16.7163 16.5756 19.483C16.5756 22.2497 18.8265 24.5007 21.5934 24.5007C24.3601 24.5007 26.6111 22.2498 26.6111 19.483C26.6111 16.7162 24.3602 14.4653 21.5934 14.4653ZM21.5934 21.8546C20.2856 21.8546 19.2216 20.7906 19.2216 19.4829C19.2216 18.1752 20.2856 17.1113 21.5934 17.1113C22.901 17.1113 23.965 18.1752 23.965 19.4829C23.965 20.7906 22.9011 21.8546 21.5934 21.8546Z" />
+                  </svg>
+                </div>
+                <div className="content">
+                  <h4>Deals & Discounts</h4>
+                  <p>
+                    Agencies have special discounts on flights, hotels, &
+                    packages.
+                  </p>
+                </div>
+              </li>
+              <li className="single-service">
+                <div className="icon">
+                  <svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 30 30"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M27.6977 12.3954C27.6977 11.446 27.32 10.5343 26.6493 9.86234C25.9771 9.19137 25.0661 8.81436 24.1163 8.81396H5.88376C4.93437 8.81396 4.02274 9.19164 3.35074 9.86234C2.67978 10.5346 2.30277 11.4455 2.30237 12.3954V25.4186C2.30237 26.368 2.68004 27.2796 3.35074 27.9516C4.02303 28.6226 4.93394 28.9996 5.88376 29H24.1163C25.0657 29 25.9773 28.6223 26.6493 27.9516C27.3203 27.2794 27.6973 26.3684 27.6977 25.4186V12.3954ZM25.7442 12.3954V25.4186C25.7435 25.8502 25.5718 26.2638 25.2667 26.569C24.9615 26.8741 24.5479 27.0458 24.1163 27.0465H5.88376C5.45223 27.0458 5.03856 26.8741 4.73342 26.569C4.42828 26.2638 4.25655 25.8502 4.25586 25.4186V12.3954C4.25655 11.9638 4.42828 11.5502 4.73342 11.245C5.03856 10.9399 5.45223 10.7681 5.88376 10.7675H24.1163C24.5479 10.7681 24.9615 10.9399 25.2667 11.245C25.5718 11.5502 25.7435 11.9638 25.7442 12.3954Z"
+                    />
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M15.5497 5.9527L16.7986 3.27511L23.2907 6.30172L21.8555 9.37781C21.746 9.61268 21.7343 9.88143 21.823 10.1249C21.9116 10.3684 22.0934 10.5667 22.3283 10.6762C22.5631 10.7857 22.8319 10.7974 23.0754 10.7088C23.3189 10.6201 23.5172 10.4384 23.6267 10.2035L25.4734 6.24181C25.5826 6.00725 25.5944 5.73893 25.506 5.49573C25.4176 5.25254 25.2363 5.05436 25.0019 4.94469L16.7387 1.09111C16.504 0.98194 16.2355 0.970407 15.9923 1.05905C15.7491 1.14769 15.551 1.32926 15.4416 1.56386L13.7798 5.12832C13.7206 5.24516 13.6856 5.37271 13.6767 5.50338C13.6678 5.63405 13.6853 5.76517 13.7281 5.88894C13.7709 6.01271 13.8382 6.12661 13.9259 6.22386C14.0137 6.32111 14.1201 6.39972 14.2388 6.45502C14.3575 6.51031 14.4861 6.54117 14.617 6.54575C14.7479 6.55033 14.8784 6.52855 15.0007 6.48168C15.123 6.43482 15.2346 6.36384 15.3289 6.27296C15.4232 6.18209 15.4983 6.07317 15.5497 5.9527Z"
+                    />
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M7.66406 10.2035L10.2869 4.57748L16.779 7.60409L15.9521 9.37785C15.8494 9.61152 15.8424 9.87607 15.9323 10.1149C16.0223 10.3537 16.2022 10.5478 16.4334 10.6557C16.6647 10.7636 16.929 10.7767 17.1698 10.6922C17.4106 10.6077 17.6088 10.4323 17.7219 10.2035L18.9617 7.54418C19.071 7.30962 19.0827 7.04129 18.9943 6.7981C18.9059 6.55491 18.7247 6.35673 18.4903 6.24706L10.227 2.39348C9.99231 2.28431 9.72386 2.27278 9.48064 2.36142C9.23742 2.45006 9.03934 2.63163 8.92992 2.86623L5.89289 9.37785C5.7834 9.61273 5.7717 9.88147 5.86035 10.125C5.94901 10.3685 6.13077 10.5668 6.36564 10.6763C6.60051 10.7858 6.86925 10.7975 7.11275 10.7088C7.35626 10.6202 7.55456 10.4384 7.66406 10.2035ZM27.6977 15C27.6977 14.7409 27.5948 14.4925 27.4116 14.3093C27.2285 14.1262 26.98 14.0232 26.721 14.0232H21.5104C20.5605 14.0232 19.6496 14.4006 18.978 15.0722C18.3063 15.7439 17.929 16.6548 17.929 17.6046V20.2093C17.929 21.1591 18.3063 22.0701 18.978 22.7417C19.6496 23.4134 20.5605 23.7907 21.5104 23.7907H26.721C26.98 23.7907 27.2285 23.6878 27.4116 23.5046C27.5948 23.3214 27.6977 23.073 27.6977 22.8139V15ZM25.7442 15.9767V21.8372H21.5104C20.6118 21.8372 19.8825 21.1079 19.8825 20.2093V17.6046C19.8825 16.706 20.6118 15.9767 21.5104 15.9767H25.7442Z"
+                    />
+                    <path d="M22.1628 20.2094C22.8821 20.2094 23.4651 19.6263 23.4651 18.9071C23.4651 18.1878 22.8821 17.6047 22.1628 17.6047C21.4435 17.6047 20.8605 18.1878 20.8605 18.9071C20.8605 19.6263 21.4435 20.2094 22.1628 20.2094Z" />
+                  </svg>
+                </div>
+                <div className="content">
+                  <h4>Saves Money</h4>
+                  <p>
+                    Avoids hidden fees & tourist traps, Multi-destination &
+                    budget-friendly options.
+                  </p>
+                </div>
+              </li>
+            </ul>
+            <div
+              className="bottom-area d-flex justify-content-center wow animate fadeInUp"
+              data-wow-delay="200ms"
+              data-wow-duration="1500ms"
+            >
+              <div className="batch">
+                <span>Flat 30% Discounts All Packages</span>
+                <a href="travel-package-01.html">
+                  Check Offer
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 9L9 1M9 1C7.22222 1.33333 3.33333 2 1 1M9 1C8.66667 2.66667 8 6.33333 9 9"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* home1 service Section End*/}
+
+      {/* About Page Journey Section Start */}
+      <div className="about-page-journey-section mb-100">
+        <div className="container">
+          <div
+            className="row justify-content-center mb-50 wow animate fadeInDown"
+            data-wow-delay="200ms"
+            data-wow-duration="1500ms"
+          >
+            <div className="col-lg-8">
+              <div className="section-title text-center">
+                <h2>Behind The Journey</h2>
+                <p>
+                  With years of experience in the travel industry, we specialize
+                  in crafting personalized journeys.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="jouney-content-wrapper">
+            <div className="nav-area mb-50">
+              <div className="nav nav-pills" id="pills-tab" role="tablist">
+                <Swiper
+                  modules={[Navigation]}
+                  spaceBetween={25}
+                  slidesPerView={7}
+                  speed={1500}
+                  loop={true}
+                  breakpoints={{
+                    280: { slidesPerView: 2, spaceBetween: 15 },
+                    480: { slidesPerView: 3 },
+                    768: { slidesPerView: 4 },
+                    992: { slidesPerView: 5 },
+                    1200: { slidesPerView: 7 },
+                  }}
+                  className="about-page-journey-slider"
+                >
+                  {journeyData.map((item, index) => (
+                    <SwiperSlide key={index}>
+                      <div className="nav-item" role="presentation">
+                        <div
+                          className={`nav-link ${
+                            activeTab === item.id ? "active" : ""
+                          }`}
+                          onClick={() => setActiveTab(item.id)}
+                          role="tab"
+                        >
+                          <img src={item.img} alt={item.year} />
+                          <h4>{item.year}</h4>
+                        </div>
+                        <span className="dot"></span>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+              <svg
+                className="line"
+                height="6"
+                viewBox="0 0 1320 6"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M5 2.5L0 0.113249V5.88675L5 3.5V2.5ZM1315 3.5L1320 5.88675V0.113249L1315 2.5V3.5ZM4.5 3.5H1315.5V2.5H4.5V3.5Z" />
+              </svg>
+            </div>
+            <div className="row justify-content-center">
+              <div className="col-xl-8 col-lg-10">
+                <div className="tab-content" id="pills-tabContent">
+                  {journeyData.map((item) => (
+                    <div
+                      key={item.id}
+                      className={`tab-pane fade ${
+                        activeTab === item.id ? "show active" : ""
+                      }`}
+                      role="tabpanel"
+                    >
+                      <h4>{item.title}</h4>
+                      <p
+                        dangerouslySetInnerHTML={{ __html: item.description }}
+                      ></p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* About Page Journey Section End- */}
+
+      {/* Why Choose Visa Section Start */}
+      <div className="about-why-choose-section mb-100">
+        <div className="container">
+          <div
+            className="row justify-content-center mb-50 wow animate fadeInDown"
+            data-wow-delay="200ms"
+            data-wow-duration="1500ms"
+          >
+            <div className="col-lg-8">
+              <div className="section-title text-center">
+                <h2>Why Travel with Us?</h2>
+                <p>
+                  We specialize in crafting personalized journeys that suit
+                  every traveler’s dream.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="row g-xl-4 g-lg-3 g-4">
+            <div
+              className="col-lg-3 col-sm-6 wow animate fadeInDown"
+              data-wow-delay="200ms"
+              data-wow-duration="1500ms"
+            >
+              <div className="why-choose-card">
+                <svg
+                  width="50"
+                  height="50"
+                  viewBox="0 0 50 50"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M35.4081 30.5529L32.5878 38.1096C32.1995 39.1501 31.5928 40.107 30.8484 39.3186C30.6269 39.084 30.4387 38.7694 30.4738 38.4237L31.0957 32.291C31.0973 32.2737 31.1035 32.2571 31.1138 32.2431C31.1241 32.229 31.138 32.2181 31.154 32.2114L35.2782 30.4294C35.2957 30.4216 35.3152 30.4192 35.334 30.4226C35.3529 30.4259 35.3703 30.4348 35.384 30.4482C35.4129 30.4757 35.422 30.5155 35.4081 30.5529ZM30.06 46.0639V48.1646C30.0606 48.2148 30.0808 48.2628 30.1163 48.2983C30.1518 48.3338 30.1997 48.3539 30.2499 48.3545H32.5924C32.6426 48.3539 32.6906 48.3337 32.7261 48.2982C32.7615 48.2627 32.7817 48.2148 32.7823 48.1646V46.0639C32.7823 46.0381 32.772 46.0133 32.7538 45.9951C32.7355 45.9768 32.7108 45.9665 32.6849 45.9665H30.1575C30.1317 45.9665 30.1069 45.9768 30.0887 45.995C30.0704 46.0133 30.0601 46.0381 30.06 46.0639ZM17.2166 46.0639V48.1646C17.2166 48.2678 17.3034 48.3545 17.4065 48.3545H19.749C19.7992 48.3539 19.8472 48.3337 19.8827 48.2982C19.9181 48.2627 19.9383 48.2148 19.9389 48.1646V46.0639C19.9389 46.0381 19.9286 46.0133 19.9104 45.9951C19.8921 45.9768 19.8674 45.9665 19.8415 45.9665H17.3141C17.2883 45.9665 17.2635 45.9768 17.2453 45.995C17.227 46.0133 17.2167 46.0381 17.2166 46.0639ZM48.8359 14.7499C47.5238 11.5883 40.2918 12.6608 36.7021 13.3925C36.6826 13.3963 36.6647 13.4061 36.651 13.4205C36.6372 13.4349 36.6283 13.4532 36.6254 13.4729C36.6222 13.4925 36.6251 13.5127 36.6338 13.5307C36.6425 13.5486 36.6566 13.5633 36.674 13.5729C37.0663 13.7934 37.4137 14.0856 37.6981 14.4344C37.709 14.4481 37.7235 14.4586 37.74 14.4646C37.7565 14.4707 37.7743 14.472 37.7915 14.4686C40.0989 14.0371 42.1252 13.8335 43.7602 13.8734C48.2883 13.9839 48.9629 15.729 45.8351 19.0013C44.9797 19.8962 43.8717 20.8496 42.5489 21.833C42.535 21.8431 42.524 21.8567 42.5172 21.8726C42.5104 21.8884 42.5081 21.9057 42.5103 21.9228C42.5122 21.9399 42.5186 21.9562 42.5289 21.97C42.5393 21.9837 42.5532 21.9944 42.5691 22.0009L43.7055 22.4811C43.7387 22.4951 43.7742 22.4906 43.8028 22.4686C44.9673 21.573 45.9589 20.7007 46.7507 19.8723C48.616 17.9211 49.4126 16.1394 48.8359 14.7499ZM41.4401 22.6252C40.9926 22.4911 40.5399 22.4305 40.0874 22.4435C39.0336 22.4737 38.3558 22.8574 37.4704 23.3032C37.4557 23.3109 37.4391 23.3146 37.4224 23.3139C37.4058 23.3132 37.3896 23.3081 37.3755 23.2991C37.3612 23.2905 37.3494 23.2784 37.3413 23.2638C37.3331 23.2492 37.329 23.2328 37.3292 23.2161V17.5544C37.3292 15.5964 35.7296 13.9968 33.7716 13.9968H16.2273C14.2694 13.9968 12.6698 15.5964 12.6698 17.5544V34.6487C12.67 34.6713 12.6622 34.6933 12.6478 34.7108C12.6334 34.7283 12.6133 34.7402 12.591 34.7444C11.0592 35.0427 9.64314 35.2439 8.37354 35.3433C5.03684 35.6046 2.80884 35.2015 2.33104 34.0503C1.93464 33.0953 2.78384 31.6218 4.57124 29.8719C6.20244 28.2748 8.58484 26.5146 11.5176 24.7434C11.5322 24.7349 11.5442 24.7227 11.5525 24.7081C11.5607 24.6934 11.565 24.6768 11.5647 24.66V23.4161C11.5647 23.3801 11.5468 23.3493 11.5156 23.3315C11.4844 23.3137 11.4487 23.314 11.4177 23.3323C8.14634 25.2657 5.48614 27.2081 3.68534 28.9712C1.51254 31.0986 0.545136 33.0465 1.16304 34.5354C1.87774 36.2575 4.56144 36.9113 8.46754 36.6054C11.469 36.3703 15.6484 35.3106 19.5502 34.0986C19.6291 34.0741 19.7096 34.0543 19.7866 34.0249C21.0329 33.5477 18.4393 30.2474 17.7892 29.195C17.7721 29.1672 17.7697 29.1358 17.7825 29.1058C17.7953 29.0758 17.8195 29.0557 17.8514 29.0487C17.884 29.0416 17.9188 29.0446 17.9598 29.066L21.78 31.0642C22.629 31.5082 23.503 31.7918 24.3572 31.3598L38.8189 24.0449C39.6673 23.6158 40.5572 23.5906 41.4434 23.9691L43.7322 24.9468C43.9333 25.0327 43.9321 25.3141 43.7331 25.3971C33.696 29.734 23.5618 35.072 12.7489 37.1349C12.7266 37.139 12.7065 37.1508 12.692 37.1683C12.6775 37.1858 12.6696 37.2078 12.6697 37.2305V41.4733C12.6697 43.4312 14.2693 45.0309 16.2272 45.0309H33.7714C35.7293 45.0309 37.329 43.4313 37.329 41.4733V29.6073C37.329 29.5676 37.3513 29.5336 37.3878 29.5179L44.2329 26.5603C45.448 26.0366 45.4454 24.3043 44.227 23.7839L42.8363 23.1899L42.8346 23.1892L41.4485 22.6284C41.4458 22.6272 41.443 22.6261 41.4401 22.6252ZM29.0716 12.8012V6.40939C29.0716 6.38249 29.0812 6.35939 29.1003 6.34039C29.1093 6.33118 29.1201 6.3239 29.1319 6.31902C29.1438 6.31413 29.1566 6.31174 29.1694 6.31199C29.6222 6.31349 29.9994 6.31229 30.3842 5.92749C30.5061 5.80611 30.6027 5.66187 30.6686 5.50305C30.7346 5.34423 30.7685 5.17395 30.7684 5.00199V2.95519C30.7684 2.23349 30.1803 1.64539 29.4587 1.64539H20.5404C19.8187 1.64539 19.2306 2.23349 19.2306 2.95519V5.00199C19.2306 5.72359 19.8187 6.31169 20.5404 6.31169H20.83C20.8837 6.31169 20.9274 6.35549 20.9274 6.40909V12.8011C20.9274 12.8548 20.9712 12.8985 21.0248 12.8985H22.0969C22.1228 12.8984 22.1475 12.8882 22.1658 12.8699C22.184 12.8516 22.1943 12.8269 22.1943 12.8011V6.40909C22.1943 6.35539 22.2381 6.31169 22.2917 6.31169H27.707C27.7607 6.31169 27.8044 6.35549 27.8044 6.40909V12.8011C27.8044 12.8548 27.8482 12.8985 27.9018 12.8985H28.9739C28.9867 12.8985 28.9994 12.896 29.0113 12.8911C29.0231 12.8863 29.0339 12.8791 29.0429 12.8701C29.052 12.861 29.0592 12.8503 29.0641 12.8385C29.0691 12.8267 29.0716 12.814 29.0716 12.8012ZM22.2741 24.8024C22.2728 24.8014 22.2714 24.8005 22.2699 24.7996C21.3689 24.227 21.7537 23.5603 22.8151 23.8575L22.8187 23.8584L31.6885 25.9845C31.7291 25.9942 31.7579 26.0268 31.7626 26.0683C31.7673 26.1098 31.7466 26.148 31.7091 26.1665L27.3399 28.3379C27.3242 28.346 27.3066 28.3495 27.2889 28.3481C27.2713 28.3468 27.2544 28.3405 27.2401 28.3301L22.2741 24.8024Z"
+                  />
+                </svg>
+                <h5>
+                  Personalized <br />
+                  Itineraries.
+                </h5>
+              </div>
+            </div>
+            <div
+              className="col-lg-3 col-sm-6 wow animate fadeInDown"
+              data-wow-delay="400ms"
+              data-wow-duration="1500ms"
+            >
+              <div className="why-choose-card two">
+                <svg
+                  width="50"
+                  height="50"
+                  viewBox="0 0 50 50"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M50.0319 31.8411L38.6003 12.041C38.4964 11.861 38.3269 11.7281 38.1273 11.6702L30.1219 9.3456C30.1825 8.94583 30.2132 8.54209 30.2136 8.13774C30.2136 3.70981 26.6112 0.107422 22.1833 0.107422C17.7554 0.107422 14.153 3.70981 14.153 8.13774C14.153 9.81481 14.6705 11.373 15.5532 12.6624L4.77913 24.0472C4.63753 24.1969 4.55861 24.395 4.55859 24.601V51.1973C4.55859 53.235 6.21644 54.8926 8.25412 54.8926H36.1124C38.1502 54.8926 39.8079 53.2348 39.8079 51.1973V41.2852L48.9093 36.0305C49.6166 35.6222 50.1232 34.9606 50.3356 34.1676C50.5482 33.3746 50.4403 32.5483 50.0319 31.8411ZM15.7643 8.13774C15.7643 4.5983 18.6439 1.71875 22.1833 1.71875C25.7227 1.71875 28.6023 4.5983 28.6023 8.13774C28.6023 8.38965 28.5859 8.64145 28.5567 8.89109L23.9758 7.56089C23.4824 7.1051 22.8668 6.86469 22.1833 6.86469C21.4352 6.86469 20.7679 7.15193 20.2538 7.69517L16.6921 11.4588C16.0839 10.4579 15.7629 9.30894 15.7643 8.13774ZM38.1966 51.1973C38.1966 52.3464 37.2616 53.2812 36.1124 53.2812H8.25423C7.10503 53.2812 6.17003 52.3464 6.17003 51.1973V24.9219L16.5996 13.9009C18.0459 15.3027 20.015 16.168 22.1833 16.168C22.6284 16.168 22.989 15.8073 22.989 15.3623C22.989 14.9172 22.6284 14.5566 22.1833 14.5566C20.4432 14.5566 18.8636 13.8596 17.7063 12.7314L21.4242 8.80279C21.6351 8.57989 21.8764 8.47602 22.1833 8.47602C22.4902 8.47602 22.7316 8.57989 22.9426 8.80279L38.1966 24.9219V51.1973ZM48.7792 33.7506C48.6782 34.1278 48.4382 34.442 48.1037 34.6351L39.8079 39.4246V24.6011C39.8079 24.3951 39.729 24.1969 39.5874 24.0474L26.179 9.87852L37.3667 13.1272L48.6364 32.6469C48.8296 32.9813 48.8802 33.3733 48.7792 33.7506ZM10.5639 31.5021C10.5639 37.9091 15.7762 43.1214 22.1832 43.1214C28.5902 43.1214 33.8026 37.9091 33.8026 31.5021C33.8026 25.0951 28.5902 19.8827 22.1832 19.8827C15.7762 19.8827 10.5639 25.0951 10.5639 31.5021ZM32.1913 31.5021C32.1913 37.0205 27.7017 41.5101 22.1832 41.5101C16.6648 41.5101 12.1752 37.0205 12.1752 31.5021C12.1752 25.9836 16.6648 21.494 22.1832 21.494C27.7017 21.494 32.1913 25.9836 32.1913 31.5021ZM13.7978 31.5021C13.7978 36.1259 17.5595 39.8876 22.1832 39.8876C26.807 39.8876 30.5687 36.1259 30.5687 31.5021C30.5687 26.8784 26.807 23.1167 22.1832 23.1167C17.5595 23.1167 13.7978 26.8784 13.7978 31.5021ZM28.9572 31.5021C28.9572 35.2373 25.9184 38.2762 22.1831 38.2762C18.4478 38.2762 15.4091 35.2374 15.4091 31.5021C15.4091 27.7668 18.4478 24.728 22.1831 24.728C25.9184 24.728 28.9572 27.7668 28.9572 31.5021ZM22.1832 25.7782C22.6282 25.7782 22.9889 26.1389 22.9889 26.5839V27.1482C24.0532 27.4897 24.8258 28.4888 24.8258 29.6652C24.8258 30.1102 24.4652 30.4709 24.0201 30.4709C23.5751 30.4709 23.2144 30.1102 23.2144 29.6652C23.2144 29.0966 22.7518 28.6339 22.1832 28.6339H22.012C21.4433 28.6339 20.9806 29.0966 20.9806 29.6652C20.9806 30.2339 21.4433 30.6966 22.012 30.6966H22.3544C23.8115 30.6966 24.9971 31.8821 24.9971 33.3392C24.9971 34.5777 24.1406 35.62 22.989 35.9049V36.4205C22.989 36.8656 22.6284 37.2262 22.1833 37.2262C21.7383 37.2262 21.3776 36.8656 21.3776 36.4205V35.8563C20.3133 35.5149 19.5407 34.5156 19.5407 33.3392C19.5407 32.8942 19.9013 32.5336 20.3464 32.5336C20.7914 32.5336 21.1521 32.8942 21.1521 33.3392C21.1521 33.9079 21.6147 34.3706 22.1833 34.3706H22.3545C22.9232 34.3706 23.3859 33.9079 23.3859 33.3392C23.3859 32.7705 22.9232 32.3079 22.3545 32.3079H22.0121C20.555 32.3079 19.3694 31.1224 19.3694 29.6652C19.3694 28.4267 20.2259 27.3845 21.3775 27.0996V26.5839C21.3775 26.1389 21.7381 25.7782 22.1832 25.7782ZM31.0777 45.1744H13.2887C13.1829 45.1744 13.0781 45.1953 12.9803 45.2357C12.8826 45.2762 12.7938 45.3356 12.7189 45.4104C12.6441 45.4852 12.5848 45.574 12.5443 45.6718C12.5038 45.7695 12.483 45.8743 12.483 45.9801V49.4447C12.483 49.8897 12.8436 50.2503 13.2887 50.2503H31.0777C31.5228 50.2503 31.8834 49.8897 31.8834 49.4447V45.9801C31.8834 45.7664 31.7985 45.5615 31.6474 45.4104C31.4963 45.2593 31.2914 45.1744 31.0777 45.1744ZM30.2721 48.639H14.0943V46.7858H30.2721V48.639Z" />
+                </svg>
+                <h5>
+                  Transparent <br />
+                  Pricing.
+                </h5>
+              </div>
+            </div>
+            <div
+              className="col-lg-3 col-sm-6 wow animate fadeInDown"
+              data-wow-delay="600ms"
+              data-wow-duration="1500ms"
+            >
+              <div className="why-choose-card three">
+                <svg
+                  width="50"
+                  height="50"
+                  viewBox="0 0 50 50"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M27.47 20.0587H24.8988L27.4468 17.4883C27.87 17.0586 28.1573 16.5139 28.273 15.922C28.3886 15.3302 28.3276 14.7173 28.0974 14.16C27.6454 13.0488 26.6321 12.3467 25.3989 12.3269C24.4918 12.3278 23.622 12.6885 22.9805 13.3299C22.339 13.9713 21.9781 14.8409 21.9769 15.7481C21.9769 15.976 22.0675 16.1946 22.2286 16.3557C22.3898 16.5169 22.6084 16.6075 22.8363 16.6075C23.0642 16.6075 23.2828 16.5169 23.444 16.3557C23.6051 16.1946 23.6957 15.976 23.6957 15.7481C23.6957 14.8096 24.4596 14.0457 25.4264 14.0457C26.1243 14.0568 26.4121 14.5828 26.5041 14.8079C26.67 15.2153 26.6837 15.8151 26.2248 16.2775L22.2244 20.3122C22.1054 20.4328 22.0247 20.5859 21.9924 20.7523C21.96 20.9186 21.9776 21.0908 22.0427 21.2472C22.1079 21.4036 22.2178 21.5373 22.3587 21.6315C22.4996 21.7257 22.6651 21.7762 22.8346 21.7766H27.4683C27.6962 21.7766 27.9148 21.6861 28.076 21.5249C28.2372 21.3637 28.3277 21.1451 28.3277 20.9172C28.3277 20.6893 28.2372 20.4707 28.076 20.3095C27.9148 20.1484 27.6962 20.0578 27.4683 20.0578L27.47 20.0587Z" />
+                  <path d="M31.9678 20.9172C31.9678 21.1451 32.0583 21.3637 32.2195 21.5249C32.3807 21.6861 32.5993 21.7766 32.8272 21.7766C33.0551 21.7766 33.2737 21.6861 33.4348 21.5249C33.596 21.3637 33.6866 21.1451 33.6866 20.9172V13.1837C33.6867 13.0038 33.6303 12.8283 33.5254 12.6821C33.4205 12.5359 33.2724 12.4264 33.1019 12.3688C32.9314 12.3113 32.7472 12.3087 32.5752 12.3615C32.4032 12.4143 32.252 12.5197 32.1431 12.6629L27.9433 18.187C27.8463 18.3144 27.7868 18.4664 27.7715 18.6259C27.7562 18.7853 27.7858 18.9459 27.857 19.0894C27.9281 19.2329 28.0379 19.3537 28.1741 19.4381C28.3102 19.5225 28.4672 19.5672 28.6274 19.5671H31.9678V20.9172ZM30.3599 17.8484L31.9678 15.7343V17.8484H30.3599ZM42.4075 22.9711H37.1945C36.9666 22.9711 36.748 23.0617 36.5869 23.2228C36.4257 23.384 36.3351 23.6026 36.3351 23.8305C36.3351 24.0584 36.4257 24.277 36.5869 24.4382C36.748 24.5993 36.9666 24.6899 37.1945 24.6899H40.7919L36.4821 31.0845C36.4168 31.178 36.3707 31.2835 36.3466 31.395C36.3225 31.5065 36.3208 31.6217 36.3416 31.7338C36.3625 31.846 36.4054 31.9528 36.468 32.0482C36.5306 32.1436 36.6115 32.2255 36.7061 32.2893C36.8006 32.3531 36.9069 32.3974 37.0188 32.4196C37.1307 32.4419 37.2459 32.4416 37.3576 32.4189C37.4694 32.3962 37.5755 32.3515 37.6699 32.2873C37.7642 32.2232 37.8448 32.1409 37.9069 32.0453L43.1199 24.3109C43.2071 24.1816 43.2574 24.0311 43.2656 23.8754C43.2737 23.7197 43.2393 23.5647 43.1661 23.427C43.0929 23.2894 42.9836 23.1742 42.85 23.0939C42.7164 23.0136 42.5634 22.9712 42.4075 22.9711ZM39.8302 13.3607C39.6285 13.2548 39.393 13.2333 39.1754 13.301C38.9579 13.3687 38.7761 13.52 38.6701 13.7217L29.9663 30.2896C29.9107 30.3897 29.8756 30.4999 29.8632 30.6138C29.8508 30.7277 29.8612 30.8429 29.894 30.9527C29.9267 31.0624 29.9811 31.1646 30.0539 31.253C30.1266 31.3415 30.2164 31.4145 30.3178 31.4678C30.4192 31.5211 30.5302 31.5535 30.6443 31.5633C30.7585 31.573 30.8734 31.5599 30.9824 31.5245C31.0914 31.4892 31.1922 31.4325 31.2789 31.3577C31.3656 31.2828 31.4365 31.1914 31.4874 31.0888L40.1912 14.5209C40.2971 14.3192 40.3186 14.0836 40.2509 13.8661C40.1832 13.6485 40.0319 13.4668 39.8302 13.3607Z" />
+                  <path d="M32.0547 1.71878C27.3069 1.70491 22.6927 3.28961 18.9553 6.21762C15.2179 9.14563 12.5749 13.2465 11.4521 17.8596L10.5523 16.9598C9.35088 15.7575 7.25401 15.7575 6.05088 16.9598L5.01447 17.9962C4.94315 18.0675 4.88299 18.1449 4.81424 18.2179C4.79447 18.2342 4.76955 18.2411 4.75065 18.26C4.71971 18.291 4.70596 18.3314 4.68018 18.3666C0.642834 22.776 0.745958 29.6407 5.01447 33.9093L21.0917 49.9864C23.2848 52.1804 26.1663 53.277 29.0478 53.277C31.9292 53.277 34.8107 52.1804 37.0038 49.9864L38.0403 48.95C38.6418 48.3485 38.9727 47.5493 38.9727 46.6993C38.9727 45.8494 38.6418 45.0502 38.0403 44.4486L37.1405 43.5489C41.7536 42.426 45.8544 39.783 48.7824 36.0456C51.7104 32.3082 53.2951 27.694 53.2813 22.9462C53.2813 11.2415 43.7585 1.71878 32.0547 1.71878ZM36.8251 47.734L35.7887 48.7704C32.071 52.4881 26.0236 52.4872 22.3068 48.7704L6.22963 32.6932C2.80846 29.2721 2.54463 23.8812 5.42096 20.1455L11.0834 25.8079C11.163 25.888 11.2577 25.9516 11.3619 25.9949C11.4662 26.0383 11.578 26.0606 11.691 26.0606C11.8039 26.0606 11.9157 26.0383 12.02 25.9949C12.1242 25.9516 12.2189 25.888 12.2985 25.8079C12.3784 25.7282 12.4418 25.6335 12.485 25.5292C12.5283 25.425 12.5505 25.3132 12.5505 25.2003C12.5505 25.0875 12.5283 24.9757 12.485 24.8715C12.4418 24.7672 12.3784 24.6725 12.2985 24.5928L6.57338 18.8676L7.26604 18.175C7.54276 17.8982 7.91057 17.7461 8.30158 17.7461C8.6926 17.7461 9.06041 17.8982 9.33713 18.175L14.6928 23.5297C14.9668 23.8047 15.1207 24.1771 15.1207 24.5653C15.1207 24.9535 14.9668 25.3258 14.6928 25.6008L13.3951 26.8985C12.6628 27.6322 12.2516 28.6265 12.2516 29.6631C12.2516 30.6997 12.6628 31.694 13.3951 32.4277L22.5655 41.5981C23.8795 42.9129 25.9024 43.0874 27.4124 42.1352L33.1977 47.9205C33.2773 48.0006 33.372 48.0641 33.4762 48.1075C33.5805 48.1509 33.6923 48.1732 33.8053 48.1732C33.9182 48.1732 34.03 48.1509 34.1343 48.1075C34.2385 48.0641 34.3332 48.0006 34.4128 47.9205C34.4927 47.8408 34.5561 47.7461 34.5993 47.6418C34.6425 47.5375 34.6648 47.4258 34.6648 47.3129C34.6648 47.2001 34.6425 47.0883 34.5993 46.984C34.5561 46.8798 34.4927 46.7851 34.4128 46.7053L28.6997 40.9922L29.3924 40.2996C29.6673 40.0255 30.0397 39.8716 30.4279 39.8716C30.8161 39.8716 31.1885 40.0255 31.4635 40.2996L36.8251 45.6621C37.1018 45.9388 37.2539 46.3066 37.2539 46.6976C37.2539 47.0886 37.1018 47.4573 36.8251 47.734ZM35.6933 42.1008L32.6786 39.0861C32.081 38.4905 31.2717 38.156 30.4279 38.156C29.5842 38.156 28.7748 38.4905 28.1772 39.0861L26.8796 40.3838C26.4684 40.7943 25.9111 41.0248 25.3301 41.0248C24.7491 41.0248 24.1918 40.7943 23.7806 40.3838L14.6103 31.2134C14.2 30.8021 13.9696 30.2449 13.9696 29.6639C13.9696 29.083 14.2 28.5258 14.6103 28.1145L15.9079 26.8168C16.504 26.2194 16.8387 25.41 16.8387 24.5661C16.8387 23.7222 16.504 22.9128 15.9079 22.3154L12.8992 19.3076C13.732 14.8397 16.1047 10.8052 19.6046 7.90576C23.1044 5.00635 27.5099 3.42556 32.0547 3.43839C42.8115 3.43839 51.5625 12.1894 51.5625 22.9462C51.5752 27.491 49.9943 31.8964 47.095 35.3962C44.1956 38.896 40.1611 41.2679 35.6933 42.1008Z" />
+                </svg>
+                <h5>
+                  24/7 Customer <br />
+                  Support.
+                </h5>
+              </div>
+            </div>
+            <div
+              className="col-lg-3 col-sm-6 wow animate fadeInDown"
+              data-wow-delay="800ms"
+              data-wow-duration="1500ms"
+            >
+              <div className="why-choose-card four">
+                <svg
+                  width="50"
+                  height="50"
+                  viewBox="0 0 50 50"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M42.8751 2.92188C42.8751 2.85156 42.8672 2.78125 42.8438 2.71875C42.8438 2.71094 42.8438 2.70313 42.836 2.69531C42.7974 2.55996 42.7216 2.43815 42.6172 2.34375C42.5636 2.29585 42.503 2.25635 42.4376 2.22656C42.3319 2.16987 42.2137 2.14034 42.0938 2.14063H30.7501C30.6797 2.14063 30.6094 2.14844 30.5469 2.17188C30.5391 2.17188 30.5313 2.17188 30.5235 2.17969C30.3881 2.21825 30.2663 2.29404 30.1719 2.39844C30.1251 2.45313 30.086 2.50781 30.0547 2.57813C30.0391 2.59375 30.0391 2.60156 30.0313 2.61719L25.0001 13.0391L19.9688 2.61719C19.961 2.60156 19.961 2.59375 19.9454 2.57813C19.9156 2.51267 19.8761 2.45209 19.8282 2.39844C19.8126 2.375 19.7891 2.35938 19.7657 2.33594C19.6536 2.23789 19.5149 2.17535 19.3672 2.15625C19.3282 2.14063 19.2891 2.14063 19.2501 2.14063H7.90631C7.78131 2.14063 7.66412 2.17188 7.56256 2.22656C7.42851 2.28754 7.31662 2.38852 7.24225 2.51563C7.211 2.57031 7.17975 2.63281 7.16412 2.69531C7.15631 2.70313 7.15631 2.71094 7.15631 2.71875C7.12505 2.82643 7.11794 2.93968 7.13549 3.05042C7.15305 3.16115 7.19484 3.26665 7.25787 3.35938L14.1797 17.7188C13.6839 18.2937 13.3806 19.0095 13.3126 19.7656L13.1719 21.2813C13.1016 22.0391 12.6251 22.7031 11.9219 23L10.5235 23.6016C10.0464 23.8057 9.61846 24.1094 9.26836 24.4925C8.91826 24.8755 8.65408 25.3289 8.49354 25.8224C8.33299 26.3158 8.2798 26.8379 8.33751 27.3536C8.39523 27.8693 8.56253 28.3667 8.82818 28.8125L9.60943 30.125C10.0001 30.7813 10.0001 31.5938 9.60943 32.25L8.82818 33.5625C8.56287 34.0088 8.39568 34.5065 8.33775 35.0224C8.27983 35.5383 8.33249 36.0607 8.49225 36.5547C8.65413 37.0474 8.91897 37.5001 9.26918 37.8826C9.61939 38.2651 10.047 38.5688 10.5235 38.7734L11.9219 39.375C12.6251 39.6719 13.1016 40.3359 13.1719 41.0938L13.3126 42.6094C13.4063 43.6563 13.9454 44.6094 14.7969 45.2266C15.6485 45.8438 16.7188 46.0625 17.7501 45.8359L19.2266 45.5C19.9766 45.3281 20.7501 45.5781 21.2579 46.1563L22.2579 47.2969C22.9532 48.0938 23.9532 48.5469 25.0001 48.5469C26.0469 48.5469 27.0469 48.0938 27.7422 47.2969L28.7422 46.1563C29.2501 45.5781 30.0235 45.3281 30.7735 45.5L32.2501 45.8359C33.2735 46.0703 34.3516 45.8438 35.2032 45.2266C36.0547 44.6094 36.5938 43.6563 36.6876 42.6094L36.8282 41.0938C36.8985 40.3359 37.3751 39.6719 38.0782 39.375L39.4766 38.7734C39.9532 38.5688 40.3807 38.2651 40.7309 37.8826C41.0811 37.5001 41.346 37.0474 41.5079 36.5547C41.8282 35.5547 41.711 34.4609 41.1719 33.5625L40.3907 32.25C40.0001 31.5938 40.0001 30.7813 40.3907 30.125L41.1719 28.8125C41.4376 28.3667 41.6049 27.8693 41.6626 27.3536C41.7203 26.8379 41.6671 26.3158 41.5066 25.8224C41.346 25.3289 41.0819 24.8755 40.7318 24.4925C40.3816 24.1094 39.9537 23.8057 39.4766 23.6016L38.0782 23C37.7339 22.8532 37.4359 22.6159 37.2158 22.3133C36.9957 22.0106 36.8617 21.654 36.8282 21.2813L36.6876 19.7656C36.6195 19.0095 36.3162 18.2937 35.8204 17.7188L42.7422 3.35938C42.8282 3.23438 42.8751 3.08594 42.8751 2.92188ZM37.461 24.4375L38.8594 25.0391C39.4141 25.2734 39.836 25.7344 40.0235 26.3047C40.2032 26.875 40.1329 27.5 39.8282 28.0156L39.0469 29.3203C38.7132 29.886 38.5371 30.5307 38.5371 31.1875C38.5371 31.8443 38.7132 32.489 39.0469 33.0547L39.8282 34.3594C40.1329 34.875 40.2032 35.5 40.0235 36.0703C39.836 36.6406 39.4141 37.1016 38.8594 37.3359L37.461 37.9375C36.8587 38.1968 36.3376 38.6138 35.9526 39.1445C35.5676 39.6753 35.333 40.3001 35.2735 40.9531L35.1329 42.4688C35.0782 43.0703 34.7657 43.6094 34.2813 43.9609C33.7969 44.3203 33.1876 44.4453 32.6016 44.3125L31.1172 43.9766C29.8047 43.6797 28.4532 44.1172 27.5704 45.125L26.5626 46.2734C25.7735 47.1719 24.2266 47.1719 23.4376 46.2734L22.4297 45.125C22.0885 44.7354 21.6681 44.423 21.1966 44.2088C20.7251 43.9946 20.2133 43.8835 19.6954 43.8828C19.4219 43.8828 19.1563 43.9141 18.8829 43.9766L17.3985 44.3125C16.8126 44.4453 16.2032 44.3203 15.7188 43.9609C15.4784 43.7876 15.278 43.5646 15.1311 43.3072C14.9842 43.0498 14.8942 42.7639 14.8672 42.4688L14.7266 40.9531C14.6671 40.3001 14.4325 39.6753 14.0475 39.1445C13.6625 38.6138 13.1414 38.1968 12.5391 37.9375L11.1407 37.3359C10.586 37.1016 10.1641 36.6406 9.97662 36.0703C9.79693 35.5 9.86725 34.875 10.1719 34.3594L10.9532 33.0547C11.6329 31.9063 11.6329 30.4766 10.9532 29.3203L10.1719 28.0156C9.86725 27.5 9.79693 26.875 9.97662 26.3047C10.1641 25.7344 10.586 25.2734 11.1407 25.0391L12.5391 24.4375C13.142 24.1792 13.6637 23.7624 14.0489 23.2314C14.434 22.7005 14.6682 22.0752 14.7266 21.4219L14.8672 19.9063C14.9219 19.3047 15.2344 18.7656 15.7188 18.4141C16.2032 18.0625 16.8126 17.9375 17.3985 18.0625L18.8829 18.3984C20.1876 18.6953 21.5469 18.2578 22.4297 17.25L23.4376 16.1016C24.2266 15.2031 25.7735 15.2031 26.5626 16.1016L27.5704 17.25C28.0014 17.7457 28.5594 18.1145 29.1843 18.3169C29.8092 18.5192 30.4775 18.5474 31.1172 18.3984L32.6016 18.0625C33.1876 17.9375 33.7969 18.0625 34.2813 18.4141C34.7657 18.7656 35.0782 19.3047 35.1329 19.9063L35.2735 21.4219C35.3319 22.0752 35.5661 22.7005 35.9513 23.2314C36.3364 23.7624 36.8581 24.1792 37.461 24.4375Z" />
+                </svg>
+                <h5>
+                  Trusted Guides & <br />
+                  Partners.
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Why Choose Visa Section End- */}
+
+      {/* Partner area Section Start */}
+      <div className="partner-section mb-100">
+        <div className="container">
+          <div
+            className="partner-title wow animate fadeInDown"
+            data-wow-delay="200ms"
+            data-wow-duration="1500ms"
+          >
+            <h5>Companies You Can Trust!</h5>
+          </div>
+          <div className="partner-wrap">
+            <div className="marquee">
+              <div className="marquee__group">
+                <a href="#">
+                  <img src="/assets/img/home1/partner-01.png" alt="Partner 1" />
+                </a>
+                <a href="#">
+                  <img src="/assets/img/home1/partner-02.png" alt="Partner 2" />
+                </a>
+                <a href="#">
+                  <img src="/assets/img/home1/partner-03.png" alt="Partner 3" />
+                </a>
+                <a href="#">
+                  <img src="/assets/img/home1/partner-04.png" alt="Partner 4" />
+                </a>
+                <a href="#">
+                  <img src="/assets/img/home1/partner-05.png" alt="Partner 5" />
+                </a>
+                <a href="#">
+                  <img src="/assets/img/home1/partner-06.png" alt="Partner 6" />
+                </a>
+              </div>
+              <div aria-hidden="true" className="marquee__group">
+                <a href="#">
+                  <img src="/assets/img/home1/partner-01.png" alt="Partner 1" />
+                </a>
+                <a href="#">
+                  <img src="/assets/img/home1/partner-02.png" alt="Partner 2" />
+                </a>
+                <a href="#">
+                  <img src="/assets/img/home1/partner-03.png" alt="Partner 3" />
+                </a>
+                <a href="#">
+                  <img src="/assets/img/home1/partner-04.png" alt="Partner 4" />
+                </a>
+                <a href="#">
+                  <img src="/assets/img/home1/partner-05.png" alt="Partner 5" />
+                </a>
+                <a href="#">
+                  <img src="/assets/img/home1/partner-06.png" alt="Partner 6" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Partner area Section End */}
+
+      {/* About Video Section Start */}
+      <div className="about-video-section mb-100">
+        <div className="container">
+          <div className="video-wrap">
+            <img
+              src="/assets/img/innerpages/about-video-img.jpg"
+              alt="About Video Thumbnail"
+            />
+            <a
+              data-fancybox="video-player"
+              href="https://www.youtube.com/watch?v=u31qwQUeGuM"
+              className="play-btn"
+            >
+              <i className="bi bi-play-fill"></i>
+              <div className="waves-block">
+                <div className="waves wave-1"></div>
+                <div className="waves wave-2"></div>
+                <div className="waves wave-3"></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      {/* About Video Section End */}
+
+      {/* home1 testimonial Section Start */}
+      <div className="home1-testimonial-section mb-100">
+        <div className="container">
+          <div
+            className="row justify-content-center mb-50 wow animate fadeInDown"
+            data-wow-delay="200ms"
+            data-wow-duration="1500ms"
+          >
+            <div className="col-xl-6 col-lg-8">
+              <div className="section-title text-center">
+                <h2>Hear It from Travelers</h2>
+                <p>
+                  We go beyond just booking trips—we create unforgettable travel
+                  experiences that match your dreams!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="row mb-40">
+            <div className="col-lg-12">
+              <Swiper
+                modules={[Pagination, Autoplay]}
+                spaceBetween={24}
+                slidesPerView={3}
+                loop={true}
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                pagination={{ el: ".testimonial-pagination", clickable: true }}
+                breakpoints={{
+                  280: { slidesPerView: 1 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  992: { slidesPerView: 3 },
+                }}
+                className="home1-testimonial-slider"
+              >
+                {testimonials.map((testimonial, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="testimonial-card">
+                      <div className="author-area">
+                        <div className="author-img">
+                          <img src={testimonial.img} alt="" />
+                          {testimonial.videoUrl && (
+                            <a
+                              data-fancybox="video-player"
+                              href={testimonial.videoUrl}
+                              className="play-btn"
+                            >
+                              <svg
+                                width="26"
+                                height="26"
+                                viewBox="0 0 26 26"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <circle
+                                  cx="13"
+                                  cy="13"
+                                  r="12.5"
+                                  fill="white"
+                                  stroke="#110F0F"
+                                />
+                                <g>
+                                  <path d="M8.4375 13V9.7519C8.4375 8.4062 9.89453 7.5644 11.0586 8.23823L13.873 9.86323L16.6875 11.4882C17.8535 12.1601 17.8535 13.8437 16.6875 14.5156L13.873 16.1406L11.0586 17.7656C9.89453 18.4355 8.4375 17.5957 8.4375 16.25V13Z" />
+                                </g>
+                              </svg>
+                            </a>
+                          )}
+                        </div>
+                        <div className="author-info">
+                          <h5>{testimonial.name}</h5>
+                          <span>{testimonial.role}</span>
+                        </div>
+                      </div>
+                      {renderRating(
+                        testimonial.rating,
+                        testimonial.isTrustpilot
+                      )}
+                      <h5>{testimonial.title}</h5>
+                      <div className="content">
+                        <p>{testimonial.text}</p>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+          <div
+            className="review-wrap wow animate fadeInUp"
+            data-wow-delay="200ms"
+            data-wow-duration="1500ms"
+          >
+            <div className="tripadvisor-rating-area">
+              <a
+                href="https://www.tripadvisor.com/"
+                className="tripadvisor-rating"
+              >
+                <img src="/assets/img/home1/icon/tripadvisor-logo.svg" alt="" />
+                <div className="rating-area">
+                  <span>Reviews</span>
+                  <img
+                    src="/assets/img/home1/icon/tripadvisor-start.svg"
+                    alt=""
+                  />
+                </div>
+              </a>
+              <svg
+                className="divider"
+                width="6"
+                height="52"
+                viewBox="0 0 6 52"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M3.5 5L5.88675 0H0.113249L2.5 5H3.5ZM2.5 47L0.113249 52H5.88675L3.5 47H2.5ZM2.5 4.5V47.5H3.5V4.5H2.5Z" />
+              </svg>
+            </div>
+            <a href="http://trustpilot.com/" className="trustpilot-rating-area">
+              <strong>4.5</strong>
+              <div className="trustpilot-rating">
+                <img src="/assets/img/home1/icon/trustpilot-logo.svg" alt="" />
+                <div className="rating-area">
+                  <img
+                    src="/assets/img/home1/icon/trustpilot-star.svg"
+                    alt=""
+                  />
+                  <span>(2K reviews)</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      {/* home1 testimonial Section End */}
+
+      {/* home1 faq Section Start */}
+      <div className="home1-faq-section mb-100">
+        <div className="container">
+          <div
+            className="row justify-content-center mb-50 wow animate fadeInDown"
+            data-wow-delay="200ms"
+            data-wow-duration="1500ms"
+          >
+            <div className="col-xl-6 col-lg-8">
+              <div className="section-title text-center">
+                <h2>Questions & Answer</h2>
+                <p>
+                  We’re committed to offering more than just products—we provide
+                  exceptional experiences.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="row justify-content-center">
+            <div className="col-xl-8 col-lg-10">
+              <div className="faq-wrap">
+                <div
+                  className="accordion accordion-flush"
+                  id="accordionFlushExample"
+                >
+                  <div
+                    className="accordion-item wow animate fadeInDown"
+                    data-wow-delay="200ms"
+                    data-wow-duration="1500ms"
+                  >
+                    <h5 className="accordion-header" id="flush-headingOne">
+                      <button
+                        className="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne"
+                        aria-expanded="false"
+                        aria-controls="flush-collapseOne"
+                      >
+                        What Services Does Your Travel Agency Provide?
+                      </button>
+                    </h5>
+                    <div
+                      id="flush-collapseOne"
+                      className="accordion-collapse collapse show"
+                      aria-labelledby="flush-headingOne"
+                      data-bs-parent="#accordionFlushExample"
+                    >
+                      <div className="accordion-body">
+                        A travel agency typically provides a wide range of
+                        services to ensure a smooth and enjoyable travel
+                        experience. As like-{" "}
+                        <span>
+                          Hotel booking, Flight Booking, Visa & Customized
+                          Travel Pakcge etc.
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="accordion-item wow animate fadeInDown"
+                    data-wow-delay="400ms"
+                    data-wow-duration="1500ms"
+                  >
+                    <h5 className="accordion-header" id="flush-headingTwo">
+                      <button
+                        className="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo"
+                        aria-expanded="false"
+                        aria-controls="flush-collapseTwo"
+                      >
+                        Do You Offer Customized Travel Packages?
+                      </button>
+                    </h5>
+                    <div
+                      id="flush-collapseTwo"
+                      className="accordion-collapse collapse"
+                      aria-labelledby="flush-headingTwo"
+                      data-bs-parent="#accordionFlushExample"
+                    >
+                      <div className="accordion-body">
+                        Absolutely! We offer fully customized travel packages
+                        based on your interests, budget, and schedule. Whether
+                        you're planning{" "}
+                        <span>
+                          a solo adventure, a family vacation, a romantic
+                          getaway, or a group tour
+                        </span>
+                        , our team will tailor every detail to create a
+                        personalized travel experience just for you.
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="accordion-item wow animate fadeInDown"
+                    data-wow-delay="600ms"
+                    data-wow-duration="1500ms"
+                  >
+                    <h5 className="accordion-header" id="flush-headingThree">
+                      <button
+                        className="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree"
+                        aria-expanded="false"
+                        aria-controls="flush-collapseThree"
+                      >
+                        Can I Book Flights, Hotels, and Tours Separately?
+                      </button>
+                    </h5>
+                    <div
+                      id="flush-collapseThree"
+                      className="accordion-collapse collapse"
+                      aria-labelledby="flush-headingThree"
+                      data-bs-parent="#accordionFlushExample"
+                    >
+                      <div className="accordion-body">
+                        Yes, you can! We provide the flexibility to book{" "}
+                        <span>flights, hotels, and tours separately</span> based
+                        on your specific needs. Whether you need just a flight,
+                        only accommodation, or want to add a tour later — we’re
+                        here to help you plan each part of your trip your way.
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="accordion-item wow animate fadeInDown"
+                    data-wow-delay="800ms"
+                    data-wow-duration="1500ms"
+                  >
+                    <h5 className="accordion-header" id="flush-headingFour">
+                      <button
+                        className="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseFour"
+                        aria-expanded="false"
+                        aria-controls="flush-collapseFour"
+                      >
+                        Do You Provide Visa Assistance?
+                      </button>
+                    </h5>
+                    <div
+                      id="flush-collapseFour"
+                      className="accordion-collapse collapse"
+                      aria-labelledby="flush-headingFour"
+                      data-bs-parent="#accordionFlushExample"
+                    >
+                      <div className="accordion-body">
+                        Yes, we do! Our team offers complete{" "}
+                        <span>visa assistance services</span> to help you
+                        navigate the application process smoothly. From
+                        providing guidance on required documents to scheduling
+                        appointments and submitting applications, we're here to
+                        support you every step of the way.
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="accordion-item wow animate fadeInDown"
+                    data-wow-delay="800ms"
+                    data-wow-duration="1500ms"
+                  >
+                    <h5 className="accordion-header" id="flush-headingFive">
+                      <button
+                        className="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseFive"
+                        aria-expanded="false"
+                        aria-controls="flush-collapseFive"
+                      >
+                        What Payment Methods Do You Accept?
+                      </button>
+                    </h5>
+                    <div
+                      id="flush-collapseFive"
+                      className="accordion-collapse collapse"
+                      aria-labelledby="flush-headingFive"
+                      data-bs-parent="#accordionFlushExample"
+                    >
+                      <div className="accordion-body">
+                        We accept a variety of <span>payment methods</span> to
+                        make your booking process easy and convenient. These
+                        include{" "}
+                        <span>
+                          cash, bank transfers, mobile payments (such as bKash,
+                          Nagad), and major debit/credit cards
+                        </span>
+                        . If you have a preferred payment option, feel free to
+                        let us know!
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="accordion-item wow animate fadeInDown"
+                    data-wow-delay="800ms"
+                    data-wow-duration="1500ms"
+                  >
+                    <h5 className="accordion-header" id="flush-headingSix">
+                      <button
+                        className="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseSix"
+                        aria-expanded="false"
+                        aria-controls="flush-collapseSix"
+                      >
+                        What Travel Documents are Required for International
+                        Travel?
+                      </button>
+                    </h5>
+                    <div
+                      id="flush-collapseSix"
+                      className="accordion-collapse collapse"
+                      aria-labelledby="flush-headingSix"
+                      data-bs-parent="#accordionFlushExample"
+                    >
+                      <div className="accordion-body">
+                        For international travel, you’ll typically need several
+                        important <span>travel documents</span>, including a{" "}
+                        <span>
+                          valid passport, visa (if required), airline tickets,
+                          travel insurance, and any COVID-19 related health
+                          certificates
+                        </span>
+                        . Depending on your destination, additional documents
+                        may be necessary. Our team will guide you through the
+                        specific requirements for your trip.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* home1 faq Section End */}
+
+      {/* Counter Section Start */}
+      <div className="counter-section">
+        <div className="container">
+          <div className="row gy-md-5 gy-4">
+            <div className="col-lg-3 col-sm-6 divider">
+              <div className="single-counter">
+                <div className="icon">
+                  <svg
+                    width="45"
+                    height="45"
+                    viewBox="0 0 45 45"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M39.5961 15.81C38.1214 17.2519 40.2368 20.3608 36.9514 22.3862C35.0583 23.5533 38.0077 25.8843 36.9514 28.6109C36.7987 29.0049 36.7675 29.4023 36.987 29.8303C34.3992 31.822 31.1578 33.0065 27.6398 33.0065C26.7047 33.0065 25.7892 32.9228 24.9003 32.7625L24.5591 33.9508C25.5749 34.1416 26.6063 34.2374 27.6398 34.237C36.7906 34.237 44.209 26.8186 44.209 17.6679C44.209 8.51713 36.7906 1.09863 27.6398 1.09863C24.0648 1.09863 20.6088 2.24297 17.7454 4.37818C19.8919 7.68524 19.849 12.0313 17.6364 15.2956C18.4686 16.7537 19.665 16.797 20.1282 16.9774C21.8931 17.6654 23.2203 21.7429 24.3251 23.0528C25.9039 22.1413 27.6183 21.8503 29.3902 22.4059C29.0978 20.9689 27.4158 19.3471 26.9044 18.8961C25.0823 17.2898 25.8475 16.5076 27.2823 16.1104C28.9332 15.6532 31.4705 15.7057 31.9733 15.5987C33.1508 15.3482 33.4901 14.5201 32.5894 13.7393C31.5322 12.823 29.6808 11.8148 29.2499 10.9945C28.6541 9.8601 29.0869 9.52163 29.8556 9.28389C31.4176 8.80084 34.3657 8.73281 32.891 3.25178C38.0294 5.12385 41.8141 9.62587 42.7515 15.026C41.0332 15.0163 40.1027 15.3148 39.5961 15.81ZM6.48202 37.3493L1.40625 33.2101L3.25916 31.9816L8.22243 33.7703L25.2854 23.919C28.1145 22.2856 33.7222 24.5118 28.3539 27.6113L24.4524 29.8638L20.8244 42.4993L18.3959 43.9014L18.5658 33.213C18.5658 33.213 8.38195 38.8263 6.48202 37.3493ZM9.44719 1.09863C14.2276 1.09863 18.1034 4.97426 18.1034 9.7548C18.1034 14.5354 14.2277 18.411 9.44719 18.411C4.66673 18.411 0.791016 14.5353 0.791016 9.7548C0.791016 4.97435 4.66673 1.09863 9.44719 1.09863ZM4.16821 14.9772C4.53076 12.3859 6.75615 10.3914 9.44728 10.3914C12.1385 10.3914 14.3635 12.3858 14.7261 14.9772C16.0532 13.6358 16.8728 11.7911 16.8728 9.7548C16.8728 5.65356 13.5483 2.3291 9.4471 2.3291C5.34595 2.3291 2.02148 5.65356 2.02148 9.7548C2.02148 11.7911 2.84115 13.6357 4.16821 14.9772ZM6.98344 6.5076C6.98344 7.86841 8.08655 8.97152 9.44736 8.97152C10.8082 8.97152 11.9113 7.86841 11.9113 6.5076C11.9113 5.14714 10.8082 4.04402 9.44736 4.04402C8.08655 4.04411 6.98344 5.14714 6.98344 6.5076ZM8.08436 26.0411L10.5127 24.6391L18.2438 26.5637L13.7191 29.176L8.08436 26.0411ZM13.7464 24.1761C13.0102 22.6071 12.547 20.924 12.3768 19.1992C11.9812 19.3217 11.5781 19.4192 11.1702 19.4911C11.3316 20.9699 11.6927 22.4201 12.2436 23.8019L13.7464 24.1761Z"
+                    />
+                  </svg>
+                </div>
+                <div className="content">
+                  <div className="number">
+                    <h2 className="counter">26</h2>
+                    <span>K+</span>
+                  </div>
+                  <span>Tour Completed</span>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-sm-6 divider d-flex justify-content-lg-center">
+              <div className="single-counter">
+                <div className="icon">
+                  <svg
+                    width="45"
+                    height="45"
+                    viewBox="0 0 45 45"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M35.1512 26.1785V22.8616H35.6609C37.2742 22.8616 38.5842 21.5516 38.5842 19.9449C38.5842 18.3317 37.2742 17.0216 35.6609 17.0216H30.3436V11.9947H37.0613C37.4227 11.9947 37.7066 11.7108 37.7066 11.3495C37.7069 11.2646 37.6904 11.1806 37.6581 11.1022C37.6257 11.0237 37.5782 10.9525 37.5182 10.8925C37.4583 10.8325 37.387 10.785 37.3086 10.7527C37.2302 10.7204 37.1461 10.7039 37.0613 10.7042H31.957C31.6214 5.76761 27.5108 1.85059 22.4839 1.85059C18.296 1.85059 14.6436 4.53503 13.4045 8.5359C13.0367 9.7233 13.5464 10.9945 14.6435 11.6269V17.0216H9.32619C8.94205 17.0208 8.56153 17.0958 8.20647 17.2424C7.85141 17.389 7.5288 17.6043 7.25718 17.8759C6.98555 18.1475 6.77026 18.4701 6.62367 18.8252C6.47707 19.1802 6.40206 19.5608 6.40294 19.9449C6.40294 21.5517 7.71287 22.8616 9.32619 22.8616H9.83604V26.1785C6.40303 27.8885 4.20251 31.4055 4.20251 35.2708V39.6008C4.20251 41.5561 5.79641 43.15 7.75171 43.15H37.2485C39.2038 43.15 40.7977 41.5561 40.7977 39.6008V35.2708C40.7976 31.4055 38.5907 27.8885 35.1512 26.1785ZM15.9341 11.9947H29.0531V17.2669C29.0531 19.0543 27.1688 21.5516 23.8778 24.12C23.4832 24.4304 22.9957 24.5991 22.4936 24.5991C21.9915 24.5991 21.504 24.4304 21.1094 24.12C20.335 23.5198 19.3607 22.6938 18.4572 21.7646L18.4507 21.7582C17.102 20.3643 15.9341 18.7382 15.9341 17.2669V11.9947ZM25.0393 24.8492V26.8109C25.0393 28.2177 23.897 29.3598 22.4968 29.3598C21.0577 29.3598 19.9479 28.1918 19.9479 26.8109V24.8428C21.7482 26.2882 23.3744 26.185 25.0393 24.8492ZM11.7461 41.8594H7.75163C6.50622 41.8594 5.4931 40.8463 5.4931 39.6008V35.2708C5.4931 31.5152 7.90007 27.9854 11.7461 26.798V41.8594ZM31.9505 41.8594H13.0367V26.5076C13.4691 26.4431 13.9143 26.3979 14.366 26.3979H18.6573V26.8109C18.6573 28.9017 20.3415 30.6505 22.4969 30.6505C24.6134 30.6505 26.3299 28.9275 26.3299 26.8109V26.3979H30.6276C31.0794 26.3979 31.5181 26.4431 31.9505 26.5076V41.8594ZM39.507 39.6008C39.507 40.8463 38.4938 41.8594 37.2484 41.8594H33.2411V26.798C37.0484 27.9725 39.507 31.4636 39.507 35.2708V39.6008Z" />
+                  </svg>
+                </div>
+                <div className="content">
+                  <div className="number">
+                    <h2 className="counter">12</h2>
+                    <span>+</span>
+                  </div>
+                  <span>Travel Experience</span>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-sm-6 divider d-flex justify-content-lg-center">
+              <div className="single-counter">
+                <div className="icon">
+                  <svg
+                    width="45"
+                    height="45"
+                    viewBox="0 0 45 45"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g>
+                      <path d="M38.0333 16.4395C38.3412 16.4394 38.6319 16.2974 38.8214 16.0547C39.0107 15.8121 39.0776 15.4959 39.003 15.1973L37.5909 9.54883C37.4796 9.10368 37.08 8.79105 36.6212 8.79102H8.37899C7.92011 8.79102 7.52055 9.10366 7.40926 9.54883L5.99715 15.1973C5.92256 15.4959 5.98936 15.812 6.17879 16.0547C6.3683 16.2974 6.65894 16.4395 6.96688 16.4395H38.0333ZM9.15926 10.791H35.8399L36.752 14.4395H8.24715L9.15926 10.791Z" />
+                      <g>
+                        <path d="M36.6209 10.791C36.9289 10.791 37.2195 10.649 37.409 10.4062C37.5984 10.1636 37.6652 9.84747 37.5907 9.54883V9.54688C37.5904 9.5458 37.5902 9.5441 37.5897 9.54199C37.5886 9.53763 37.5869 9.53098 37.5848 9.52246C37.5805 9.50533 37.5735 9.48005 37.5653 9.44727C37.5488 9.38137 37.525 9.28445 37.495 9.16406L36.6024 5.59375V5.59277C36.4298 4.90407 36.069 4.27658 35.5604 3.78125C35.0518 3.28608 34.4154 2.94228 33.7225 2.78809L23.9491 0.616211C23.5687 0.531687 23.2606 0.463331 23.0477 0.416016C22.9414 0.3924 22.8586 0.373787 22.8026 0.361328C22.7745 0.355098 22.7525 0.349873 22.7381 0.34668C22.7313 0.345176 22.7261 0.344541 22.7225 0.34375C22.721 0.343414 22.7195 0.342971 22.7186 0.342773H22.7166C22.5738 0.311048 22.4258 0.310103 22.283 0.341797V0.342773H22.2811C22.2802 0.342971 22.2787 0.343411 22.2772 0.34375C22.2736 0.34454 22.2683 0.345175 22.2616 0.34668C22.2472 0.349873 22.2251 0.355098 22.1971 0.361328C22.141 0.373787 22.0583 0.392397 21.952 0.416016C21.739 0.46333 21.431 0.531686 21.0506 0.616211L11.2772 2.78809C10.5843 2.94228 9.94787 3.28608 9.43929 3.78125C8.93063 4.27658 8.56983 4.90407 8.3973 5.59277V5.59375L7.50472 9.16406C7.47463 9.28445 7.45088 9.38137 7.43441 9.44727C7.42621 9.48005 7.41916 9.50533 7.41487 9.52246C7.41274 9.53098 7.41108 9.53763 7.40999 9.54199C7.40946 9.5441 7.40928 9.5458 7.40901 9.54688V9.54883C7.33443 9.84748 7.40123 10.1636 7.59066 10.4062C7.78016 10.649 8.07081 10.791 8.37874 10.791H36.6209ZM9.68734 8.67969C9.88241 7.89919 10.1299 6.91098 10.3377 6.0791L10.3719 5.95703C10.4633 5.67629 10.6224 5.42171 10.8348 5.21484C11.0775 4.97846 11.381 4.81382 11.7117 4.74023C13.444 4.35511 16.1954 3.74364 18.5135 3.22852C19.6725 2.97097 20.7232 2.73746 21.4842 2.56836C21.8645 2.48385 22.1726 2.41548 22.3856 2.36816C22.4272 2.35891 22.4656 2.35038 22.4998 2.34277C22.534 2.35037 22.5724 2.35891 22.6141 2.36816C22.827 2.41548 23.1352 2.48386 23.5155 2.56836C24.2765 2.73746 25.3272 2.97097 26.4862 3.22852C28.8043 3.74365 31.5557 4.35511 33.2879 4.74023L33.411 4.77246C33.6938 4.85644 33.9526 5.00811 34.1649 5.21484C34.4076 5.45122 34.5796 5.75046 34.6619 6.0791C34.8698 6.91098 35.1173 7.89919 35.3123 8.67969C35.3217 8.71716 35.3306 8.75454 35.3397 8.79102H9.65999C9.66911 8.75454 9.67797 8.71716 9.68734 8.67969Z" />
+                        <path d="M33.0908 24.9121C35.9799 24.9121 37.4763 24.1179 38.8564 23.3818C40.124 22.7058 41.2754 22.0879 43.6816 22.0879C44.086 22.0878 44.4506 21.8443 44.6054 21.4707C44.7602 21.0971 44.6746 20.6669 44.3886 20.3809L38.7402 14.7324C38.5527 14.5449 38.2983 14.4395 38.0332 14.4395H6.96676C6.70155 14.4395 6.44726 14.5449 6.25973 14.7324L0.611293 20.3809C0.325315 20.6669 0.23972 21.097 0.394496 21.4707C0.549318 21.8443 0.913924 22.0879 1.31832 22.0879C3.72449 22.0879 4.87591 22.7058 6.14352 23.3818C7.52358 24.1179 9.02 24.9121 11.9091 24.9121C14.7983 24.9121 16.2947 24.1179 17.6748 23.3818C18.9424 22.7058 20.0938 22.0879 22.5 22.0879C24.9061 22.0879 26.0576 22.7058 27.3252 23.3818C28.7052 24.1179 30.2017 24.9121 33.0908 24.9121ZM33.0908 22.9121C30.6846 22.9121 29.5332 22.2933 28.2656 21.6172C26.8856 20.8812 25.3889 20.0879 22.5 20.0879C19.6111 20.0879 18.1143 20.8812 16.7343 21.6172C15.4667 22.2933 14.3153 22.9121 11.9091 22.9121C9.50298 22.9121 8.35156 22.2933 7.08395 21.6172C6.11129 21.0984 5.08017 20.5533 3.54489 20.2754L7.38082 16.4395H37.6191L41.4541 20.2754C39.919 20.5534 38.8876 21.0984 37.915 21.6172C36.6475 22.2932 35.4968 22.9121 33.0908 22.9121Z" />
+                        <path d="M22.4994 44.6807C23.2757 44.6808 24.0347 44.4517 24.6801 44.0205C25.3255 43.5893 25.8285 42.976 26.1254 42.2588C26.4225 41.5417 26.5005 40.7525 26.349 39.9912C26.1976 39.2301 25.8236 38.5312 25.2748 37.9824L23.9135 36.6221L36.144 24.3916C36.5345 24.0011 36.5345 23.3671 36.144 22.9766C35.7535 22.5864 35.1204 22.5864 34.7299 22.9766L22.4994 35.208L10.2699 22.9766C9.87949 22.5864 9.24634 22.5864 8.85588 22.9766C8.46536 23.3671 8.46536 24.0011 8.85588 24.3916L21.0854 36.6221L19.725 37.9824C19.1762 38.5312 18.8023 39.2301 18.6508 39.9912C18.4994 40.7524 18.5765 41.5418 18.8735 42.2588L18.9946 42.5225C19.2986 43.1263 19.7549 43.6431 20.3197 44.0205C20.965 44.4515 21.7235 44.6807 22.4994 44.6807ZM22.4994 42.6816C22.1189 42.6817 21.7465 42.5688 21.4301 42.3574C21.1139 42.1461 20.8677 41.8455 20.7221 41.4941V41.4932C20.5765 41.1416 20.5376 40.755 20.6117 40.3818C20.686 40.0085 20.8699 39.6656 21.1391 39.3965L22.4994 38.0361L23.8608 39.3965C24.1299 39.6656 24.3129 40.0085 24.3871 40.3818C24.4613 40.755 24.4234 41.1416 24.2778 41.4932V41.4941C24.1321 41.8456 23.8851 42.146 23.5688 42.3574C23.2525 42.5687 22.8808 42.6817 22.5004 42.6816H22.4994Z" />
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+                <div className="content">
+                  <div className="number">
+                    <h2 className="counter">98</h2>
+                    <span>%</span>
+                  </div>
+                  <span>Retention Rate</span>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-sm-6 d-flex justify-content-lg-end">
+              <div className="single-counter">
+                <div className="icon">
+                  <svg
+                    width="45"
+                    height="45"
+                    viewBox="0 0 45 45"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M18.9117 14.3766C18.9382 14.3657 19.5657 14.1034 19.8841 14.4911C19.9487 14.5704 20.0284 14.6362 20.1186 14.6845C20.2088 14.7329 20.3077 14.7629 20.4096 14.7728C20.5114 14.7827 20.6142 14.7723 20.712 14.7423C20.8099 14.7122 20.9008 14.6631 20.9795 14.5977C21.139 14.4667 21.2398 14.2777 21.26 14.0723C21.2801 13.8669 21.2179 13.6619 21.0869 13.5023C20.2259 12.4536 18.8712 12.6849 18.2772 12.9542C18.0907 13.0387 17.9452 13.1936 17.8726 13.385C17.7999 13.5764 17.806 13.7887 17.8894 13.9757C18.0607 14.3681 18.5201 14.5448 18.9117 14.3766ZM24.5141 14.776C24.6292 14.7762 24.7429 14.7508 24.847 14.7016C24.9511 14.6525 25.0429 14.5808 25.1159 14.4919C25.4312 14.108 26.0463 14.3595 26.0876 14.3774C26.2748 14.4545 26.4847 14.4557 26.6727 14.3806C26.8608 14.3056 27.0122 14.1602 27.0949 13.9754C27.1775 13.7905 27.1849 13.5807 27.1154 13.3905C27.046 13.2003 26.9052 13.0447 26.7229 12.9566C26.128 12.6872 24.7741 12.456 23.9131 13.5047C23.8196 13.6185 23.7603 13.7566 23.7422 13.9029C23.7242 14.0491 23.748 14.1975 23.811 14.3307C23.874 14.4639 23.9735 14.5765 24.098 14.6553C24.2224 14.7342 24.3668 14.776 24.5141 14.776ZM19.7798 20.38C19.7074 20.4523 19.65 20.5381 19.6108 20.6325C19.5717 20.727 19.5515 20.8282 19.5515 20.9305C19.5515 21.0327 19.5717 21.134 19.6108 21.2284C19.65 21.3229 19.7074 21.4087 19.7798 21.4809C20.5295 22.2306 21.5151 22.6059 22.5 22.6059C23.4849 22.6059 24.4705 22.2306 25.2203 21.4809C25.2925 21.4086 25.3499 21.3228 25.389 21.2284C25.4281 21.1339 25.4483 21.0327 25.4483 20.9305C25.4483 20.8282 25.4281 20.727 25.389 20.6326C25.3499 20.5381 25.2925 20.4523 25.2203 20.38C25.148 20.3077 25.0622 20.2504 24.9677 20.2113C24.8733 20.1722 24.772 20.152 24.6698 20.152C24.5676 20.152 24.4664 20.1722 24.3719 20.2113C24.2775 20.2504 24.1917 20.3077 24.1194 20.38C23.6894 20.8085 23.1071 21.049 22.5 21.049C21.893 21.049 21.3107 20.8085 20.8806 20.38C20.8084 20.3077 20.7226 20.2503 20.6281 20.2111C20.5337 20.1719 20.4324 20.1518 20.3302 20.1518C20.2279 20.1518 20.1267 20.1719 20.0322 20.2111C19.9378 20.2503 19.852 20.3077 19.7798 20.38Z" />
+                    <path d="M40.9905 21.1917C40.5794 20.9148 40.106 20.7443 39.6127 20.6954C39.1195 20.6464 38.6218 20.7207 38.1643 20.9114L33.1349 22.9823C32.2085 22.2894 31.0562 21.9079 29.7093 21.8378C30.0285 21.0827 30.2076 20.2496 30.2309 19.3854C30.2777 19.3932 30.3166 19.3932 30.3633 19.3932C31.2431 19.3932 32.6912 19.0351 33.1739 16.7929C34.5363 16.1856 36.0078 15.189 36.1791 13.7176C36.3114 12.4875 35.5095 11.2574 33.7811 10.0584C33.6643 9.98834 33.5787 9.91049 33.5008 9.81706C33.3685 9.67692 33.2673 9.46671 33.1972 9.20979L32.3642 5.57397C31.9126 2.91134 27.5216 1.67344 23.9169 1.1051C22.9904 0.964965 22.0095 0.964965 21.0752 1.1051C17.4783 1.67344 13.0873 2.91134 12.6513 5.52726L11.8105 9.17865C11.7482 9.38886 11.6626 9.67692 11.5847 9.77813C11.5769 9.78592 11.5691 9.80149 11.5613 9.80928C11.5224 9.85599 11.4134 9.93384 11.2188 10.0662C9.49041 11.2574 8.6885 12.4875 8.82864 13.7176C8.99214 15.1968 10.4636 16.1856 11.8261 16.7929C12.3088 19.0351 13.7569 19.3932 14.6288 19.3932C14.6833 19.3932 14.7223 19.3932 14.769 19.3854C14.7923 20.2496 14.9714 21.0827 15.2906 21.8378C13.9437 21.9079 12.7915 22.2894 11.865 22.9823L6.83556 20.9114C5.9013 20.5221 4.85026 20.6311 4.00943 21.1917C3.59859 21.4679 3.26218 21.8412 3.02997 22.2785C2.79776 22.7157 2.67691 23.2035 2.67811 23.6986V28.8759C2.67811 29.9192 3.19974 30.869 4.0795 31.4218C4.56998 31.7332 5.13054 31.8889 5.68331 31.8889C6.12708 31.8889 6.57085 31.7955 6.99127 31.5931L9.31134 30.4875C9.35027 30.9547 9.3892 31.2583 9.40477 31.3206C8.75857 32.0836 8.33037 33.049 8.19802 34.1078L7.7776 37.4633C7.72303 37.9439 7.80689 38.43 8.0193 38.8644C8.23171 39.2989 8.56383 39.6637 8.97657 39.9157C13.3987 42.6095 17.9532 43.9876 22.5 44.0031C27.0467 43.9876 31.6012 42.6095 36.0311 39.908C36.872 39.3941 37.3391 38.4287 37.2145 37.4555L36.8019 34.1078C36.6695 33.049 36.2413 32.0836 35.5951 31.3206C35.6107 31.2116 35.6574 30.9235 35.6886 30.4875L38.0086 31.5931C38.4291 31.7955 38.8728 31.8889 39.3166 31.8889C39.8694 31.8889 40.4299 31.7332 40.9204 31.4218C41.8002 30.869 42.3218 29.9192 42.3218 28.8759V23.6986C42.3218 22.6865 41.8235 21.7522 40.9905 21.1917ZM32.8079 24.8041C34.1237 26.3534 34.2093 28.7981 34.1393 30.1528C34.1176 30.1368 34.0941 30.1238 34.0692 30.1138C34.0692 30.1138 28.0199 27.0775 27.5839 26.8517C27.1946 26.6181 26.8287 26.0498 26.5328 25.2712C27.4204 24.8041 28.1911 24.1579 28.7984 23.3716H29.25C30.8226 23.3716 31.9905 23.8465 32.8079 24.8041ZM23.3719 24.4927H21.628C18.7006 24.4927 16.3105 22.1026 16.3105 19.1752V12.5576C17.7352 11.8024 22.9904 9.4745 28.6894 12.5576V19.1752C28.6894 22.1026 26.2993 24.4927 23.3719 24.4927ZM26.128 27.638C26.0501 28.004 24.8122 28.6424 22.5 28.6424C20.1954 28.6424 18.9576 28.0117 18.8797 27.638C19.3546 27.1242 19.6894 26.4624 19.923 25.824C20.4679 25.9642 21.0441 26.0498 21.628 26.0498H23.3719C23.9558 26.0498 24.532 25.9642 25.077 25.824C25.3183 26.4624 25.6609 27.1242 26.128 27.638ZM31.7102 16.1467C31.461 17.8673 30.6903 17.875 30.2465 17.8361V14.8543L30.4489 14.7531C31.0873 14.4339 31.4844 14.4339 31.5856 14.5039C31.6012 14.5195 31.9126 14.7608 31.7102 16.1467ZM14.7534 17.8361C14.3252 17.875 13.5389 17.8828 13.2897 16.1467C13.0873 14.7608 13.3987 14.5195 13.4143 14.5039C13.5155 14.4261 13.9048 14.4339 14.5432 14.7453L14.7534 14.8543V17.8361ZM15.1271 11.4364C14.8935 11.5844 14.7534 11.8335 14.7534 12.0982V13.1415C13.6245 12.721 12.9082 12.9468 12.4956 13.2505C12.0129 13.6008 11.7404 14.1769 11.6859 14.9711C10.8996 14.5117 10.4247 14.0057 10.378 13.5463C10.3079 12.9468 10.9229 12.1605 12.1608 11.3041C12.3321 11.1873 12.4878 11.0705 12.628 10.9304C18.9186 7.07657 26.5173 7.09214 32.4809 10.9849C32.6133 11.1095 32.7379 11.234 32.8936 11.343C34.077 12.1605 34.692 12.9468 34.6297 13.5385C34.5752 14.0057 34.1003 14.5039 33.314 14.9711C33.2517 14.1769 32.987 13.6008 32.5043 13.2505C32.0917 12.9468 31.3832 12.721 30.2465 13.1415V12.0982C30.2457 11.9623 30.2093 11.8291 30.141 11.7116C30.0727 11.5941 29.9749 11.4966 29.8572 11.4287C22.3442 7.05322 15.4152 11.2574 15.1271 11.4364ZM12.192 24.8041C13.0094 23.8465 14.1773 23.3716 15.7499 23.3716H16.2015C16.8115 24.1602 17.5842 24.8081 18.4671 25.2712C18.1868 26.0342 17.8131 26.6104 17.416 26.8517C16.9878 27.0697 10.9307 30.1138 10.9307 30.1138C10.9074 30.1216 10.884 30.1372 10.8607 30.1528C10.7906 28.8059 10.8684 26.3534 12.192 24.8041ZM12.1998 39.8924C11.3752 39.4944 10.5699 39.0579 9.78626 38.5844C9.45927 38.382 9.2802 38.0239 9.32691 37.6502L9.73954 34.3024C9.89525 33.0801 10.6115 32.0135 11.6236 31.5074C12.0363 31.2972 12.4178 31.1026 12.7837 30.9235C12.0596 33.1502 12.1141 37.5957 12.1998 39.8924ZM27.7007 41.5118L27.6072 41.7998C25.91 42.2203 24.205 42.4382 22.5 42.446C20.8027 42.4382 19.0899 42.2203 17.3927 41.7998L17.2915 41.4884C15.9446 37.6891 16.9178 31.8656 17.4005 29.5455C17.5095 29.055 17.5795 28.7669 17.5795 28.7591C17.5951 28.6891 17.5951 28.6268 17.5951 28.5567C17.852 28.9616 18.3269 29.382 19.1911 29.7012C20.0787 30.0204 21.2543 30.1995 22.5 30.1995C24.4385 30.1995 26.634 29.7557 27.4048 28.5723C27.4048 28.6346 27.4048 28.6969 27.4204 28.7591C27.4204 28.7669 27.4904 29.055 27.5994 29.5377C28.0821 31.8656 29.0553 37.6891 27.7007 41.5118ZM35.673 37.6502C35.7197 38.0239 35.5406 38.382 35.2136 38.5844C34.4117 39.0671 33.6098 39.4953 32.8001 39.8924C32.8858 37.5957 32.9403 33.1268 32.2162 30.9235C32.5822 31.1026 32.9636 31.2972 33.3763 31.4996C34.3884 32.0135 35.1047 33.0801 35.2604 34.3024L35.673 37.6502Z" />
+                    <path d="M25 19.8594C18.75 19.8594 13.6719 24.9375 13.6719 31.1875C13.6719 37.4375 18.75 42.5156 25 42.5156C31.25 42.5156 36.3281 37.4375 36.3281 31.1875C36.3281 24.9375 31.25 19.8594 25 19.8594ZM25 40.9531C19.6172 40.9531 15.2344 36.5703 15.2344 31.1875C15.2344 25.8047 19.6172 21.4219 25 21.4219C30.3828 21.4219 34.7656 25.8047 34.7656 31.1875C34.7656 36.5703 30.3828 40.9531 25 40.9531Z" />
+                    <path d="M29.0899 27.8086L23.9884 32.911L20.9103 29.8328C20.7638 29.6864 20.5651 29.6041 20.3579 29.6041C20.1507 29.6041 19.9521 29.6864 19.8056 29.8328C19.6591 29.9793 19.5768 30.178 19.5768 30.3852C19.5768 30.5924 19.6591 30.791 19.8056 30.9375L23.436 34.568C23.5825 34.7145 23.7812 34.7967 23.9884 34.7967C24.1955 34.7967 24.3942 34.7145 24.5407 34.568L30.1946 28.9133C30.2672 28.8408 30.3247 28.7547 30.364 28.6599C30.4032 28.5651 30.4234 28.4635 30.4234 28.361C30.4234 28.2584 30.4032 28.1568 30.364 28.062C30.3247 27.9673 30.2672 27.8812 30.1946 27.8086C30.1221 27.7361 30.036 27.6786 29.9412 27.6393C29.8464 27.6 29.7449 27.5798 29.6423 27.5798C29.5397 27.5798 29.4381 27.6 29.3434 27.6393C29.2486 27.6786 29.1625 27.7361 29.0899 27.8086Z" />
+                  </svg>
+                </div>
+                <div className="content">
+                  <div className="number">
+                    <h2 className="counter">200</h2>
+                    <span>+</span>
+                  </div>
+                  <span>Tour Guide</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Counter Section End */}
+    </>
+  );
+};
+
+export default About;

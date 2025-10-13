@@ -579,21 +579,6 @@ const Navbar1 = () => {
                 </ul>
               </li>
               <li className="menu-item-has-children">
-                <a href="visa.html" className="drop-down">
-                  Visa
-                  <i className="bi bi-caret-down-fill"></i>
-                </a>
-                <i className="bi bi-plus dropdown-icon"></i>
-                <ul className="sub-menu">
-                  <li>
-                    <a href="visa.html">Visa Package</a>
-                  </li>
-                  <li>
-                    <a href="visa-details.html">Visa Package Details</a>
-                  </li>
-                </ul>
-              </li>
-              <li className="menu-item-has-children">
                 <a href="#" className="drop-down">
                   Pages
                   <i className="bi bi-caret-down-fill"></i>
@@ -728,6 +713,9 @@ const Navbar1 = () => {
               </li>
               <li>
                 <Link to="/contact">Contact</Link>
+              </li>
+              <li>
+                <Link to="/about_us">About Us </Link>
               </li>
             </ul>
             <div className="language-and-login-area d-lg-none d-block">

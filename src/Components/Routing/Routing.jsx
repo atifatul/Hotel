@@ -6,6 +6,7 @@ import Layout from "./Layout";
 import Home from "../Home";
 import DestinationDetails from "../Destination/DestinationDetails"; // Naya component import karein
 import Contact from "../Contact";
+import About from "../About";
 
 let myroutes = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ let myroutes = createBrowserRouter([
       {
         path:"/contact",
         element:<Contact/>
+      },
+      {
+        path:"/about_us",
+        element:<About/>
       }
     ],
   },
