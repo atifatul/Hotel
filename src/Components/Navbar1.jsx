@@ -8,7 +8,6 @@ const Navbar1 = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
- 
   useEffect(() => {
     // Use the proxied URL
     const url = "http://localhost/crm/API/destinationlist.php";
@@ -348,202 +347,7 @@ const Navbar1 = () => {
                           )}
                         </ul>
                       </div>
-                      {/* <div className="menu-single-item">
-                                        <div className="menu-title">
-                                            <h5>Asia</h5>
-                                        </div>
-                                        <i className="bi bi-plus dropdown-icon"></i>
-                                        <ul>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/japan-flag2.png" alt=""/>
-                                                    Tokyo, Japan
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/indonesia-flag.png" alt=""/>
-                                                    Indonesia
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/thailand-flag.png" alt=""/>
-                                                    Thailand
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/malaysia-flag.png" alt=""/>
-                                                    Malaysia
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/vietnam-flag.png" alt=""/>
-                                                    Hanoi, Vietnam
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/india-flag.png" alt=""/>
-                                                    India
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="menu-single-item">
-                                        <div className="menu-title">
-                                            <h5>Africa</h5>
-                                        </div>
-                                        <i className="bi bi-plus dropdown-icon"></i>
-                                        <ul>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/egypt-flag.png" alt=""/>
-                                                    Egypt
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/south-africa-flag.png" alt=""/>
-                                                    South Africa
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/zimbabwe-flag.png" alt=""/>
-                                                    Zimbabwe
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/kenya-flag.png" alt=""/>
-                                                    Kenya
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/morocco-flag.png" alt=""/>
-                                                    Morocco
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/senegal-flag.png" alt=""/>
-                                                    Senegal
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="menu-single-item">
-                                        <div className="menu-title">
-                                            <h5>Oceania</h5>
-                                        </div>
-                                        <i className="bi bi-plus dropdown-icon"></i>
-                                        <ul>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/australia-flag.png" alt=""/>
-                                                    Australia
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/south-africa-flag.png" alt=""/>
-                                                    New Zealand
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/papua-new-guinea-flag.png" alt=""/>
-                                                    Papua New Guinea
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="menu-single-item">
-                                        <div className="menu-title">
-                                            <h5>Middle East</h5>
-                                        </div>
-                                        <i className="bi bi-plus dropdown-icon"></i>
-                                        <ul>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/uae-flag.png" alt=""/>
-                                                    United Arab Emirates
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/qatar-flag.png" alt=""/>
-                                                    Qatar
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/bahrain-flag.png" alt=""/>
-                                                    Bahrain
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/saudi-arabia-flag.png" alt=""/>
-                                                    Saudi Arabia
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/jordan-flag.png" alt=""/>
-                                                    Jordan
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/palestine-flag.png" alt=""/>
-                                                    Palestine
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="menu-single-item">
-                                        <div className="menu-title">
-                                            <h5>North America</h5>
-                                        </div>
-                                        <i className="bi bi-plus dropdown-icon"></i>
-                                        <ul>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/us-flag.png" alt=""/>
-                                                    United States
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/canada-flag.png" alt=""/>
-                                                    Canada
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/mexico-flag.png" alt=""/>
-                                                    Mexico
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/jamaica-flag.png" alt=""/>
-                                                    Jamaica
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="destination-details.html">
-                                                    <img src="assets/img/home1/costa-rica-flag.png" alt=""/>
-                                                    Costa Rica
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div> */}
+                      
                     </div>
                   </div>
                   <img
@@ -558,7 +362,7 @@ const Navbar1 = () => {
                   />
                 </div>
               </li>
-              <li className="menu-item-has-children">
+              {/* <li className="menu-item-has-children">
                 <a href="#" className="drop-down">
                   Travel Package
                   <i className="bi bi-caret-down-fill"></i>
@@ -710,12 +514,18 @@ const Navbar1 = () => {
                     <a href="error.html">404</a>
                   </li>
                 </ul>
+              </li> */}
+              <li>
+                <Link to="/Explore Tours"> Explore Tours</Link>
+              </li>
+              <li>
+                <Link to="/blog">Blogs</Link>
+              </li>
+              <li>
+                <Link to="/about-us">About Us </Link>
               </li>
               <li>
                 <Link to="/contact">Contact</Link>
-              </li>
-              <li>
-                <Link to="/about_us">About Us </Link>
               </li>
             </ul>
             <div className="language-and-login-area d-lg-none d-block">
