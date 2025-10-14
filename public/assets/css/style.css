@@ -45406,3 +45406,28 @@ header.style-3.two .main-menu > ul > li.active > a i {
   line-height: 1;
   margin-left: 2px;
 } /*# sourceMappingURL=style.css.map */
+.header-logo img {
+  height: 100px;
+}
+
+@media (max-width: 576px) {
+  header.style-1 .header-logo img {
+    width: 100px;
+    height: 60px;
+  }
+}
+
+/* Dropdown menu ke parent item ko reference banata hai */
+.menu-item-has-children {
+  position: relative;
+}
+
+header.style-1 .main-menu > ul > li .mega-menu {
+  left: -85px !important;
+  top: 53px !important;
+  width: 250% !important;
+  overflow: hidden;
+}
+header.style-1 .main-menu > ul {
+  position: relative !important;
+}

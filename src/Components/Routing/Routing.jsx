@@ -27,7 +27,7 @@ let myroutes = createBrowserRouter([
         element:<Contact/>
       },
       {
-        path:"/about_us",
+        path:"/about-us",
         element:<About/>
       }
     ],
