@@ -20,6 +20,7 @@ const Contact = () => {
       .post(url, requestBody)
       .then((response) => {
         let info = response.data.websiteinfo;
+        //  console.log("Full Response:", response);
         console.log("Raw API Response for websiteinfo:", info);
 
         if (info && typeof info === "string") {
@@ -94,14 +95,15 @@ const Contact = () => {
                 {error && <p>{error}</p>}
                 {!loading && !error && (
                   <>
-                    <h4>{websiteInfo.contactAddress}</h4>
+                    <h4>{websiteInfo.companyName}</h4>
                     <h6>
                       <span>Contact :</span>{" "}
                       <a href={`tel:${websiteInfo.contactPhone}`}>
                         {websiteInfo.contactPhone}
                       </a>
                     </h6>
-                    <p>{websiteInfo.contactAddress}</p>
+                    <p>Address :{websiteInfo.contactAddress}</p>
+                    <p>Email : {websiteInfo.contactEmail}</p>
                   </>
                 )}
               </div>

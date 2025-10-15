@@ -22,6 +22,8 @@ const Navbar1 = () => {
     axios
       .post(url, requestBody)
       .then((response) => {
+        // console.log("Full Response:", response);
+
         console.log("API Response:", response.data);
 
         // API response se Domestic aur International lists ko nikalein

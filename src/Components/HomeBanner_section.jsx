@@ -1,7 +1,56 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const HomeBanner_section = () => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [homebanner, sethomebanner] = useState({});
+
+  useEffect(() => {
+    // Use the proxied URL
+    const url = "http://localhost/crm/API/homebanner.php";
+    const requestBody = {
+      EndUserIp: "192.168.1.33",
+      //   type: "domestic",
+      TokenId: "1",
+    };
+
+    axios
+      .post(url, requestBody)
+      .then((response) => {
+        let info = response.data.BannerDetails;
+        //  console.log("Full Response:", response);
+        console.log("Raw API Response for BannerDetails:", info);
+
+        if (info && typeof info === "string") {
+          try {
+            // Clean the string and parse it
+            const cleanedString = info.replace(/[\n\r\t]/g, "");
+            info = JSON.parse(cleanedString);
+            console.log("Parsed info from string:", info);
+          } catch (e) {
+            console.error("Failed to parse websiteinfo string:", e);
+            setError("Website info format is incorrect.");
+            return;
+          }
+        }
+
+        if (info && typeof info === "object" && Object.keys(info).length > 0) {
+          sethomebanner(info);
+        } else {
+          setError("Website info not found or is empty.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setError("Failed to fetch theme.");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
   useEffect(() => {
     const swiper = new Swiper(".home6-banner-slider", {
       slidesPerView: 1,
@@ -468,10 +517,10 @@ const HomeBanner_section = () => {
                 </span>
               </button>
             </form>
-            <p>
+            {/* <p>
               Can’t find what you’re looking for? create your{" "}
               <a href="contact.html">Custom Itinerary</a>
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
