@@ -67,7 +67,7 @@ const Home1destination_section = () => {
                       style={{ height: "470px" }}
                     >
                       <img
-                        style={{ height: "470px", objectFit: "fill"}}
+                        style={{ height: "470px", objectFit: "fill" }}
                         src={destinations[0].photo}
                         alt={"#"}
                       />

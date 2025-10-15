@@ -45431,3 +45431,7 @@ header.style-1 .main-menu > ul > li .mega-menu {
 header.style-1 .main-menu > ul {
   position: relative !important;
 }
+
+.mega-menu style {
+    display: unset;
+}

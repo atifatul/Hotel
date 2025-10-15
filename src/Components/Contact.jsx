@@ -1,6 +1,54 @@
 import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Contact = () => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [websiteInfo, setWebsiteInfo] = useState({});
+
+  useEffect(() => {
+    // Use the proxied URL
+    const url = "http://localhost/crm/API/websiteinfo.php";
+    const requestBody = {
+      EndUserIp: "192.168.1.33",
+      //   type: "domestic",
+      TokenId: "1",
+    };
+
+    axios
+      .post(url, requestBody)
+      .then((response) => {
+        let info = response.data.websiteinfo;
+        console.log("Raw API Response for websiteinfo:", info);
+
+        if (info && typeof info === "string") {
+          try {
+            // Clean the string and parse it
+            const cleanedString = info.replace(/[\n\r\t]/g, "");
+            info = JSON.parse(cleanedString);
+            console.log("Parsed info from string:", info);
+          } catch (e) {
+            console.error("Failed to parse websiteinfo string:", e);
+            setError("Website info format is incorrect.");
+            return;
+          }
+        }
+
+        if (info && typeof info === "object" && Object.keys(info).length > 0) {
+          setWebsiteInfo(info);
+        } else {
+          setError("Website info not found or is empty.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setError("Failed to fetch theme.");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
   return (
     <>
       {/* Start Breadcrumb section  */}
@@ -25,8 +73,11 @@ const Contact = () => {
       {/* Contact page start  */}
       <div className="contact-page pt-100 mb-100">
         <div className="container">
-          <div className="row g-xl-4 g-lg-3 g-4 mb-100">
-            <div className="col-lg-4 col-md-6">
+          <div
+            className="row g-xl-4 g-lg-3 g-4 mb-100"
+            style={{ justifyContent: "center" }}
+          >
+            <div className="col-lg-8 col-md-6">
               <div className="single-contact">
                 <div className="icon">
                   <svg
@@ -39,17 +90,23 @@ const Contact = () => {
                     <path d="M17.9966 18.1294C21.4853 18.1294 24.3134 15.3012 24.3134 11.8125C24.3134 8.3238 21.4853 5.49564 17.9966 5.49564C14.5078 5.49564 11.6797 8.3238 11.6797 11.8125C11.6797 15.3012 14.5078 18.1294 17.9966 18.1294Z" />
                   </svg>
                 </div>
-                <h4>United State</h4>
-                <h6>
-                  <span>Contact :</span> <a href="#">+1 (212) 555-7890</a>
-                </h6>
-                <p>
-                  Skyline Plaza, 5th Floor, 123 Main Street Los Angeles, CA
-                  90001, USA
-                </p>
+                {loading && <p>Loading...</p>}
+                {error && <p>{error}</p>}
+                {!loading && !error && (
+                  <>
+                    <h4>{websiteInfo.contactAddress}</h4>
+                    <h6>
+                      <span>Contact :</span>{" "}
+                      <a href={`tel:${websiteInfo.contactPhone}`}>
+                        {websiteInfo.contactPhone}
+                      </a>
+                    </h6>
+                    <p>{websiteInfo.contactAddress}</p>
+                  </>
+                )}
               </div>
             </div>
-            <div className="col-lg-4 col-md-6">
+            {/* <div className="col-lg-4 col-md-6">
               <div className="single-contact two">
                 <div className="icon">
                   <svg
@@ -94,7 +151,7 @@ const Contact = () => {
                   UK
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="contact-form">
             <div className="row justify-content-center">

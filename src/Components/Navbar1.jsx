@@ -6,7 +6,9 @@ const Navbar1 = () => {
   const [isDestinationOpen, setIsDestinationOpen] = useState(false);
   // Domestic aur International ke liye alag-alag state
   const [domesticDestinations, setDomesticDestinations] = useState([]);
-  const [internationalDestinations, setInternationalDestinations] = useState([]);
+  const [internationalDestinations, setInternationalDestinations] = useState(
+    []
+  );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -48,7 +50,10 @@ const Navbar1 = () => {
     // Sirf pehle 6 items dikhane ke liye slice() ka istemal
     return destinations.slice(0, 6).map((dest, index) => {
       // URL-friendly format mein convert karein
-      const slug = dest.name.toLowerCase().replace(/ & /g, "-and-").replace(/ /g, "-");
+      const slug = dest.name
+        .toLowerCase()
+        .replace(/ & /g, "-and-")
+        .replace(/ /g, "-");
       return (
         <li key={index}>
           <Link
@@ -178,22 +183,28 @@ const Navbar1 = () => {
                   />
                 </div>
               </li>
-              
-              <li><Link to="/Explore Tours"> Explore Tours</Link></li>
-              <li><Link to="/blog">Blogs</Link></li>
-              <li><Link to="/about-us">About Us</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+
+              <li>
+                <Link to="/Explore-Tours"> Explore Tours</Link>
+              </li>
+              <li>
+                <Link to="/blog">Blogs</Link>
+              </li>
+              <li>
+                <Link to="/about-us">About Us</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact</Link>
+              </li>
             </ul>
-            
+
             {/* Baaki ka menu aur mobile view ka code yahan se shuru hota hai */}
-            
+
             <div className="language-and-login-area d-lg-none d-block">
               {/* ... mobile menu ka content ... */}
             </div>
           </div>
-          <div className="nav-right">
-            {/* ... nav right content ... */}
-          </div>
+          <div className="nav-right">{/* ... nav right content ... */}</div>
         </div>
       </header>
     </>
