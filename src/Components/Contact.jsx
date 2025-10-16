@@ -57,7 +57,7 @@ const Contact = () => {
         className="breadcrumb-section"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('assets/img/innerpages/breadcrumb-bg2.jpg')",
+            "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('assets/img/innerpages/breadcrumb-bg7.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           //   height: "400px", // optional

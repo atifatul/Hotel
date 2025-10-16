@@ -7,6 +7,30 @@ const HomeBanner_section = () => {
   const [loading, setLoading] = useState(true);
   const [homebanner, sethomebanner] = useState([]);
 
+  // State for the filter section
+  const [isDestinationOpen, setIsDestinationOpen] = useState(false);
+  const [selectedDestination, setSelectedDestination] = useState({
+    name: "Cox's Bazar",
+    country: "Bangladesh",
+  });
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const destinations = [
+    { name: "Cox's Bazar", country: "Bangladesh", tours: 50 },
+    { name: "Bali Paradaise", country: "Indonesia", tours: 50 },
+    { name: "POKHARA", country: "Nepal", tours: 30 },
+    { name: "Himachal", country: "India", tours: 30 },
+    { name: "Sao Paulo", country: "Brazil", tours: 20 },
+    { name: "Bangkok", country: "Thailand", tours: 40 },
+    { name: "Barcelona", country: "Spain", tours: 20 },
+    { name: "Burj Khalifa", country: "Dubai", tours: 35 },
+    { name: "New York", country: "United States", tours: 45 },
+  ];
+
+  const filteredDestinations = destinations.filter((dest) =>
+    dest.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   useEffect(() => {
     // Use the proxied URL
     const url = "http://localhost/crm/API/homebanner.php";
@@ -79,6 +103,11 @@ const HomeBanner_section = () => {
     };
   }, []);
 
+  const handleDestinationSelect = (destination) => {
+    setSelectedDestination(destination);
+    setIsDestinationOpen(false); // Close dropdown after selection
+  };
+
   return (
     <>
       <div className="home6-banner-section">
@@ -99,8 +128,10 @@ const HomeBanner_section = () => {
                       <div className="banner-content-wrap">
                         <div className="container">
                           <div className="banner-content two">
-                            <h1>Adventure</h1>
-                            <h2 className="slider1">
+                            {/* <h1>Adventure</h1> */}
+                            <h1>{homebanner[0].name}</h1>
+
+                            {/* <h2 className="slider1">
                               Awaits
                               <span>
                                 <svg
@@ -113,7 +144,7 @@ const HomeBanner_section = () => {
                                 </svg>
                                 Let's Go!
                               </span>
-                            </h2>
+                            </h2> */}
                             <Link
                               to="/Explore-Tours"
                               className="primary-btn1 two"
@@ -157,7 +188,7 @@ const HomeBanner_section = () => {
                       <div className="banner-content-wrap">
                         <div className="container">
                           <div className="banner-content">
-                            <h2>Unforgettable Travel Experiences</h2>
+                            <h1>{homebanner[1].name}</h1>
                             <Link
                               to="/Explore-Tours"
                               className="primary-btn1 two"
@@ -200,7 +231,7 @@ const HomeBanner_section = () => {
                       <div className="banner-content-wrap">
                         <div className="container">
                           <div className="banner-content">
-                            <h2>The Ultimate Guide to Travel Experience</h2>
+                            <h1>{homebanner[2].name}</h1>
                             <Link
                               to="/Explore-Tours"
                               className="primary-btn1 two"
@@ -456,120 +487,49 @@ const HomeBanner_section = () => {
                     <path d="M17.4601 8.4599H16.2564C15.9858 4.86535 13.1291 2.00812 9.53458 1.7372V0.539976C9.53458 0.241723 9.29268 0 8.9946 0C8.69635 0 8.45462 0.241723 8.45462 0.539976V1.7372C4.85986 2.00812 2.00297 4.86535 1.73235 8.4599H0.540018C0.241723 8.4599 0 8.7017 0 8.99987C0 9.29813 0.241723 9.53985 0.539976 9.53985H1.73239C2.00297 13.1344 4.85991 15.9916 8.45441 16.2625V17.4601C8.45441 17.7583 8.69614 18 8.99439 18C9.29251 18 9.53428 17.7583 9.53428 17.4601V16.2625C13.1289 15.9918 15.9858 13.1346 16.2564 9.53985H17.4601C17.7583 9.53985 18 9.29813 18 8.99987C18 8.70175 17.7583 8.4599 17.4601 8.4599ZM8.99443 15.2096C5.56504 15.2094 2.78509 12.4291 2.78509 8.9997C2.78522 5.57014 5.56554 2.7902 8.99494 2.7902C12.4245 2.7902 15.2046 5.57048 15.2046 8.99987C15.2005 12.428 12.4225 15.2058 8.99443 15.2096Z" />
                   </g>
                 </svg>
-                <div className="custom-select-dropdown destination-dropdown">
+                <div
+                  className="custom-select-dropdown destination-dropdown"
+                  onClick={() => setIsDestinationOpen(!isDestinationOpen)}
+                >
                   <input type="text" readOnly value="Where are you going?" />
                   <div className="input-field-value">
                     <div className="destination">
-                      <h6>Cox's Bazar</h6>
-                      <span>Bangladesh</span>
+                      <h6>{selectedDestination.name}</h6>
+                      <span>{selectedDestination.country}</span>
                     </div>
                   </div>
                 </div>
-                <div className="custom-select-wrap">
+                <div
+                  className={`custom-select-wrap ${
+                    isDestinationOpen ? "active" : ""
+                  }`}
+                >
                   <div className="custom-select-search-area">
                     <i className="bx bx-search"></i>
-                    <input type="text" placeholder="Type Your Destination" />
+                    <input
+                      type="text"
+                      placeholder="Type Your Destination"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
                   </div>
                   <ul className="option-list-destination">
-                    <li>
-                      <div className="destination">
-                        <h6>Cox's Bazar</h6>
-                        <span>Bangladesh</span>
-                      </div>
-                      <div className="tour">
-                        <span>
-                          50 <br /> Tour
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="destination">
-                        <h6>Bali Paradaise</h6>
-                        <span>Indonesia</span>
-                      </div>
-                      <div className="tour">
-                        <span>
-                          50 <br /> Tour
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="destination">
-                        <h6>POKHARA</h6>
-                        <span>Nepal</span>
-                      </div>
-                      <div className="tour">
-                        <span>
-                          30 <br /> Tour
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="destination">
-                        <h6>Himachal</h6>
-                        <span>India</span>
-                      </div>
-                      <div className="tour">
-                        <span>
-                          30 <br /> Tour
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="destination">
-                        <h6>Sao Paulo</h6>
-                        <span>br/azil</span>
-                      </div>
-                      <div className="tour">
-                        <span>
-                          20 <br /> Tour
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="destination">
-                        <h6>Bangkok</h6>
-                        <span>Thailand</span>
-                      </div>
-                      <div className="tour">
-                        <span>
-                          40 <br /> Tour
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="destination">
-                        <h6>Barcelona</h6>
-                        <span>Spain</span>
-                      </div>
-                      <div className="tour">
-                        <span>
-                          20 <br /> Tour
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="destination">
-                        <h6>Burj Khalifa</h6>
-                        <span>Dubai</span>
-                      </div>
-                      <div className="tour">
-                        <span>
-                          35 <br /> Tour
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="destination">
-                        <h6>New York</h6>
-                        <span>United States</span>
-                      </div>
-                      <div className="tour">
-                        <span>
-                          45 <br /> Tour
-                        </span>
-                      </div>
-                    </li>
+                    {filteredDestinations.map((destination) => (
+                      <li
+                        key={destination.name}
+                        onClick={() => handleDestinationSelect(destination)}
+                      >
+                        <div className="destination">
+                          <h6>{destination.name}</h6>
+                          <span>{destination.country}</span>
+                        </div>
+                        <div className="tour">
+                          <span>
+                            {destination.tours} <br /> Tour
+                          </span>
+                        </div>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
