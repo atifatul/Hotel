@@ -1,4 +1,4 @@
-const insideTour = () => {
+const InsideTour = () => {
   return (
     <>
       {/* Breadcrumb section start */}
@@ -8,19 +8,28 @@ const insideTour = () => {
             <div className="swiper-slide">
               <div
                 className="banner-bg"
-                style="background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(assets/img/innerpages/package-breadcrumb-bg1.jpg);"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('assets/img/innerpages/package-breadcrumb-bg1.jpg')",
+                }}
               ></div>
             </div>
             <div className="swiper-slide">
               <div
                 className="banner-bg"
-                style="background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(assets/img/innerpages/package-breadcrumb-bg2.jpg);"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('assets/img/innerpages/package-breadcrumb-bg2.jpg')",
+                }}
               ></div>
             </div>
             <div className="swiper-slide">
               <div
                 className="banner-bg"
-                style="background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(assets/img/innerpages/breadcrumb-bg9.jpg);"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('assets/img/innerpages/breadcrumb-bg9.jpg')",
+                }}
               ></div>
             </div>
           </div>
@@ -48,18 +57,18 @@ const insideTour = () => {
             >
               <g>
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M0 10.0571H22V11.9428H0V10.0571Z"
                 />
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M0.942857 11.9429C5.3768 11.9429 9.00115 8.0432 9.00115 3.88457V2.94171H7.11543V3.88457C7.11543 7.04251 4.29566 10.0571 0.942857 10.0571H0V11.9429H0.942857Z"
                 />
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M0.942857 10.0571C5.3768 10.0571 9.00115 13.9568 9.00115 18.1154V19.0583H7.11543V18.1154C7.11543 14.9587 4.29566 11.9428 0.942857 11.9428H0V10.0571H0.942857Z"
                 />
               </g>
@@ -74,18 +83,18 @@ const insideTour = () => {
             >
               <g>
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M22 10.0571H-5.72205e-06V11.9428H22V10.0571Z"
                 />
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M21.0571 11.9429C16.6232 11.9429 12.9989 8.0432 12.9989 3.88457V2.94171H14.8846V3.88457C14.8846 7.04251 17.7043 10.0571 21.0571 10.0571H22V11.9429H21.0571Z"
                 />
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M21.0571 10.0571C16.6232 10.0571 12.9989 13.9568 12.9989 18.1154V19.0583H14.8846V18.1154C14.8846 14.9587 17.7043 11.9428 21.0571 11.9428H22V10.0571H21.0571Z"
                 />
               </g>
@@ -181,7 +190,7 @@ const insideTour = () => {
       <div
         className="modal location-details-modal fade"
         id="packageLocationModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="packageLocationModalLabel"
         aria-hidden="true"
       >
@@ -228,8 +237,8 @@ const insideTour = () => {
                     >
                       <g>
                         <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
+                          fillRule="evenodd"
+                          clipRule="evenodd"
                           d="M7.99978 15.1112C2.14378 15.1112 0.888672 13.8561 0.888672 8.00006C0.888672 2.14406 2.14378 0.888947 7.99978 0.888947C13.8558 0.888947 15.1109 2.14406 15.1109 8.00006C15.1109 13.8561 13.8558 15.1112 7.99978 15.1112ZM10.0005 4.7515C9.94844 4.65679 9.87145 4.57812 9.77789 4.52402C9.68432 4.46991 9.57773 4.44243 9.46967 4.44455C9.36161 4.44667 9.25618 4.47831 9.16481 4.53604C9.07344 4.59378 8.9996 4.6754 8.95128 4.77209L6.49334 9.68795L5.40795 7.7145C5.35682 7.62152 5.28165 7.54398 5.19032 7.48997C5.09898 7.43597 4.99481 7.40747 4.8887 7.40747H3.85167C3.52439 7.40747 3.25909 7.67278 3.25909 8.00006C3.25909 8.32734 3.52439 8.59264 3.85167 8.59264H4.53834L5.99912 11.2486C6.05121 11.3433 6.1282 11.4219 6.22177 11.476C6.31534 11.5301 6.42192 11.5576 6.52998 11.5555C6.63804 11.5534 6.74346 11.5218 6.83483 11.464C6.9262 11.4063 7.00005 11.3247 7.04837 11.228L9.50631 6.3122L10.5917 8.28564C10.6428 8.37862 10.718 8.45617 10.8093 8.51018C10.9007 8.56418 11.0048 8.59267 11.1109 8.59267H12.148C12.4752 8.59267 12.7405 8.32736 12.7405 8.00009C12.7405 7.67281 12.4752 7.4075 12.148 7.4075H11.4613L10.0005 4.7515Z"
                         />
                       </g>
@@ -606,7 +615,7 @@ const insideTour = () => {
       <div
         className="modal rating-modal fade"
         id="ratingModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="ratingModalLabel"
         aria-hidden="true"
       >
@@ -714,7 +723,7 @@ const insideTour = () => {
                         />
                         <label
                           className="form-check-label"
-                          for="contactCheck22"
+                          htmlFor="contactCheck22"
                         >
                           Save my email address & name when I comment further
                           time.
@@ -760,7 +769,7 @@ const insideTour = () => {
       <div
         className="modal booking-modal fade"
         id="bookingModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered">
@@ -811,7 +820,7 @@ const insideTour = () => {
                         <input
                           type="text"
                           name="tourBookingCalendar"
-                          readonly
+                          readOnly
                           value="Sep 12 - Sep 20"
                         />
                         <div className="selected-date"></div>
@@ -844,7 +853,7 @@ const insideTour = () => {
                           <li className="single-item">
                             <div className="title">
                               <h6>Adult</h6>
-                              <Span>16 years+</Span>
+                              <span>16 years+</span>
                             </div>
                             <div className="quantity-counter">
                               <a
@@ -872,7 +881,7 @@ const insideTour = () => {
                           <li className="single-item">
                             <div className="title">
                               <h6>Children</h6>
-                              <Span>0-16 years</Span>
+                              <span>0-16 years</span>
                             </div>
                             <div className="quantity-counter">
                               <a
@@ -1559,7 +1568,7 @@ const insideTour = () => {
       <div
         className="modal enquiry-modal fade"
         id="enquiryModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="enquiryModalLabel"
         aria-hidden="true"
       >
@@ -1611,7 +1620,7 @@ const insideTour = () => {
                         <input
                           type="text"
                           name="inOut"
-                          readonly=""
+                          readOnly=""
                           value="Sep 12 - Sep 20"
                         />
                         <svg
@@ -4561,4 +4570,4 @@ const insideTour = () => {
     </>
   );
 };
-export default insideTour;
+export default InsideTour;

@@ -470,10 +470,11 @@ const HomeBanner_section = () => {
           </li>
         </ul>
       </div>
+      {/* Search bar start */}
       <div className="filter-wrapper two mb-100">
         <div className="container">
           <div className="filter-input-wrap">
-            <h6>Find Your Favourite Activities</h6>
+            <h6>Find Your Favourite Destinations</h6>
             <form className="filter-input show">
               <div className="single-search-box">
                 <svg
@@ -636,6 +637,7 @@ const HomeBanner_section = () => {
           </div>
         </div>
       </div>
+      {/* Search bar end  */}
     </>
   );
 };

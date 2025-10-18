@@ -9,6 +9,7 @@ import Contact from "../Contact";
 import About from "../About";
 import Blog from "../Blog";
 import ExploreTours from "../ExploreTours";
+import InsideTour from "../InsideTour";
 
 let myroutes = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ let myroutes = createBrowserRouter([
       {
         path:"/Explore-Tours",
         element:<ExploreTours/>
+      },
+      {
+        path:"/insideTour",
+        element:<InsideTour/>
       }
     ],
   },

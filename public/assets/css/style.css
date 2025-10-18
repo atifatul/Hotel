@@ -45435,3 +45435,22 @@ header.style-1 .main-menu > ul {
 .mega-menu style {
     display: unset;
 }
+
+
+
+/* --- Add this CSS to fix card image size --- */
+
+/* यह इमेज वाले div को एक फिक्स्ड आसपेक्ट रेशियो देगा (e.g., 4:3) */
+.package-card.four .package-img {
+  display: block;
+  aspect-ratio: 4 / 3; /* आप इसे 16 / 9 भी कर सकते हैं, जो आपको बेहतर लगे */
+  overflow: hidden;
+  height: auto; /* ऊंचाई को ऑटो पर सेट करें ताकि आसपेक्ट रेशियो काम करे */
+}
+
+/* यह इमेज को उस div के अंदर बिना खींचे या पिचकाए फिट करेगा */
+.package-card.four .package-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* यह सबसे ज़रूरी है! यह इमेज को क्रॉप करेगा, लेकिन distort नहीं होने देगा। */
+}
