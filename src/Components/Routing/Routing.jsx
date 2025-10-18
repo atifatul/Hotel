@@ -9,7 +9,7 @@ import Contact from "../Contact";
 import About from "../About";
 import Blog from "../Blog";
 import ExploreTours from "../ExploreTours";
-import InsideTour from "../InsideTour";
+import InsideTour from "../insideTour";
 
 let myroutes = createBrowserRouter([
   {
@@ -26,25 +26,25 @@ let myroutes = createBrowserRouter([
         element: <DestinationDetails />,
       },
       {
-        path:"/contact",
-        element:<Contact/>
+        path: "/contact",
+        element: <Contact />,
       },
       {
-        path:"/about-us",
-        element:<About/>
+        path: "/about-us",
+        element: <About />,
       },
       {
-        path:"/blog",
-        element:<Blog/>
+        path: "/blog",
+        element: <Blog />,
       },
       {
-        path:"/Explore-Tours",
-        element:<ExploreTours/>
+        path: "/Explore-Tours",
+        element: <ExploreTours />,
       },
       {
-        path:"/insideTour",
-        element:<InsideTour/>
-      }
+        path: "/insideTour/:packageId",
+        element: <InsideTour/>,
+      },
     ],
   },
 ]);

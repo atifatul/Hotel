@@ -330,7 +330,7 @@ const ExploreTours = () => {
                               </li>
                             </ul>
                             <div className="btn-and-price-area">
-                              <Link to="/insideTour" className="primary-btn1">
+                              <Link to={`/insideTour/${pkg.packageId}`} className="primary-btn1">
                                 <span>
                                   Book Now{" "}
                                   <svg
