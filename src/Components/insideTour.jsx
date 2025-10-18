@@ -1,99 +1,121 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"; // useParams hook ko import karein
+import { useParams, Link } from "react-router-dom"; // Link ko bhi import karein
 import axios from "axios";
 import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
 
 const InsideTour = () => {
-  // useParams se URL se packageId nikalna
   const { packageId } = useParams();
 
-  // State to hold package details, loading, and error status
+  // ----- STATES FOR ALL API DATA -----
   const [packageDetails, setPackageDetails] = useState(null);
+  const [imageGallery, setImageGallery] = useState([]);
+  const [dayDetails, setDayDetails] = useState([]);
+  const [terms, setTerms] = useState([]);
+  
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // API call ke liye useEffect
+  // 1. API CALL TO FETCH DETAILS BASED ON packageId
   useEffect(() => {
-    if (!packageId) return; // Agar ID na ho to kuch na karein
+    if (!packageId) return;
 
-    setLoading(true); // Har baar nayi ID aane par loading state set karein
+    setLoading(true);
     const url = "http://localhost/crm/API/packagedetails.php";
     const requestBody = {
       EndUserIp: "192.168.1.33",
       type: "",
-      packageId: packageId, // URL se aayi hui ID yahan use karein
+      packageId: packageId,
     };
 
     axios
       .post(url, requestBody)
       .then((response) => {
-        // Assume API returns an array with a single package object
-        if (response.data && response.data.Package && response.data.Package.length > 0) {
-          setPackageDetails(response.data.Package[0]);
+        const data = response.data;
+        // ===== YAHAN CHANGE KIYA GAYA HAI =====
+        if (data && data.PackageDetails) {
+          setPackageDetails(data.PackageDetails);
+          setImageGallery(data.ImageGallery || []);
+          setDayDetails(data.DayDetails || []);
+          setTerms(data.Terms || []);
         } else {
-          setError("Package details not found.");
+          setError("Package details could not be loaded from the API response.");
         }
       })
       .catch((err) => {
         console.error("Error fetching package details:", err);
-        setError("Failed to fetch package details.");
+        setError("Failed to fetch package details. Please check the API connection.");
       })
       .finally(() => {
         setLoading(false);
       });
-  }, [packageId]); // Yeh effect tab chalega jab packageId badlega
+  }, [packageId]);
 
-  // Sliders ke liye useEffect
+  // 2. SLIDER INITIALIZATION
   useEffect(() => {
-    if (!loading && packageDetails) {
-      // Yeh sliders tabhi initialize honge jab data aa chuka ho
+    if (!loading && imageGallery.length > 0) {
       const breadcrumbSlider = new Swiper(".home2-banner-slider", {
         slidesPerView: 1,
         speed: 1500,
         effect: "fade",
+        loop: true,
         autoplay: { delay: 4000, disableOnInteraction: false },
         navigation: {
           nextEl: ".banner-slider-next",
           prevEl: ".banner-slider-prev",
         },
       });
-      
-      // Baaki ke sliders bhi yahan initialize karein agar zaroorat ho
-      // ...
 
       return () => {
         breadcrumbSlider.destroy();
       };
     }
-  }, [loading, packageDetails]);
+  }, [loading, imageGallery]);
+  
+  // Helper function to find term description
+  const getTermDescription = (termName) => {
+      const term = terms.find(t => t.name.toLowerCase() === termName.toLowerCase());
+      return term ? term.description : 'Not specified.';
+  };
+
 
   if (loading) {
     return <div style={{ textAlign: "center", padding: "100px" }}>Loading Package Details...</div>;
   }
 
   if (error || !packageDetails) {
-    return <div style={{ textAlign: "center", padding: "100px", color: "red" }}>{error || "Could not load package details."}</div>;
+    return <div style={{ textAlign: "center", padding: "100px", color: "red" }}>{error}</div>;
   }
 
-  // Calculate destination count
   const destinationCount = packageDetails.destination ? packageDetails.destination.split(',').filter(d => d.trim() !== '').length : 0;
 
   return (
     <>
-      {/* Breadcrumb section start */}
+      {/* ===== BREADCRUMB SECTION (DYNAMIC) ===== */}
       <div className="breadcrumb-section two">
         <div className="swiper home2-banner-slider">
           <div className="swiper-wrapper">
-            {/* Yahan aap multiple images (agar API se aati hain) map kar sakte hain */}
-            <div className="swiper-slide">
-              <div
-                className="banner-bg"
-                style={{
-                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('${packageDetails.banner || 'assets/img/innerpages/package-breadcrumb-bg1.jpg'}')`,
-                }}
-              ></div>
-            </div>
+            {imageGallery.length > 0 ? (
+              imageGallery.map((img, index) => (
+                <div className="swiper-slide" key={index}>
+                  <div
+                    className="banner-bg"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('${img.image}')`,
+                    }}
+                  ></div>
+                </div>
+              ))
+            ) : (
+              <div className="swiper-slide">
+                <div
+                  className="banner-bg"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('assets/img/innerpages/package-breadcrumb-bg1.jpg')`,
+                  }}
+                ></div>
+              </div>
+            )}
           </div>
         </div>
         <div className="banner-content-wrap">
@@ -110,34 +132,80 @@ const InsideTour = () => {
           </div>
         </div>
         <div className="slider-btn-grp">
-          {/* ... Slider buttons ... */}
+            {/* Slider buttons... */}
         </div>
       </div>
-      {/* Breadcrumb section end */}
 
-      {/* Baaki ka saara JSX ab packageDetails object se data lega */}
-      {/* Example: */}
+      {/* ===== PACKAGE DETAILS PAGE (DYNAMIC) ===== */}
       <div className="package-details-page pt-100 mb-100">
         <div className="container">
-          {/* ... */}
-          <div className="package-info-wrap mb-60">
-            <h4>About Tour Package</h4>
-            {/* Yahan API se aane wala description daalein. Abhi ke liye static hai. */}
-            <p>
-              Paris, the City of Lights...
-            </p>
-            <ul className="package-info-list">
-              <li>
-                {/* ...SVG... */}
-                <div className="content">
-                  <span>Accomodation</span>
-                  <strong>{packageDetails.inclusion.includes('Accommodation') ? 'Included' : 'Not Included'}</strong>
+          <div className="row g-lg-4 gy-5 justify-content-between">
+            <div className="col-xl-7 col-lg-8">
+              <div className="package-details-warpper">
+                <div className="package-info-wrap mb-60">
+                  <h4>About Tour Package</h4>
+                  <p>{packageDetails.description || 'No description available.'}</p>
                 </div>
-              </li>
-              {/* Isi tarah baaki details ko bhi dynamic karein */}
-            </ul>
+
+                {/* ===== TOUR ITINERARY (DYNAMIC) ===== */}
+                <div className="tour-itinerary-area mb-60">
+                  <div className="itinerary-title">
+                    <h4>Tour Itinerary</h4>
+                  </div>
+                  <ul className="itinerary-list">
+                    {dayDetails.map(day => (
+                      <li className="single-itinerary" key={day.day}>
+                        <div className="location-title">
+                          <h5>{day.name}</h5>
+                        </div>
+                        <div className="tour-plan-wrap">
+                          <div className="accordion accordion-flush" id={`accordion-day-${day.day}`}>
+                            <div className="accordion-item">
+                              <div className="accordion-header">
+                                <div className="accordion-button collapsed" role="button">
+                                  <h6><span>Day-{day.day}</span> {day.name}</h6>
+                                </div>
+                              </div>
+                              <div className="accordion-collapse collapse show">
+                                <div className="accordion-body">
+                                  {day.description}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                 {/* ===== FEATURES LIST (DYNAMIC) ===== */}
+                <div className="feature-list-area mb-60">
+                    <h4>Package Features List</h4>
+                    <div className="row gy-md-5 gy-4 justify-content-between">
+                        <div className="col-lg-5 col-md-6">
+                            <div className="single-feature-list">
+                                <h5>Include Features</h5>
+                                <div dangerouslySetInnerHTML={{ __html: getTermDescription('Inclusions') }} />
+                            </div>
+                        </div>
+                        <div className="col-lg-5 col-md-6">
+                            <div className="single-feature-list">
+                                <h5>Exclude Features</h5>
+                                <div dangerouslySetInnerHTML={{ __html: getTermDescription('Exclusion') }} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+              </div>
+            </div>
+            {/* Sidebar remains mostly static, so no major changes needed there */}
+            <div className="col-lg-4">
+              {/* ... Sidebar code ... */}
+            </div>
           </div>
-          {/* ... */}
         </div>
       </div>
     </>
