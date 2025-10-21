@@ -1,6 +1,6 @@
 import React from "react";
 
-const insideBlog = () => {
+const InsideBlog = () => {
   return (
     <>
       {/* Inspiration Details Page Start- */}
@@ -920,4 +920,4 @@ const insideBlog = () => {
   );
 };
 
-export default insideBlog;
+export default InsideBlog;

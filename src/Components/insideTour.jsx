@@ -12,7 +12,7 @@ const InsideTour = () => {
   const [imageGallery, setImageGallery] = useState([]);
   const [dayDetails, setDayDetails] = useState([]);
   const [terms, setTerms] = useState([]);
-  
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -39,12 +39,16 @@ const InsideTour = () => {
           setDayDetails(data.DayDetails || []);
           setTerms(data.Terms || []);
         } else {
-          setError("Package details could not be loaded from the API response.");
+          setError(
+            "Package details could not be loaded from the API response."
+          );
         }
       })
       .catch((err) => {
         console.error("Error fetching package details:", err);
-        setError("Failed to fetch package details. Please check the API connection.");
+        setError(
+          "Failed to fetch package details. Please check the API connection."
+        );
       })
       .finally(() => {
         setLoading(false);
@@ -71,23 +75,35 @@ const InsideTour = () => {
       };
     }
   }, [loading, imageGallery]);
-  
+
   // Helper function to find term description
   const getTermDescription = (termName) => {
-      const term = terms.find(t => t.name.toLowerCase() === termName.toLowerCase());
-      return term ? term.description : 'Not specified.';
+    const term = terms.find(
+      (t) => t.name.toLowerCase() === termName.toLowerCase()
+    );
+    return term ? term.description : "Not specified.";
   };
 
-
   if (loading) {
-    return <div style={{ textAlign: "center", padding: "100px" }}>Loading Package Details...</div>;
+    return (
+      <div style={{ textAlign: "center", padding: "100px" }}>
+        Loading Package Details...
+      </div>
+    );
   }
 
   if (error || !packageDetails) {
-    return <div style={{ textAlign: "center", padding: "100px", color: "red" }}>{error}</div>;
+    return (
+      <div style={{ textAlign: "center", padding: "100px", color: "red" }}>
+        {error}
+      </div>
+    );
   }
 
-  const destinationCount = packageDetails.destination ? packageDetails.destination.split(',').filter(d => d.trim() !== '').length : 0;
+  const destinationCount = packageDetails.destination
+    ? packageDetails.destination.split(",").filter((d) => d.trim() !== "")
+        .length
+    : 0;
 
   return (
     <>
@@ -122,18 +138,20 @@ const InsideTour = () => {
           <div className="container">
             <div className="banner-content">
               <span>
-                Starting From <strong>₹{packageDetails.price}</strong>/per person
+                Starting From <strong>₹{packageDetails.price}</strong>/per
+                person
               </span>
               <h1>{packageDetails.name}</h1>
               <div className="batch">
-                <span>{packageDetails.days} Days | {packageDetails.nights} Nights | {destinationCount} Destinations</span>
+                <span>
+                  {packageDetails.days} Days | {packageDetails.nights} Nights |{" "}
+                  {destinationCount} Destinations
+                </span>
               </div>
             </div>
           </div>
         </div>
-        <div className="slider-btn-grp">
-            {/* Slider buttons... */}
-        </div>
+        <div className="slider-btn-grp">{/* Slider buttons... */}</div>
       </div>
 
       {/* ===== PACKAGE DETAILS PAGE (DYNAMIC) ===== */}
@@ -144,7 +162,9 @@ const InsideTour = () => {
               <div className="package-details-warpper">
                 <div className="package-info-wrap mb-60">
                   <h4>About Tour Package</h4>
-                  <p>{packageDetails.description || 'No description available.'}</p>
+                  <p>
+                    {packageDetails.description || "No description available."}
+                  </p>
                 </div>
 
                 {/* ===== TOUR ITINERARY (DYNAMIC) ===== */}
@@ -153,17 +173,25 @@ const InsideTour = () => {
                     <h4>Tour Itinerary</h4>
                   </div>
                   <ul className="itinerary-list">
-                    {dayDetails.map(day => (
+                    {dayDetails.map((day) => (
                       <li className="single-itinerary" key={day.day}>
                         <div className="location-title">
                           <h5>{day.name}</h5>
                         </div>
                         <div className="tour-plan-wrap">
-                          <div className="accordion accordion-flush" id={`accordion-day-${day.day}`}>
+                          <div
+                            className="accordion accordion-flush"
+                            id={`accordion-day-${day.day}`}
+                          >
                             <div className="accordion-item">
                               <div className="accordion-header">
-                                <div className="accordion-button collapsed" role="button">
-                                  <h6><span>Day-{day.day}</span> {day.name}</h6>
+                                <div
+                                  className="accordion-button collapsed"
+                                  role="button"
+                                >
+                                  <h6>
+                                    <span>Day-{day.day}</span> {day.name}
+                                  </h6>
                                 </div>
                               </div>
                               <div className="accordion-collapse collapse show">
@@ -178,33 +206,37 @@ const InsideTour = () => {
                     ))}
                   </ul>
                 </div>
-                
-                 {/* ===== FEATURES LIST (DYNAMIC) ===== */}
+
+                {/* ===== FEATURES LIST (DYNAMIC) ===== */}
                 <div className="feature-list-area mb-60">
-                    <h4>Package Features List</h4>
-                    <div className="row gy-md-5 gy-4 justify-content-between">
-                        <div className="col-lg-5 col-md-6">
-                            <div className="single-feature-list">
-                                <h5>Include Features</h5>
-                                <div dangerouslySetInnerHTML={{ __html: getTermDescription('Inclusions') }} />
-                            </div>
-                        </div>
-                        <div className="col-lg-5 col-md-6">
-                            <div className="single-feature-list">
-                                <h5>Exclude Features</h5>
-                                <div dangerouslySetInnerHTML={{ __html: getTermDescription('Exclusion') }} />
-                            </div>
-                        </div>
+                  <h4>Package Features List</h4>
+                  <div className="row gy-md-5 gy-4 justify-content-between">
+                    <div className="col-lg-5 col-md-6">
+                      <div className="single-feature-list">
+                        <h5>Include Features</h5>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: getTermDescription("Inclusions"),
+                          }}
+                        />
+                      </div>
                     </div>
+                    <div className="col-lg-5 col-md-6">
+                      <div className="single-feature-list">
+                        <h5>Exclude Features</h5>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: getTermDescription("Exclusion"),
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
-
               </div>
             </div>
             {/* Sidebar remains mostly static, so no major changes needed there */}
-            <div className="col-lg-4">
-              {/* ... Sidebar code ... */}
-            </div>
+            <div className="col-lg-4">{/* ... Sidebar code ... */}</div>
           </div>
         </div>
       </div>
