@@ -10,6 +10,7 @@ import About from "../About";
 import Blog from "../Blog";
 import ExploreTours from "../ExploreTours";
 import InsideTour from "../insideTour";
+import InsideBlog from "../insideBlog";
 
 let myroutes = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ let myroutes = createBrowserRouter([
         path: "/insideTour/:packageId",
         element: <InsideTour/>,
       },
+      {
+        path:"/blog/:name",
+        element:<InsideBlog/>
+      }
     ],
   },
 ]);
