@@ -144,8 +144,7 @@ const InsideTour = () => {
               <h1>{packageDetails.name}</h1>
               <div className="batch">
                 <span>
-                  {packageDetails.days} Days | {packageDetails.nights} Nights |{" "}
-                  {destinationCount} Destinations
+                  {packageDetails.days} Days | {packageDetails.nights} Nights     
                 </span>
               </div>
             </div>
@@ -186,18 +185,16 @@ const InsideTour = () => {
                             <div className="accordion-item">
                               <div className="accordion-header">
                                 <div
-                                  className="accordion-button collapsed"
-                                  role="button"
+                                  className="collapsed"
                                 >
                                   <h6>
                                     <span>Day-{day.day}</span> {day.name}
                                   </h6>
                                 </div>
                               </div>
-                              <div className="accordion-collapse collapse show">
-                                <div className="accordion-body">
-                                  {day.description}
-                                </div>
+                              <div className="flex items-center ">
+                                <img style={{width:"150px", height:"100px", paddingRight:"14px" }} src={day.eventPhoto} alt=""  />
+                                <p style={{lineHeight:"20px",fontSize:"14px"}}>{day.description}</p>
                               </div>
                             </div>
                           </div>
