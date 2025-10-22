@@ -11,6 +11,7 @@ import Blog from "../Blog";
 import ExploreTours from "../ExploreTours";
 import InsideTour from "../insideTour";
 import InsideBlog from "../insideBlog";
+import Footer_data from "../Footer_data";
 
 let myroutes = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ let myroutes = createBrowserRouter([
       {
         path:"/blog/:name",
         element:<InsideBlog/>
+      },
+      {
+        path:"/footer-data/:name",
+        element:<Footer_data/>
       }
     ],
   },
