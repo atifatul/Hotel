@@ -9,8 +9,8 @@ const Footer_section = () => {
             <div className="row gy-md-4 gy-5">
               <div className="col-lg-3 col-md-4 col-sm-6">
                 <div className="footer-logo-and-addition-info">
-                  <a href="index.html" className="footer-logo">
-                    <img src="assets/img/footer-logo2.svg" alt="" />
+                  <a href="#" className="footer-logo">
+                    <img src="assets/img/footer-logo2.svg" alt="hello" />
                   </a>
                   <div className="address-area">
                     <span>GoFly Travel Agency</span>
@@ -50,7 +50,7 @@ const Footer_section = () => {
                   </div>
                   <ul className="widget-list">
                     <li>
-                      <Link to="/">Home</Link>                      
+                      <Link to="/">Home</Link>
                     </li>
                     <li>
                       <Link to="/about-us">About Us</Link>
@@ -59,13 +59,17 @@ const Footer_section = () => {
                       <Link to="/Explore-Tours">Tours</Link>
                     </li>
                     <li>
-                      <Link to={`/footer-data/${"terms-of-use"}`}>Terms of Use</Link>
+                      <Link to={`/footer-data/${"terms-of-use"}`}>
+                        Terms of Use
+                      </Link>
                     </li>
                     <li>
-                      <Link to={`/footer-data/${"privacy-policy"}`}></Link>
+                      <Link to={`/footer-data/${"privacy-policy"}`}>
+                        Privacy Policy
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/contact">Countact Us</Link>
+                      <Link to="/contact">Contact Us</Link>
                     </li>
                   </ul>
                 </div>
@@ -77,10 +81,14 @@ const Footer_section = () => {
                   </div>
                   <ul className="widget-list">
                     <li>
-                      <Link to={`/footer-data/${"hotel-booking"}`}>Hotel Booking</Link>
+                      <Link to={`/footer-data/${"hotel-booking"}`}>
+                        Hotel Booking
+                      </Link>
                     </li>
                     <li>
-                      <Link to={`/footer-data/${"car-taxi-bus-booking"}`}>Car/Taxi/Bus Booking</Link>
+                      <Link to={`/footer-data/${"car-taxi-bus-booking"}`}>
+                        Car/Taxi/Bus Booking
+                      </Link>
                     </li>
                     <li>
                       <Link to={`/footer-data/${"bike-tour"}`}>Bike Tour</Link>
@@ -89,7 +97,9 @@ const Footer_section = () => {
                       <Link to={`/footer-data/${"treaking"}`}>Treaking</Link>
                     </li>
                     <li>
-                      <Link to={`/footer-data/${"Private-Tour"}`}>private-tour</Link>
+                      <Link to={`/footer-data/${"Private-Tour"}`}>
+                        private-tour
+                      </Link>
                     </li>
                     <li>
                       <Link to={`/footer-data/${"B2C-CRM"}`}>B2C CRM</Link>

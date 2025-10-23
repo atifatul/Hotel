@@ -40,6 +40,7 @@ const ExploreTours = () => {
     axios
       .post(url, requestBody)
       .then((response) => {
+        // console.log(response);
         const packagesData = response.data.Package || [];
         setAllPackages(packagesData);
         setFilteredPackages(packagesData);
