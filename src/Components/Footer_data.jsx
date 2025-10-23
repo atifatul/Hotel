@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const Footer_data = () => {
+
+
+  
   // 1. URL se 'name' parameter lein (jo aapka slug hai)
   const { name } = useParams(); 
   

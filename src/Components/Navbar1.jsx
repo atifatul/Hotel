@@ -1,8 +1,51 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useCompany } from "./Context/Company_context";
 
 const Navbar1 = () => {
+  const { companydata } = useCompany();
+  const logo = `${companydata.image}${companydata.websiteLogo}`;
+
+  // State for scroll to top button
+  const [isVisible, setIsVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  // Scroll event listener
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show button
+      if (window.scrollY > 50) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+
+      // Calculate progress
+      const totalHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrollPosition = window.scrollY;
+      const scrollProgress =
+        totalHeight > 0 ? (scrollPosition / totalHeight) * 100 : 0;
+
+      // Assuming the path length is around 308 for a 102x102 viewbox with a 49 radius circle
+      const pathLength = 307.919;
+      const progressOffset = pathLength - (scrollProgress / 100) * pathLength;
+      setProgress(progressOffset);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const [isDestinationOpen, setIsDestinationOpen] = useState(false);
   // Domestic aur International ke liye alag-alag state
   const [domesticDestinations, setDomesticDestinations] = useState([]);
@@ -77,14 +120,24 @@ const Navbar1 = () => {
 
   return (
     <>
-      <div className="progress-wrap">
+      <div
+        className={`progress-wrap ${isVisible ? "active-progress" : ""}`}
+        onClick={scrollToTop}
+        style={{ cursor: "pointer" }}
+      >
         <svg
           className="progress-circle svg-content"
           width="100%"
           height="100%"
           viewBox="-1 -1 102 102"
         >
-          <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+          <path
+            d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
+            style={{
+              strokeDasharray: '307.919, 307.919',
+              strokeDashoffset: progress,
+            }}
+          />
         </svg>
         <svg
           className="arrow"
@@ -101,7 +154,12 @@ const Navbar1 = () => {
       <header className="style-1 two">
         <div className="container d-flex flex-nowrap align-items-center justify-content-between">
           <a href="/" className="header-logo">
-            <img src="/assets/img/header-logo3.svg" alt="logo" className="" />
+            <img
+              src={logo}
+              alt="logo"
+              style={{ width: "140px", height: "100px" }}
+            />
+            {/* <img src="/assets/img/header-logo3.svg" alt="logo" className="" /> */}
           </a>
           <div className="main-menu">
             <div className="mobile-logo-area d-lg-none d-flex align-items-center justify-content-between">

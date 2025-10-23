@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+import { useCompany } from "./Context/Company_context";
 
 const Footer_section = () => {
+  const {companydata}=useCompany();
+  // console.log(companydata);
+  const logo=`${companydata.image}${companydata.websiteLogo}`
+  
   return (
     <>
       <footer className="footer-section three">
@@ -10,18 +15,19 @@ const Footer_section = () => {
               <div className="col-lg-3 col-md-4 col-sm-6">
                 <div className="footer-logo-and-addition-info">
                   <a href="#" className="footer-logo">
-                    <img src="assets/img/footer-logo2.svg" alt="hello" />
+                    <img src={logo} alt="" />
                   </a>
                   <div className="address-area">
-                    <span>GoFly Travel Agency</span>
+                    {companydata.contactAddress}
+                    {/* <span>GoFly Travel Agency</span>
                     <a href="#">
                       Skyline Plaza, 5th Floor, 123 Main Street Los Angeles, CA
                       90001, USA
-                    </a>
+                    </a> */}
                   </div>
                   <ul className="social-list">
                     <li>
-                      <a href="https://www.facebook.com/">
+                      <a href={companydata.facebookURL}>
                         <i className="bx bxl-facebook"></i>
                       </a>
                     </li>
@@ -31,12 +37,12 @@ const Footer_section = () => {
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.youtube.com/">
+                      <a href={companydata.youtubeURL}>
                         <i className="bx bxl-youtube"></i>
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.instagram.com/">
+                      <a href={companydata.twitterURL}>
                         <i className="bx bxl-instagram-alt"></i>
                       </a>
                     </li>
@@ -122,7 +128,7 @@ const Footer_section = () => {
                       </div>
                       <div className="content">
                         <span>WhatsApp</span>
-                        <a href="https://wa.me/91345533865">+91 345 533 865</a>
+                        <a href="https://wa.me/${companydata.whatsAppNumber}">{companydata.whatsAppNumber}</a>
                       </div>
                     </li>
                     <li className="single-contact">
@@ -131,14 +137,15 @@ const Footer_section = () => {
                       </div>
                       <div className="content">
                         <span>Mail Us</span>
-                        <a href="/cdn-cgi/l/email-protection#375e59515877524f565a475b521954585a">
+                        <a href="mailto:${companydata.contactEmail}">{companydata.contactEmail}</a>
+                        {/* <a href="/cdn-cgi/l/email-protection#375e59515877524f565a475b521954585a">
                           <span
                             className="__cf_email__"
                             data-cfemail="b9d0d7dfd6f9dcc1d8d4c9d5dc97dad6d4"
                           >
                             [email&#160;protected]
                           </span>
-                        </a>
+                        </a> */}
                       </div>
                     </li>
                     <li className="single-contact">
@@ -147,7 +154,7 @@ const Footer_section = () => {
                       </div>
                       <div className="content">
                         <span>More Inquiry</span>
-                        <a href="tel:+91456453345">+91 456 453 345</a>
+                        <a href="tel:${companydata.contactPhone}">{companydata.contactPhone}</a>
                       </div>
                     </li>
                   </ul>
