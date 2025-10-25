@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react"; // useRef को import करें
-import { useState, useEffect, useRef, useCallback } from "react"; // useCallback को import करें
 
 import { Link } from "react-router-dom";
 
@@ -179,7 +178,6 @@ const ExploreTours = () => {
   const handleSearch = (e) => {
     e.preventDefault();
 
-  const applyFilters = useCallback(() => {
     let results = allPackages;
 
     if (selectedDestination) {
@@ -191,28 +189,10 @@ const ExploreTours = () => {
 
     if (selectedTheme) {
       results = results.filter((pkg) => pkg.themeName === selectedTheme);
-      // If a destination is also selected, filter within those results
-      // Otherwise, filter from all packages
-      results = results.filter(
-        (pkg) => pkg.themeName && pkg.themeName === selectedTheme
-      );
     }
 
     setFilteredPackages(results);
-  }, [allPackages, selectedDestination, selectedTheme]);
-
-  // Apply filters whenever a selection changes
-  useEffect(() => {
-    applyFilters();
-  }, [selectedDestination, selectedTheme, applyFilters]);
-
-  const handleClearFilters = () => {
-    setSelectedDestination(null);
-    setSelectedTheme(null);
-    setDestinationSearchTerm("");
-    setFilteredPackages(allPackages);
   };
-
 
   if (loading)
     return (
@@ -254,7 +234,6 @@ const ExploreTours = () => {
             <h6>Find Your Favourite Destinations</h6>
 
             <form className="filter-input show" onSubmit={handleSearch}>
-            <form className="filter-input show" onSubmit={(e) => e.preventDefault()}>
               {/* Destination Dropdown */}
 
               <div className="single-search-box" ref={destinationRef}>
@@ -376,19 +355,6 @@ const ExploreTours = () => {
               <button type="submit" className="primary-btn1 three">
                 {/*...*/} Find Activities
               </button>
-              <div className="single-search-box">
-                <button
-                  type="button"
-                  className="primary-btn1 three"
-                  onClick={handleClearFilters}
-                  style={{ width: "100%" }}
-                >
-                  <span>
-                    <i className="bx bx-revision"></i>
-                    Clear Filters
-                  </span>
-                </button>
-              </div>
             </form>
           </div>
         </div>
@@ -474,8 +440,8 @@ const ExploreTours = () => {
                 )}
               </div>
             </div>
-
-            {/* ... (Pagination remains unchanged) ... */}
+ 
+            {/* ... (Pagination remains unchanged) . */}
           </div>
         </div>
       </div>
