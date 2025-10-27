@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom"; // Link ko bhi import karein
 import axios from "axios";
 import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
+import EnquiryForm from "./Enquiryform";
 
 const InsideTour = () => {
   const { packageId } = useParams();
@@ -233,7 +234,16 @@ const InsideTour = () => {
               </div>
             </div>
             {/* Sidebar remains mostly static, so no major changes needed there */}
-            <div className="col-lg-4">{/* ... Sidebar code ... */}</div>
+            <div className="col-lg-4"><aside className="package-widget-area" style={{border:"2px solid", height:"fit-content"}} > {/* Sidebar wrapper */}
+                 <EnquiryForm
+                    price={packageDetails.price}
+                    packageName={packageDetails.name}
+                 />
+                 {/* Agar koi aur widgets hain toh woh yahaan aa sakte hain */}
+                 {/* Example:
+                 <div className="widget-card widget-support"> ... </div>
+                 */}
+              </aside></div>
           </div>
         </div>
       </div>
