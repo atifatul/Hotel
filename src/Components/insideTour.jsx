@@ -145,7 +145,7 @@ const InsideTour = () => {
               <h1>{packageDetails.name}</h1>
               <div className="batch">
                 <span>
-                  {packageDetails.days} Days | {packageDetails.nights} Nights     
+                  {packageDetails.days} Days | {packageDetails.nights} Nights
                 </span>
               </div>
             </div>
@@ -185,17 +185,30 @@ const InsideTour = () => {
                           >
                             <div className="accordion-item">
                               <div className="accordion-header">
-                                <div
-                                  className="collapsed"
-                                >
+                                <div className="collapsed">
                                   <h6>
                                     <span>Day-{day.day}</span> {day.name}
                                   </h6>
                                 </div>
                               </div>
                               <div className="flex items-center ">
-                                <img style={{width:"150px", height:"100px", paddingRight:"14px" }} src={day.eventPhoto} alt=""  />
-                                <p style={{lineHeight:"20px",fontSize:"14px"}}>{day.description}</p>
+                                <img
+                                  style={{
+                                    width: "150px",
+                                    height: "100px",
+                                    paddingRight: "14px",
+                                  }}
+                                  src={day.eventPhoto}
+                                  alt=""
+                                />
+                                <p
+                                  style={{
+                                    lineHeight: "20px",
+                                    fontSize: "14px",
+                                  }}
+                                >
+                                  {day.description}
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -234,16 +247,46 @@ const InsideTour = () => {
               </div>
             </div>
             {/* Sidebar remains mostly static, so no major changes needed there */}
-            <div className="col-lg-4"><aside className="package-widget-area" style={{border:"2px solid", height:"fit-content"}} > {/* Sidebar wrapper */}
-                 <EnquiryForm
-                    price={packageDetails.price}
-                    packageName={packageDetails.name}
-                 />
-                 {/* Agar koi aur widgets hain toh woh yahaan aa sakte hain */}
-                 {/* Example:
+            <div className="col-lg-4">
+              <aside
+                className="package-widget-area"
+                style={{ border: "2px solid", height: "fit-content" }}
+              >
+                {" "}
+                {/* Sidebar wrapper */}
+                <EnquiryForm
+                  price={packageDetails.price}
+                  packageName={packageDetails.name}
+                />
+                {/* Agar koi aur widgets hain toh woh yahaan aa sakte hain */}
+                {/* Example:
                  <div className="widget-card widget-support"> ... </div>
                  */}
-              </aside></div>
+              </aside>
+
+{/* ========== ADD THIS NEW SECTION BELOW ========== */}
+              <div className="widget-card mb-30 mt-3 " style={{ border: "2px solid", height: "fit-content" }}> {/* Use the same card style */}
+                <div className="widget-body text-center"> {/* Center align content */}
+                  <h5 className="package-sidebar-title mb-3">Need Help?</h5> {/* Title */}
+                  <p style={{ fontSize: '0.95em', marginBottom: '0.5rem' }}>
+                    We are here to help you!
+                  </p>
+                  <p style={{ fontSize: '0.9em', color: '#555', marginBottom: '1.5rem' }}> {/* Slightly smaller text */}
+                    You Get Online support
+                  </p>
+                  <Link 
+                    to="/contact" /* <-- Make sure '/contact' is your correct contact page route */
+                    className="primary-btn1 two" /* Use your button style */
+                  >
+                    <span>Contact</span> 
+                    <span>Contact</span> {/* For hover effect if your button uses it */}
+                  </Link>
+                </div>
+              </div>
+              {/* ============================================== */}
+
+
+            </div>
           </div>
         </div>
       </div>
