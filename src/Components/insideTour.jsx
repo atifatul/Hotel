@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom"; // Link ko bhi import karein
 import axios from "axios";
 import Swiper from "swiper";
@@ -13,6 +13,7 @@ const InsideTour = () => {
   const [imageGallery, setImageGallery] = useState([]);
   const [dayDetails, setDayDetails] = useState([]);
   const [terms, setTerms] = useState([]);
+  const [SectionTypeData, setSectionTypeData] = useState([]);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -39,6 +40,7 @@ const InsideTour = () => {
           setImageGallery(data.ImageGallery || []);
           setDayDetails(data.DayDetails || []);
           setTerms(data.Terms || []);
+          setSectionTypeData(data.SectionTypeData || []);
         } else {
           setError(
             "Package details could not be loaded from the API response."
@@ -55,6 +57,8 @@ const InsideTour = () => {
         setLoading(false);
       });
   }, [packageId]);
+
+  console.log("SectionTypeData is:", SectionTypeData);
 
   // 2. SLIDER INITIALIZATION
   useEffect(() => {
@@ -84,6 +88,32 @@ const InsideTour = () => {
     );
     return term ? term.description : "Not specified.";
   };
+
+  // 3. SECTIONTYPE DATA KO GROUP KARNE KA LOGIC
+  const groupedSections = useMemo(() => {
+    // Yadi data nahi hai, toh khaali object return karein
+    if (!SectionTypeData || SectionTypeData.length === 0) {
+      return {};
+    }
+
+    // reduce ka istemal karke data ko group karein
+    return SectionTypeData.reduce((acc, item) => {
+      const type = item.sectionType; // Jaise "Flight", "Accommodation"
+
+      // Agar is type ka group pehle se nahi hai, toh ek khaali array banayein
+      if (!acc[type]) {
+        acc[type] = [];
+      }
+
+      // Us group mein current item ko push karein
+      acc[type].push(item);
+
+      return acc;
+    }, {}); // Shuruaat ek khaali object se karein
+  }, [SectionTypeData]); // Yeh logic tabhi chalega jab SectionTypeData change hoga
+
+  // ... console.log("SectionTypeData is:", SectionTypeData); // Iske baad yeh line daalein
+  console.log("Grouped Data is:", groupedSections);
 
   if (loading) {
     return (
@@ -162,19 +192,112 @@ const InsideTour = () => {
               <div className="package-details-warpper">
                 <div className="package-info-wrap mb-60">
                   <h4>About Tour Package</h4>
-                  <p>
-                    {packageDetails.pkgdisc || "No description available."}
-                  </p>
+                  <p>{packageDetails.pkgdisc || "No description available."}</p>
                 </div>
+
+                {/* SectionTypeData part starts */}
+                {/* Humne tour-itinerary-area jaisi same classes ka istemal kiya hai consistent design ke liye */}
+                <div className="tour-itinerary-area mb-60">
+                  <div className="itinerary-title">
+                    <h4>Package Services</h4>
+                  </div>
+
+                  {/* Check karein ki groupedSections mein data hai ya nahi */}
+                  {Object.keys(groupedSections).length > 0 ? (
+                    /* Object.keys() se har group (jaise "Flight", "Accommodation") par loop karein */
+                    Object.keys(groupedSections).map((sectionType) => (
+                      <div key={sectionType} style={{ marginBottom: "25px", borderRadius:"50px" }}>
+                        {/* Group ka Title (jaise "Flight") */}
+                        <h5
+                          style={{
+                            borderBottom: "1px solid #eee",
+                            paddingBottom: "10px",
+                            marginBottom: "15px",
+                          }}
+                        >
+                          {sectionType}
+                        </h5>
+
+                        {/* Ab us group ke andar ke sabhi items par loop karein */}
+                        {groupedSections[sectionType].map((item) => (
+                          <div
+                            key={item.id}
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              marginBottom: "10px",
+                            }}
+                          >
+                            {/* Item ki Image (agar default nahi hai toh) */}
+
+                            {item.coverPhoto &&  (
+                            <img
+                              src={
+                                item.coverPhoto.endsWith("/")
+                                  ? "assets/img/innerpages/tour-package-img2.jpg"
+                                  : item.coverPhoto
+                              }
+                              // alt={item.name}
+                              style={{
+                                width: "100px",
+                                height: "70px",
+                                marginRight: "15px",
+                                objectFit: "cover",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            )}
+
+                            {/* Item ka Content */}
+                            <div>
+                              <strong>{item.name}</strong>
+                              {/* Aap yahaan aur bhi details (jaise dates) dikha sakte hain */}
+                              <p
+                                style={{
+                                  margin: 0,
+                                  fontSize: "0.9em",
+                                  color: "#666",
+                                }}
+                              >
+                                Date:{" "}
+                                {new Date(item.startDate).toLocaleDateString()}
+                              </p>
+                              {/* Agar notes hain toh woh bhi dikha sakte hain */}
+                              {item.notes && (
+                                <p
+                                  style={{
+                                    margin: 0,
+                                    fontSize: "0.9em",
+                                    color: "#777",
+                                  }}
+                                >
+                                  Notes: {item.notes}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ))
+                  ) : (
+                    // Agar SectionTypeData khaali hai
+                    <p>
+                      No additional service details available for this package.
+                    </p>
+                  )}
+                </div>
+
+                {/* SectionTypeData part ends*/}
 
                 {/* ===== TOUR ITINERARY (DYNAMIC) ===== */}
                 <div className="tour-itinerary-area mb-60">
                   <div className="itinerary-title">
                     <h4>Tour Itinerary</h4>
                   </div>
+
                   <ul className="itinerary-list">
-                    {dayDetails.map((day) => (
-                      <li className="single-itinerary" key={day.day}>
+                    {dayDetails.map((day,index) => (
+                      <li className="single-itinerary" key={index}>
                         <div className="location-title">
                           <h5>{day.name}</h5>
                         </div>
@@ -264,28 +387,45 @@ const InsideTour = () => {
                  */}
               </aside>
 
-{/* ========== ADD THIS NEW SECTION BELOW ========== */}
-              <div className="widget-card mb-30 mt-3 " style={{ border: "2px solid", height: "fit-content" }}> {/* Use the same card style */}
-                <div className="widget-body text-center"> {/* Center align content */}
-                  <h5 className="package-sidebar-title mb-3">Need Help?</h5> {/* Title */}
-                  <p style={{ fontSize: '0.95em', marginBottom: '0.5rem' }}>
+              {/* ========== ADD THIS NEW SECTION BELOW ========== */}
+              <div
+                className="widget-card mb-30 mt-3 "
+                style={{ border: "2px solid", height: "fit-content" }}
+              >
+                {" "}
+                {/* Use the same card style */}
+                <div className="widget-body text-center">
+                  {" "}
+                  {/* Center align content */}
+                  <h5 className="package-sidebar-title mb-3">
+                    Need Help?
+                  </h5>{" "}
+                  {/* Title */}
+                  <p style={{ fontSize: "0.95em", marginBottom: "0.5rem" }}>
                     We are here to help you!
                   </p>
-                  <p style={{ fontSize: '0.9em', color: '#555', marginBottom: '1.5rem' }}> {/* Slightly smaller text */}
+                  <p
+                    style={{
+                      fontSize: "0.9em",
+                      color: "#555",
+                      marginBottom: "1.5rem",
+                    }}
+                  >
+                    {" "}
+                    {/* Slightly smaller text */}
                     You Get Online support
                   </p>
-                  <Link 
+                  <Link
                     to="/contact" /* <-- Make sure '/contact' is your correct contact page route */
                     className="primary-btn1 two" /* Use your button style */
                   >
-                    <span>Contact</span> 
-                    <span>Contact</span> {/* For hover effect if your button uses it */}
+                    <span>Contact</span>
+                    <span>Contact</span>{" "}
+                    {/* For hover effect if your button uses it */}
                   </Link>
                 </div>
               </div>
               {/* ============================================== */}
-
-
             </div>
           </div>
         </div>
