@@ -20,13 +20,13 @@ const Home = () => {
       <Home1OfferBanner_section />
       <Home1travel_package />
       <About />
-      <Counter_section />
-      <Tourguide_section />
-      <ActivityBanner_section />
-      <Faq_section />
+      {/* <Counter_section /> */}
+      {/* <Tourguide_section /> */}
+      {/* <ActivityBanner_section /> */}
+      {/* <Faq_section /> */}
       <Blog_section />
-      <Newletter_section />
-      <PartnerArea_section />
+      {/* <Newletter_section /> */}
+      {/* <PartnerArea_section /> */}
     </>
   );
 };

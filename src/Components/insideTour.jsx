@@ -163,7 +163,7 @@ const InsideTour = () => {
                 <div className="package-info-wrap mb-60">
                   <h4>About Tour Package</h4>
                   <p>
-                    {packageDetails.description || "No description available."}
+                    {packageDetails.pkgdisc || "No description available."}
                   </p>
                 </div>
 

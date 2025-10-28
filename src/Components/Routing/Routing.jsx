@@ -9,9 +9,9 @@ import Contact from "../Contact";
 import About from "../About";
 import Blog from "../Blog";
 import ExploreTours from "../ExploreTours";
-import InsideTour from "../insideTour";
 import InsideBlog from "../insideBlog";
 import Footer_data from "../Footer_data";
+import InsideTour from "../InsideTour";
 
 let myroutes = createBrowserRouter([
   {
@@ -45,16 +45,16 @@ let myroutes = createBrowserRouter([
       },
       {
         path: "/insideTour/:packageId",
-        element: <InsideTour/>,
+        element: <InsideTour />,
       },
       {
-        path:"/blog/:name",
-        element:<InsideBlog/>
+        path: "/blog/:name",
+        element: <InsideBlog />,
       },
       {
-        path:"/footer-data/:name",
-        element:<Footer_data/>
-      }
+        path: "/footer-data/:name",
+        element: <Footer_data />,
+      },
     ],
   },
 ]);

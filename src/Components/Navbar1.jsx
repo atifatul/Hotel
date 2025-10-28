@@ -153,7 +153,7 @@ const Navbar1 = () => {
 
       <header className="style-1 two">
         <div className="container d-flex flex-nowrap align-items-center justify-content-between">
-          <a href="/" className="header-logo">
+          <a href="/" className="header-logo" >
             <img
               src={logo}
               alt="logo"

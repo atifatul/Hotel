@@ -3,7 +3,7 @@ import React from 'react'
 const Blog_section = () => {
   return (
     <>
-    <div className="home6-blog-section">
+    <div className="home6-blog-section mb-100">
         <div className="container">
             <div className="row justify-content-center mb-50 wow animate fadeInDown" data-wow-delay="200ms" data-wow-duration="1500ms">
                 <div className="col-xl-6 col-lg-8">

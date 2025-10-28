@@ -198,7 +198,7 @@ const About = () => {
                       memories.
                     </p>
                   </div>
-                  <div className="founder-area">
+                  {/* <div className="founder-area">
                     <img
                       src="/assets/img/innerpages/about-page-founder-signature.png"
                       alt="Founder Signature"
@@ -207,7 +207,7 @@ const About = () => {
                       <h6>Robert Harringson</h6>
                       <span>Founder at GoFly</span>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div
@@ -361,7 +361,7 @@ const About = () => {
       {/* home1 service Section End*/}
 
       {/* About Page Journey Section Start */}
-      <div className="about-page-journey-section mb-100">
+      {/* <div className="about-page-journey-section mb-100">
         <div className="container">
           <div
             className="row justify-content-center mb-50 wow animate fadeInDown"
@@ -446,7 +446,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* About Page Journey Section End- */}
 
       {/* Why Choose Visa Section Start */}
@@ -560,7 +560,7 @@ const About = () => {
       {/* Why Choose Visa Section End- */}
 
       {/* Partner area Section Start */}
-      <div className="partner-section mb-100">
+      {/* <div className="partner-section mb-100">
         <div className="container">
           <div
             className="partner-title wow animate fadeInDown"
@@ -614,11 +614,11 @@ const About = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* Partner area Section End */}
 
       {/* About Video Section Start */}
-      <div className="about-video-section mb-100">
+      {/* <div className="about-video-section mb-100">
         <div className="container">
           <div className="video-wrap">
             <img
@@ -639,7 +639,7 @@ const About = () => {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* About Video Section End */}
 
       {/* home1 testimonial Section Start */}
@@ -1017,7 +1017,7 @@ const About = () => {
       {/* home1 faq Section End */}
 
       {/* Counter Section Start */}
-      <div className="counter-section">
+      <div className="counter-section mb-80">
         <div className="container">
           <div className="row gy-md-5 gy-4">
             <div className="col-lg-3 col-sm-6 divider">
