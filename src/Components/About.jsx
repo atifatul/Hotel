@@ -727,7 +727,7 @@ const About = () => {
               </Swiper>
             </div>
           </div>
-          <div
+          {/* <div
             className="review-wrap wow animate fadeInUp"
             data-wow-delay="200ms"
             data-wow-duration="1500ms"
@@ -769,7 +769,7 @@ const About = () => {
                 </div>
               </div>
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
       {/* home1 testimonial Section End */}

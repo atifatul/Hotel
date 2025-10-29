@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Home1destination_section = () => {
   const [destinations, setDestinations] = useState([]);
@@ -73,8 +74,11 @@ const Home1destination_section = () => {
                       />
                       <div className="destination-content">
                         <h2>
-                          <a href="#">{destinations[0].name}</a>
-                          <span>15 Activities</span>
+                          <Link to={`/Explore-Tours?theme=${destinations[0].name}`}>
+                            {destinations[0].name}
+                          </Link>
+                          {/* <a href="#">{destinations[0].name}</a> */}
+                          <span> Activities</span>
                         </h2>
                       </div>
                     </div>
@@ -86,8 +90,11 @@ const Home1destination_section = () => {
                       <img src={destinations[1].photo} alt={"#"} />
                       <div className="destination-content">
                         <h2>
-                          <a href="#">{destinations[1].name}</a>
-                          <span>12 Activities</span>
+                          <Link to={`/Explore-Tours?theme=${destinations[1].name}`}>
+                            {destinations[1].name}
+                          </Link>
+                          {/* <a href="#">{destinations[1].name}</a> */}
+                          <span> Activities</span>
                         </h2>
                       </div>
                     </div>
@@ -97,8 +104,11 @@ const Home1destination_section = () => {
                       <img src={destinations[2].photo} alt={"#"} />
                       <div className="destination-content">
                         <h2>
-                          <a href="#">{destinations[2].name}</a>
-                          <span>10 Activities</span>
+                          <Link to={`/Explore-Tours?theme=${destinations[2].name}`}>
+                            {destinations[2].name}
+                          </Link>
+                          {/* <a href="#">{destinations[2].name}</a> */}
+                          <span>Activities</span>
                         </h2>
                       </div>
                     </div>
@@ -125,8 +135,11 @@ const Home1destination_section = () => {
                       />
                       <div className="destination-content">
                         <h2>
-                          <a href="#">{destinations[3].name}</a>
-                          <span>10 Activities</span>
+                          <Link to={`/Explore-Tours?theme=${destinations[3].name}`}>
+                            {destinations[3].name}
+                          </Link>
+                          {/* <a href="#">{destinations[3].name}</a> */}
+                          <span> Activities</span>
                         </h2>
                       </div>
                     </div>
@@ -177,7 +190,7 @@ const Home1destination_section = () => {
                   <h4>One Click Booking</h4>
                   <p>
                     You can hassle-free and fast tour & travel package booking
-                    by GoFly.
+                    by Us.
                   </p>
                 </div>
               </li>
@@ -230,7 +243,7 @@ const Home1destination_section = () => {
             >
               <div className="batch">
                 <span>You’ve Customize Your Travel Package by One Click.</span>
-                <a href="contact.html">
+                <Link to="/contact" >
                   Customize Package
                   <svg
                     width="10"
@@ -244,7 +257,7 @@ const Home1destination_section = () => {
                       strokeLinecap="round"
                     />
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
