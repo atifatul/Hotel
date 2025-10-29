@@ -17,7 +17,7 @@ const Home = () => {
     <>
       <HomeBanner_section />
       <Home1destination_section />
-      <Home1OfferBanner_section />
+      {/* <Home1OfferBanner_section /> */}
       <Home1travel_package />
       <About />
       {/* <Counter_section /> */}

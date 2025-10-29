@@ -1,6 +1,64 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Swiper from "swiper";
+// Swiper के आवश्यक मॉड्यूल को import करें
+import { Navigation, Thumbs, Autoplay, EffectFade } from "swiper/modules";
+import "swiper/swiper-bundle.css";
 
 const Home1OfferBanner_section = () => {
+  useEffect(() => {
+    // Swiper को मॉड्यूल के साथ रजिस्टर करें
+    Swiper.use([Navigation, Thumbs, Autoplay, EffectFade]);
+
+    // Thumbnail slider
+    const swiper4 = new Swiper(".home6-offer-sm-img-slider", {
+      modules: [Thumbs], // Thumbs मॉड्यूल यहाँ भी जोड़ें
+      spaceBetween: 25,
+      slidesPerView: 1,
+      freeMode: false,
+      watchSlidesProgress: true,
+      loop: true,
+      breakpoints: {
+        280: { slidesPerView: 2 },
+        350: { slidesPerView: 3, spaceBetween: 10 },
+        576: { slidesPerView: 3, spaceBetween: 15 },
+        768: { slidesPerView: 3, spaceBetween: 15 },
+        992: { slidesPerView: 3, spaceBetween: 15 },
+        1200: { slidesPerView: 3, spaceBetween: 20 },
+        1400: { slidesPerView: 3 },
+      },
+    });
+
+    // Main slider
+    const swiper = new Swiper(".home6-offer-banner-slider", {
+      modules: [Navigation, Thumbs, Autoplay, EffectFade], // सभी आवश्यक मॉड्यूल यहाँ जोड़ें
+      slidesPerView: 1,
+      speed: 1500,
+      spaceBetween: 24,
+      loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      effect: "fade",
+      fadeEffect: {
+        crossFade: true,
+      },
+      navigation: {
+        nextEl: ".offer-banner-slider-next",
+        prevEl: ".offer-banner-slider-prev",
+      },
+      thumbs: {
+        swiper: swiper4,
+      },
+    });
+
+    // Cleanup function to destroy swiper instances when component unmounts
+    return () => {
+      swiper.destroy();
+      swiper4.destroy();
+    };
+  }, []); // Empty dependency array ensures this runs only once
+
   return (
     <>
       <div className="home6-offer-banner-section mb-100">
