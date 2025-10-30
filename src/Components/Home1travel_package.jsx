@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Link import karein
+import { useCompany } from "./Context/Company_context";
 
 const Home1travel_package = () => {
+
+  const { companydata } = useCompany();
   // States API data, loading, aur error ke liye
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -325,8 +328,7 @@ const Home1travel_package = () => {
 
                   <div className="content">
                     <span>
-                      All regal/proof documents you could submit our GoFly
-                      agency.
+                      All regal/proof documents you could submit our {companydata.companyName}  agency.
                     </span>
                   </div>
                 </li>

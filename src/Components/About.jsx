@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Link } from "react-router-dom";
 
 // Swiper ke CSS ko import karein
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Faq_section from "./Faq_section";
+import { useCompany } from "./Context/Company_context";
 
 const About = () => {
+
+const {companydata}=useCompany();
+
   // Active tab ko manage karne ke liye state
   const [activeTab, setActiveTab] = useState("pills-one");
 
@@ -161,7 +166,7 @@ const About = () => {
       >
         <div className="container">
           <div className="banner-content">
-            <h1>About Go Fly</h1>
+            <h1>About  {companydata.companyName}</h1>
           </div>
         </div>
       </div>
@@ -181,11 +186,11 @@ const About = () => {
                   <div className="section-title">
                     <h2>Why We’re Best Agency</h2>
                     <h4>
-                      Welcome to GoFly Travel Agency – Your Gateway to
+                      Welcome to  {companydata.companyName} Agency – Your Gateway to
                       Unforgettable Journeys!
                     </h4>
                     <p>
-                      GoFly Travel Agency is a trusted name in the travel
+                       {companydata.companyName} Agency is a trusted name in the travel
                       industry, offering seamless travel planning, personalized
                       itineraries, and unforgettable adventures. With years of
                       experience and a network of global partners, we ensure a
@@ -338,7 +343,7 @@ const About = () => {
             >
               <div className="batch">
                 <span>Flat 30% Discounts All Packages</span>
-                <a href="travel-package-01.html">
+                <Link to="/Explore-Tours">
                   Check Offer
                   <svg
                     width="10"
@@ -352,7 +357,7 @@ const About = () => {
                       strokeLinecap="round"
                     />
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
