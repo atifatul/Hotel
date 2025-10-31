@@ -187,8 +187,8 @@ const InsideTour = () => {
       {/* ===== PACKAGE DETAILS PAGE (DYNAMIC) ===== */}
       <div className="package-details-page pt-100 mb-100">
         <div className="container">
-          <div className="row g-lg-4 gy-5 justify-content-between">
-            <div className="col-xl-7 col-lg-8">
+          <div className="row  justify-content-between">
+            <div className=" col-lg-8">
               <div className="package-details-warpper">
                 <div className="package-info-wrap mb-60">
                   <h4>About Tour Package</h4>
@@ -206,7 +206,10 @@ const InsideTour = () => {
                   {Object.keys(groupedSections).length > 0 ? (
                     /* Object.keys() se har group (jaise "Flight", "Accommodation") par loop karein */
                     Object.keys(groupedSections).map((sectionType) => (
-                      <div key={sectionType} style={{ marginBottom: "25px", borderRadius:"50px" }}>
+                      <div
+                        key={sectionType}
+                        style={{ marginBottom: "25px", borderRadius: "50px" }}
+                      >
                         {/* Group ka Title (jaise "Flight") */}
                         <h5
                           style={{
@@ -230,22 +233,22 @@ const InsideTour = () => {
                           >
                             {/* Item ki Image (agar default nahi hai toh) */}
 
-                            {item.coverPhoto &&  (
-                            <img
-                              src={
-                                item.coverPhoto.endsWith("/")
-                                  ? "assets/img/innerpages/tour-package-img2.jpg"
-                                  : item.coverPhoto
-                              }
-                              // alt={item.name}
-                              style={{
-                                width: "100px",
-                                height: "70px",
-                                marginRight: "15px",
-                                objectFit: "cover",
-                                borderRadius: "5px",
-                              }}
-                            />
+                            {item.coverPhoto && (
+                              <img
+                                src={
+                                  item.coverPhoto.endsWith("/")
+                                    ? "assets/img/innerpages/tour-package-img2.jpg"
+                                    : item.coverPhoto
+                                }
+                                // alt={item.name}
+                                style={{
+                                  width: "100px",
+                                  height: "70px",
+                                  marginRight: "15px",
+                                  objectFit: "cover",
+                                  borderRadius: "5px",
+                                }}
+                              />
                             )}
 
                             {/* Item ka Content */}
@@ -296,7 +299,7 @@ const InsideTour = () => {
                   </div>
 
                   <ul className="itinerary-list">
-                    {dayDetails.map((day,index) => (
+                    {dayDetails.map((day, index) => (
                       <li className="single-itinerary" key={index}>
                         <div className="location-title">
                           <h5>{day.name}</h5>
@@ -314,24 +317,28 @@ const InsideTour = () => {
                                   </h6>
                                 </div>
                               </div>
-                              <div className="flex items-center ">
-                                <img
-                                  style={{
-                                    width: "150px",
-                                    height: "100px",
-                                    paddingRight: "14px",
-                                  }}
-                                  src={day.eventPhoto}
-                                  alt=""
-                                />
-                                <p
-                                  style={{
-                                    lineHeight: "20px",
-                                    fontSize: "14px",
-                                  }}
-                                >
-                                  {day.description}
-                                </p>
+                              <div className="flex items-center flexcnttext">
+                                <div>
+                                  <img
+                                    style={{
+                                      width: "150px",
+                                      height: "100px",
+                                      paddingRight: "14px",
+                                    }}
+                                    src={day.eventPhoto}
+                                    alt=""
+                                  />
+                                </div>
+                                <div>
+                                  <p
+                                    style={{
+                                      lineHeight: "20px",
+                                      fontSize: "14px",
+                                    }}
+                                  >
+                                    {day.description}
+                                  </p>
+                                </div>
                               </div>
                             </div>
                           </div>

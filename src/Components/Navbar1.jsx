@@ -134,7 +134,7 @@ const Navbar1 = () => {
           <path
             d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
             style={{
-              strokeDasharray: '307.919, 307.919',
+              strokeDasharray: "307.919, 307.919",
               strokeDashoffset: progress,
             }}
           />
@@ -151,13 +151,16 @@ const Navbar1 = () => {
         </svg>
       </div>
 
-      <header className="style-1 two">
+      <header
+        className="style-1 two"
+        style={{ padding: "15px 0px", position: "fixed", top: "0px" }}
+      >
         <div className="container d-flex flex-nowrap align-items-center justify-content-between">
-          <a href="/" className="header-logo" >
+          <a href="/" className="header-logo">
             <img
               src={logo}
               alt="logo"
-              style={{ width: "140px", height: "100px" }}
+              style={{ width: "160px", height: "auto" }}
             />
             {/* <img src="/assets/img/header-logo3.svg" alt="logo" className="" /> */}
           </a>

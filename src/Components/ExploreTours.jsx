@@ -184,14 +184,14 @@ const ExploreTours = () => {
                             </h5>
                           </div>
                           {/* Pehle check karein ki string mein comma hai ya nahi */}
-                          {pkg.inclusion.includes(",") && (
+                          {/* {pkg.inclusion.includes(",") && (
                             <div>
                               Include:
                               {pkg.inclusion.endsWith(",")
                                 ? pkg.inclusion.slice(0, -1)
                                 : pkg.inclusion}
                             </div>
-                          )}
+                          )} */}
                         
 
                           <div className="package-content-bottom-area">

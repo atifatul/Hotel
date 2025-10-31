@@ -3191,7 +3191,7 @@ header.style-1 .main-menu > ul > li > a {
   position: relative;
   font-family: var(--font-poppins);
   font-weight: 600;
-  font-size: 15px;
+  font-size: 18px;
   transition: all 0.5s ease-out 0s;
   position: relative;
 }
@@ -3974,7 +3974,7 @@ header.style-1 .primary-btn1 .transparent {
   }
 }
 header.style-1.two {
-  background-color: var(--primary-color2);
+  background-color: #156275 !important;
 }
 @media (max-width: 991px) {
   header.style-1.two {
@@ -13760,7 +13760,7 @@ header.style-3.two .main-menu > ul > li.active > a i {
   }
 }
 .footer-section .footer-menu-wrap {
-  padding: 90px 0 100px;
+  padding: 50px 0 50px;
 }
 @media (max-width: 1199px) {
   .footer-section .footer-menu-wrap {
@@ -45400,6 +45400,9 @@ header.style-3.two .main-menu > ul > li.active > a i {
 .about-video-section .video-wrap .play-btn .waves-block .waves.wave-3 {
   animation-delay: 2s;
 }
+.header.style-1.two {
+  background-color: #087692 !important;
+}
 .about-video-section .video-wrap .play-btn i {
   font-size: 25px;
   color: var(--white-color);
@@ -45433,10 +45436,8 @@ header.style-1 .main-menu > ul {
 }
 
 .mega-menu style {
-    display: unset;
+  display: unset;
 }
-
-
 
 /* --- Add this CSS to fix card image size --- */
 
@@ -45453,4 +45454,85 @@ header.style-1 .main-menu > ul {
   width: 100%;
   height: 100%;
   object-fit: cover; /* यह सबसे ज़रूरी है! यह इमेज को क्रॉप करेगा, लेकिन distort नहीं होने देगा। */
+}
+.home6-banner-section .banner-wrapper .banner-img-area {
+  margin-top: 88px !important;
+}
+.destination-card3 {
+  overflow: hidden !important;
+}
+.destination-card3 img {
+  height: auto !important;
+  min-height: 100% !important;
+  object-fit: cover !important;
+}
+.package-img-wrap img {
+  width: 100% !important;
+}
+.package-card.four .package-content {
+  padding: 0px 15px 0px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0 !important;
+  margin-top: -30px !important;
+}
+.package-card .package-content h5 {
+  height: 55px !important;
+}
+.package-widget-area {
+  border: 1px solid #ddd !important;
+  border-radius: 10px !important;
+  padding: 15px !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+}
+
+.form-inner span {
+  color: red;
+}
+.widget-card.mt-3 {
+  border: 1px solid #ddd !important;
+  border-radius: 10px !important;
+  padding: 15px !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+}
+.package-info-wrap {
+  border: 1px solid #ddd !important;
+  border-radius: 10px !important;
+  padding: 15px !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+  background-color: #0ea9d017 !important;
+}
+.tour-itinerary-area {
+  border: 1px solid #ddd !important;
+  border-radius: 10px !important;
+  padding: 15px !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+  background-color: #0ea9d017 !important;
+}
+.package-details-page
+  .package-details-warpper
+  .tour-itinerary-area
+  .itinerary-list
+  .single-itinerary
+  .tour-plan-wrap {
+  background-color: #fff !important;
+  padding: 20px !important;
+  border-radius: 10px !important;
+}
+.feature-list-area {
+  border: 1px solid #ddd !important;
+  border-radius: 10px !important;
+  padding: 15px !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+  background-color: #0ea9d017 !important;
+}
+.flexcnttext {
+  display: grid !important;
+  grid-template-columns: 20% 80% !important;
+  grid-gap: 10px !important;
+  align-items: start !important;
+}
+.flexcnttext img {
+  width: 160px !important;
 }

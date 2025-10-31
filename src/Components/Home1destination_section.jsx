@@ -67,14 +67,12 @@ const Home1destination_section = () => {
                       className="destination-card3 sm-card  "
                       style={{ height: "470px" }}
                     >
-                      <img
-                        style={{ height: "470px", objectFit: "fill" }}
-                        src={destinations[0].photo}
-                        alt={"#"}
-                      />
+                      <img src={destinations[0].photo} alt={"#"} />
                       <div className="destination-content">
                         <h2>
-                          <Link to={`/Explore-Tours?theme=${destinations[0].name}`}>
+                          <Link
+                            to={`/Explore-Tours?theme=${destinations[0].name}`}
+                          >
                             {destinations[0].name}
                           </Link>
                           {/* <a href="#">{destinations[0].name}</a> */}
@@ -90,7 +88,9 @@ const Home1destination_section = () => {
                       <img src={destinations[1].photo} alt={"#"} />
                       <div className="destination-content">
                         <h2>
-                          <Link to={`/Explore-Tours?theme=${destinations[1].name}`}>
+                          <Link
+                            to={`/Explore-Tours?theme=${destinations[1].name}`}
+                          >
                             {destinations[1].name}
                           </Link>
                           {/* <a href="#">{destinations[1].name}</a> */}
@@ -104,7 +104,9 @@ const Home1destination_section = () => {
                       <img src={destinations[2].photo} alt={"#"} />
                       <div className="destination-content">
                         <h2>
-                          <Link to={`/Explore-Tours?theme=${destinations[2].name}`}>
+                          <Link
+                            to={`/Explore-Tours?theme=${destinations[2].name}`}
+                          >
                             {destinations[2].name}
                           </Link>
                           {/* <a href="#">{destinations[2].name}</a> */}
@@ -135,7 +137,9 @@ const Home1destination_section = () => {
                       />
                       <div className="destination-content">
                         <h2>
-                          <Link to={`/Explore-Tours?theme=${destinations[3].name}`}>
+                          <Link
+                            to={`/Explore-Tours?theme=${destinations[3].name}`}
+                          >
                             {destinations[3].name}
                           </Link>
                           {/* <a href="#">{destinations[3].name}</a> */}
@@ -243,7 +247,7 @@ const Home1destination_section = () => {
             >
               <div className="batch">
                 <span>You’ve Customize Your Travel Package by One Click.</span>
-                <Link to="/contact" >
+                <Link to="/contact">
                   Customize Package
                   <svg
                     width="10"

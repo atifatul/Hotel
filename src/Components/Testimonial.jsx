@@ -1,8 +1,43 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-
+import { useState,useEffect } from 'react';
+import axios from 'axios';
+import { useCompany } from './Context/Company_context';
 const Testimonial = () => {
+    const {companydata}=useCompany();
+// 1. Static array ko hata kar, API data ke liye states banayein
+  const [apiTestimonials, setApiTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // 2. useEffect mein API call karein (jab component load ho)
+  useEffect(() => {
+    const url = "http://localhost/crm/API/testimonials.php";
+    
+    // Aapke dusre components POST use kar rahe hain TokenId ke saath,
+    // toh hum yahan bhi wahi maan kar chal rahe hain.
+    const requestBody = {
+      TokenId: "1",
+    };
+
+    axios.post(url, requestBody)
+      .then((response) => {
+        if (response.data && response.data.status === 'success') {
+          setApiTestimonials(response.data.data); // Data ko state mein save karein
+        } else {
+          setError("Failed to fetch testimonials.");
+        }
+      })
+      .catch((err) => {
+        console.error("Error fetching testimonials:", err);
+        setError("An error occurred while fetching data.");
+      })
+      .finally(() => {
+        setLoading(false); // Loading complete
+      });
+  }, []); // [] ka matlab yeh effect sirf ek baar chalega
+
     const testimonials = [
     {
       name: "Robert Kcarery",
@@ -79,6 +114,15 @@ const Testimonial = () => {
       </ul>
     );
   };
+
+  // Loading aur Error state ko handle karein
+  if (loading) {
+    return <div className="container text-center p-5">Loading testimonials...</div>;
+  }
+  
+  if (error) {
+    return <div className="container text-center p-5 text-danger">{error}</div>;
+  }
   return (
     <>
     {/* home1 testimonial Section Start */}
@@ -115,12 +159,12 @@ const Testimonial = () => {
                 }}
                 className="home1-testimonial-slider"
               >
-                {testimonials.map((testimonial, index) => (
-                  <SwiperSlide key={index}>
+                {apiTestimonials.map((testimonial) => (
+                  <SwiperSlide key={testimonial.id}>
                     <div className="testimonial-card">
                       <div className="author-area">
                         <div className="author-img">
-                          <img src={testimonial.img} alt="" />
+                          <img src={testimonial.photo} alt="" />
                           {testimonial.videoUrl && (
                             <a
                               data-fancybox="video-player"
@@ -149,16 +193,16 @@ const Testimonial = () => {
                         </div>
                         <div className="author-info">
                           <h5>{testimonial.name}</h5>
-                          <span>{testimonial.role}</span>
+                          <span>{companydata.companyName} Travellers</span>
                         </div>
                       </div>
                       {renderRating(
-                        testimonial.rating,
-                        testimonial.isTrustpilot
+                        testimonial.rating || 5,
+                        testimonial.isTrustpilot ||false
                       )}
-                      <h5>{testimonial.title}</h5>
+                      <h5>Excellent Tourist Place!</h5>
                       <div className="content">
-                        <p>{testimonial.text}</p>
+                        <p>{testimonial.description}</p>
                       </div>
                     </div>
                   </SwiperSlide>

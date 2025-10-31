@@ -135,7 +135,7 @@ const EnquiryForm = ({ price, packageName }) => {
 
         <form className="booking-form" onSubmit={handleSubmit}>
           <div className="form-inner mb-3 ">
-            <label htmlFor="fullName">Full Name *</label>
+            <label htmlFor="fullName">Full Name <span>*</span></label>
             <input
               type="text"
               id="fullName"
@@ -147,7 +147,7 @@ const EnquiryForm = ({ price, packageName }) => {
             />
           </div>
           <div className="form-inner mb-3">
-            <label htmlFor="email">Email Address *</label>
+            <label htmlFor="email">Email Address <span>*</span></label>
             <input
               type="email"
               id="email"
@@ -159,7 +159,7 @@ const EnquiryForm = ({ price, packageName }) => {
             />
           </div>
           <div className="form-inner mb-3">
-            <label htmlFor="phone">Phone No. *</label>
+            <label htmlFor="phone">Phone No. <span>*</span></label>
             <input
               type="tel"
               id="phone"
@@ -173,7 +173,7 @@ const EnquiryForm = ({ price, packageName }) => {
           <div className="row g-3 mb-3"> {/* Use row for side-by-side on larger screens if needed */}
             <div className="col-md-6"> {/* Example: Half width */}
               <div className="form-inner">
-                <label htmlFor="travelerCount">No. of Travelers *</label>
+                <label htmlFor="travelerCount">No. of Travelers <span>*</span></label>
                 <input
                   type="number"
                   id="travelerCount"
@@ -188,7 +188,7 @@ const EnquiryForm = ({ price, packageName }) => {
             </div>
             <div className="col-md-6"> {/* Example: Half width */}
               <div className="form-inner">
-                <label htmlFor="travelDate">Travel Date *</label>
+                <label htmlFor="travelDate">Travel Date <span >*</span></label>
                 <input
                   type="date"
                   id="travelDate"
