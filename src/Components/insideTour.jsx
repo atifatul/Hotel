@@ -394,45 +394,7 @@ const InsideTour = () => {
                  */}
               </aside>
 
-              {/* ========== ADD THIS NEW SECTION BELOW ========== */}
-              <div
-                className="widget-card mb-30 mt-3 "
-                style={{ border: "2px solid", height: "fit-content" }}
-              >
-                {" "}
-                {/* Use the same card style */}
-                <div className="widget-body text-center">
-                  {" "}
-                  {/* Center align content */}
-                  <h5 className="package-sidebar-title mb-3">
-                    Need Help?
-                  </h5>{" "}
-                  {/* Title */}
-                  <p style={{ fontSize: "0.95em", marginBottom: "0.5rem" }}>
-                    We are here to help you!
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "0.9em",
-                      color: "#555",
-                      marginBottom: "1.5rem",
-                    }}
-                  >
-                    {" "}
-                    {/* Slightly smaller text */}
-                    You Get Online support
-                  </p>
-                  <Link
-                    to="/contact" /* <-- Make sure '/contact' is your correct contact page route */
-                    className="primary-btn1 two" /* Use your button style */
-                  >
-                    <span>Contact</span>
-                    <span>Contact</span>{" "}
-                    {/* For hover effect if your button uses it */}
-                  </Link>
-                </div>
-              </div>
-              {/* ============================================== */}
+              
             </div>
           </div>
         </div>

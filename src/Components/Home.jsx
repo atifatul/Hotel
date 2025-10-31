@@ -11,15 +11,19 @@ import Faq_section from "./Faq_section";
 import Blog_section from "./Blog_section";
 import Newletter_section from "../Newletter_section";
 import PartnerArea_section from "../PartnerArea_section";
+import WhyChooseus from "./WhyChooseus";
+import WhyCommited from "./WhyCommited";
 
 const Home = () => {
   return (
     <>
       <HomeBanner_section />
       <Home1destination_section />
+      <WhyChooseus/>
       {/* <Home1OfferBanner_section /> */}
       <Home1travel_package />
-      <About />
+      <WhyCommited/>
+      {/* <About /> */}
       {/* <Counter_section /> */}
       {/* <Tourguide_section /> */}
       {/* <ActivityBanner_section /> */}

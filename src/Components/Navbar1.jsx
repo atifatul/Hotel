@@ -95,14 +95,12 @@ const Navbar1 = () => {
     // Sirf pehle 6 items dikhane ke liye slice() ka istemal
     return destinations.slice(0, 6).map((dest, index) => {
       // URL-friendly format mein convert karein
-      const slug = dest.name
-        .toLowerCase()
-        .replace(/ & /g, "-and-")
-        .replace(/ /g, "-");
+      const slug = dest.name.replace(/ & /g, "-and-").replace(/ /g, "-");
       return (
         <li key={index}>
           <Link
-            to={`/destination/${slug}`}
+            to={`/Explore-Tours?destination=${slug}`}
+            // to={`/destination/${slug}`}
             onClick={() => setIsDestinationOpen(false)}
           >
             {/* Agar photo hai to dikhayein, nahi to default icon */}

@@ -264,7 +264,7 @@ const Home1travel_package = () => {
       </div>
 
       {/* Refund Area */}
-      <div
+      {/* <div
         className="refund-area two mb-100 wow animate fadeInUp"
         data-wow-delay="200ms"
         data-wow-duration="1500ms"
@@ -345,7 +345,7 @@ const Home1travel_package = () => {
           alt=""
           className="vector1"
         />
-      </div>
+      </div> */}
     </>
   );
 };

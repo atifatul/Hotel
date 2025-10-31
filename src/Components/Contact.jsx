@@ -8,13 +8,13 @@ const Contact = () => {
   const { companydata } = useCompany();
 
   // 1. Naye states form ke liye
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [destination, setDestination] = useState('Maldives'); // Default value
-  const [briefMessage, setBriefMessage] = useState(''); // Textarea ke liye
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [destination, setDestination] = useState("Maldives"); // Default value
+  const [briefMessage, setBriefMessage] = useState(""); // Textarea ke liye
   const [isChecked, setIsChecked] = useState(false); // Checkbox ke liye
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState(null); // { type: 'success', msg: '...' } ya { type: 'error', msg: '...' }
 
@@ -26,63 +26,73 @@ const Contact = () => {
 
     // Checkbox validation
     if (!isChecked) {
-      setSubmissionStatus({ type: 'error', msg: 'Please agree to the terms and conditions.' });
+      setSubmissionStatus({
+        type: "error",
+        msg: "Please agree to the terms and conditions.",
+      });
       setIsSubmitting(false);
       return;
     }
-    
+
     // Aapki addquery.php API ko 'startDate' chahiye.
     // Is form mein nahi hai, toh hum aaj ki date bhej rahe hain.
-    const todayDate = new Date().toISOString().split('T')[0]; // 'YYYY-MM-DD' format
+    const todayDate = new Date().toISOString().split("T")[0]; // 'YYYY-MM-DD' format
 
     const apiData = {
-        name: fullName,
-        email: email,
-        contact: phone,
-        destination: destination,
-        startDate: todayDate, // ZAROORI: API ko yeh field chahiye
-        endDate: '', // Form mein nahi hai
-        adult: 1,    // Default value
-        child: 0,    // Default value
-        infant: 0    // Default value
+      name: fullName,
+      email: email,
+      contact: phone,
+      destination: destination,
+      startDate: todayDate, // ZAROORI: API ko yeh field chahiye
+      endDate: "", // Form mein nahi hai
+      adult: 1, // Default value
+      child: 0, // Default value
+      infant: 0, // Default value
     };
 
-    const apiKey = '1';
-    const tokenId = '1';
+    const apiKey = "1";
+    const tokenId = "1";
     const url = "http://localhost/crm/API/addquery.php";
 
     try {
-        const response = await axios.post(url, apiData, {
-            headers: {
-              'Content-Type': 'application/json',
-              'X-API-KEY': apiKey,
-              'X-Token-Id': tokenId
-            }
+      const response = await axios.post(url, apiData, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-API-KEY": apiKey,
+          "X-Token-Id": tokenId,
+        },
+      });
+
+      console.log("API Response:", response.data);
+
+      if (response.data && response.data.status === "success") {
+        setSubmissionStatus({
+          type: "success",
+          msg: "Enquiry sent successfully!",
         });
-
-        console.log('API Response:', response.data);
-
-        if (response.data && response.data.status === 'success') {
-            setSubmissionStatus({ type: 'success', msg: 'Enquiry sent successfully!' });
-            // Form clear karein
-            setFullName('');
-            setEmail('');
-            setPhone('');
-            setDestination('Maldives');
-            setBriefMessage('');
-            setIsChecked(false);
-        } else {
-            setSubmissionStatus({ type: 'error', msg: response.data.message || 'Something went wrong.' });
-        }
-
+        // Form clear karein
+        setFullName("");
+        setEmail("");
+        setPhone("");
+        setDestination("Maldives");
+        setBriefMessage("");
+        setIsChecked(false);
+      } else {
+        setSubmissionStatus({
+          type: "error",
+          msg: response.data.message || "Something went wrong.",
+        });
+      }
     } catch (error) {
-        console.error('Error sending enquiry:', error);
-        setSubmissionStatus({ type: 'error', msg: 'Failed to send enquiry. Please try again.' });
+      console.error("Error sending enquiry:", error);
+      setSubmissionStatus({
+        type: "error",
+        msg: "Failed to send enquiry. Please try again.",
+      });
     } finally {
-        setIsSubmitting(false);
+      setIsSubmitting(false);
     }
   };
-
 
   return (
     <>
@@ -107,11 +117,8 @@ const Contact = () => {
       {/* Contact page start */}
       <div className="contact-page pt-100 mb-100">
         <div className="container">
-          <div
-            className="row g-xl-4 g-lg-3 g-4 mb-100"
-            style={{ justifyContent: "center" }}
-          >
-            <div className="col-lg-8 col-md-6">
+          <div className="row mb-100" style={{ justifyContent: "center" }}>
+            <div className="col-lg-6 col-md-6">
               <div className="single-contact">
                 <div className="icon">
                   <svg
@@ -142,133 +149,142 @@ const Contact = () => {
                 )}
               </div>
             </div>
+
+            <div className="contact-form col-lg-6 col-md-6">
+              <div className="row justify-content-center">
+                <div className="col-xl-12 col-lg-12">
+                  <div className="contact-form-wrap">
+                    <div className="section-title text-center mb-60">
+                      <h2>Get in Touch!</h2>
+                      <p>
+                        We’re excited to hear from you! Whether you have a
+                        question about our services, want to discuss a new
+                        project.
+                      </p>
+                    </div>
+
+                    {/* Form tag mein handleSubmit add kiya */}
+                    <form onSubmit={handleSubmit}>
+                      <div className="row g-4 mb-60">
+                        <div className="col-md-6">
+                          <div className="form-inner">
+                            <label>Full Name *</label>
+                            <input
+                              type="text"
+                              placeholder="Your Full Name"
+                              value={fullName}
+                              onChange={(e) => setFullName(e.target.value)}
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="form-inner">
+                            <label>Email Address *</label>
+                            <input
+                              type="email"
+                              placeholder="info@example.com"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="form-inner">
+                            <label>Phone Number *</label>
+                            <input
+                              type="tel"
+                              placeholder="+91 123 456 7890"
+                              value={phone}
+                              onChange={(e) => setPhone(e.target.value)}
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="form-inner">
+                            <label>Where are you going?</label>
+                            <select
+                              value={destination}
+                              onChange={(e) => setDestination(e.target.value)}
+                            >
+                              <option>Maldives</option>
+                              <option>France</option>
+                              <option>United States</option>
+                              <option>Thailand</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div className="col-md-12">
+                          <div className="form-inner">
+                            <label>Brief/Message</label>
+                            <textarea
+                              placeholder="Write somethings about inquiry"
+                              value={briefMessage}
+                              onChange={(e) => setBriefMessage(e.target.value)}
+                            ></textarea>
+                          </div>
+                        </div>
+                        <div className="col-md-12">
+                          <div className="form-inner2">
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="checkbox"
+                                id="contactCheck22"
+                                checked={isChecked}
+                                onChange={(e) => setIsChecked(e.target.checked)}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="contactCheck22"
+                              >
+                                I agree with the privacy policy & terms.
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        type="submit"
+                        className="primary-btn1"
+                        disabled={isSubmitting}
+                      >
+                        {/* Button text change karein jab submitting ho */}
+                        <span>
+                          {isSubmitting ? "Submitting..." : "Submit Now"}
+                          {/* SVG... */}
+                        </span>
+                        <span>
+                          {isSubmitting ? "Submitting..." : "Submit Now"}
+                          {/* SVG... */}
+                        </span>
+                      </button>
+
+                      {/* Submission status message */}
+                      {submissionStatus && (
+                        <p
+                          className="mt-3 text-center"
+                          style={{
+                            color:
+                              submissionStatus.type === "error"
+                                ? "red"
+                                : "green",
+                          }}
+                        >
+                          {submissionStatus.msg}
+                        </p>
+                      )}
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
             {/* Baaki commented-out office sections... */}
           </div>
 
           {/* === YEH FORM AB WORKING HAI === */}
-          <div className="contact-form">
-            <div className="row justify-content-center">
-              <div className="col-xl-8 col-lg-10">
-                <div className="contact-form-wrap">
-                  <div className="section-title text-center mb-60">
-                    <h2>Get in Touch!</h2>
-                    <p>
-                      We’re excited to hear from you! Whether you have a
-                      question about our services, want to discuss a new
-                      project.
-                    </p>
-                  </div>
-                  
-                  {/* Form tag mein handleSubmit add kiya */}
-                  <form onSubmit={handleSubmit}>
-                    <div className="row g-4 mb-60">
-                      <div className="col-md-6">
-                        <div className="form-inner">
-                          <label>Full Name *</label>
-                          <input 
-                            type="text" 
-                            placeholder="Your Full Name" 
-                            value={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-inner">
-                          <label>Email Address *</label>
-                          <input 
-                            type="email" 
-                            placeholder="info@example.com" 
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-inner">
-                          <label>Phone Number *</label>
-                          <input 
-                            type="tel" 
-                            placeholder="+91 123 456 7890" 
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-inner">
-                          <label>Where are you going?</label>
-                          <select
-                            value={destination}
-                            onChange={(e) => setDestination(e.target.value)}
-                          >
-                            <option>Maldives</option>
-                            <option>France</option>
-                            <option>United States</option>
-                            <option>Thailand</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div className="col-md-12">
-                        <div className="form-inner">
-                          <label>Brief/Message</label>
-                          <textarea 
-                            placeholder="Write somethings about inquiry"
-                            value={briefMessage}
-                            onChange={(e) => setBriefMessage(e.target.value)}
-                          ></textarea>
-                        </div>
-                      </div>
-                      <div className="col-md-12">
-                        <div className="form-inner2">
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              id="contactCheck22"
-                              checked={isChecked}
-                              onChange={(e) => setIsChecked(e.target.checked)}
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="contactCheck22"
-                            >
-                              I agree with the privacy policy & terms.
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <button type="submit" className="primary-btn1" disabled={isSubmitting}>
-                      {/* Button text change karein jab submitting ho */}
-                      <span>
-                        {isSubmitting ? 'Submitting...' : 'Submit Now'}
-                        {/* SVG... */}
-                      </span>
-                      <span>
-                        {isSubmitting ? 'Submitting...' : 'Submit Now'}
-                        {/* SVG... */}
-                      </span>
-                    </button>
-
-                    {/* Submission status message */}
-                    {submissionStatus && (
-                        <p 
-                          className="mt-3 text-center" 
-                          style={{ color: submissionStatus.type === 'error' ? 'red' : 'green' }}
-                        >
-                          {submissionStatus.msg}
-                        </p>
-                    )}
-
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         <img
           src="assets/img/innerpages/vector/contact-page-vector1.svg"
@@ -289,14 +305,14 @@ const Contact = () => {
       {/* // End Contact page */}
 
       {/* Contact Map Section Start */}
-      <div className="contact-map-section">
+      {/* <div className="contact-map-section">
         <iframe
           src="https://www.google.com/maps?q=28.583228,77.315109&z=17&output=embed"
           allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
-      </div>
+      </div> */}
       {/* Contact Map Section End*/}
     </>
   );
