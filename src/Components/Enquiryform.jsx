@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 // Props: price aur packageName ko InsideTour se receive karega
 const EnquiryForm = ({ price, packageName }) => {
@@ -16,6 +17,62 @@ const EnquiryForm = ({ price, packageName }) => {
     e.preventDefault(); // Page refresh ko rokein
     setIsSubmitting(true); // Button ko disable karein
     setMessage('Sending enquiry...');
+
+// Step 1: React state ko API ke format mein map karein
+  const apiData = {
+    name: fullName,
+    email: email,
+    contact: phone,
+    destination: packageName, // Humne packageName ko destination map kar diya
+    startDate: travelDate,
+    endDate: '', // Form mein endDate nahi hai, toh khaali bhej rahe hain
+    adult: parseInt(travelerCount) || 1, // travelerCount ko adult map kiya
+    child: 0, // Aapke PHP example ke hisaab se default
+    infant: 0 // Aapke PHP example ke hisaab se default
+  };
+
+  const apiKey = '1';
+  const tokenId = '1';
+  const url = "http://localhost/crm/API/addquery.php";
+
+  // --- Yahaan Backend API Call Add Karein ---
+  try {
+    const response = await axios.post(
+      url,
+      apiData, // Yeh data JSON body ban jayega
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-KEY': apiKey,   // Custom header (Best practice)
+          'X-Token-Id': tokenId  // Custom header
+        }
+      }
+    );
+
+    console.log('API Response:', response.data);
+
+    // API se success response check karein
+    if (response.data && response.data.status === 'success') {
+      setMessage(`Enquiry sent successfully for ${packageName}!`);
+      // Form clear karein
+      setFullName('');
+      setEmail('');
+      setPhone('');
+      setTravelerCount(1);
+      setTravelDate('');
+    } 
+    // else {
+    //   setMessage('Enquiry sent, but server responded unexpectedly.');
+    // }
+
+  } catch (error) {
+    console.error('Error sending enquiry:', error);
+    setMessage('Failed to send enquiry. Please try again.');
+  } finally {
+    setIsSubmitting(false); // Re-enable button
+  }
+
+
 
     const formData = {
       packageName,
