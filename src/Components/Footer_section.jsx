@@ -107,9 +107,9 @@ const Footer_section = () => {
                         private-tour
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link to={`/footer-data/${"B2C-CRM"}`}>B2C CRM</Link>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>

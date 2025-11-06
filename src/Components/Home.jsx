@@ -13,22 +13,24 @@ import Newletter_section from "../Newletter_section";
 import PartnerArea_section from "../PartnerArea_section";
 import WhyChooseus from "./WhyChooseus";
 import WhyCommited from "./WhyCommited";
+import Blog from "./Blog";
 
 const Home = () => {
   return (
     <>
       <HomeBanner_section />
       <Home1destination_section />
-      <WhyChooseus/>
+      <WhyChooseus />
       {/* <Home1OfferBanner_section /> */}
       <Home1travel_package />
-      <WhyCommited/>
+      <WhyCommited />
       {/* <About /> */}
       {/* <Counter_section /> */}
       {/* <Tourguide_section /> */}
       {/* <ActivityBanner_section /> */}
       {/* <Faq_section /> */}
-      <Blog_section />
+      <Blog showbanner={false} pagination={false} viewpart={true} />
+      {/* <Blog_section /> */}
       {/* <Newletter_section /> */}
       {/* <PartnerArea_section /> */}
     </>

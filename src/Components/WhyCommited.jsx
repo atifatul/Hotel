@@ -305,7 +305,7 @@ const WhyCommited = () => {
       {/* About Page Journey Section End- */}
 
       {/* home1 service Section Start*/}
-      <div className="home6-service-section mb-100">
+      {/* <div className="home6-service-section mb-100">
         <div className="container">
           <div className="service-wrapper five">
             <div
@@ -427,7 +427,7 @@ const WhyCommited = () => {
           alt=""
           className="vector2"
         />
-      </div>
+      </div> */}
       {/* home1 service section End */}
 
       {/* <div className="home6-service-section mb-100">
