@@ -1,19 +1,23 @@
 import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { Link } from "react-router-dom";
-
 // Swiper ke CSS ko import karein
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Faq_section from "./Faq_section";
 import { useCompany } from "./Context/Company_context";
 import Testimonial from "./Testimonial";
 import WhyChooseus from "./WhyChooseus";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 const About = () => {
   const { companydata } = useCompany();
+
+  // <<< CHANGE: Intersection Observer hook ko set karein
+  // triggerOnce: true ka matlab hai ki animation sirf ek baar chalega
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1, // Jab 10% component dikhe tab trigger ho
+  });
 
   // Active tab ko manage karne ke liye state
   const [activeTab, setActiveTab] = useState("pills-one");
@@ -319,7 +323,7 @@ const About = () => {
       </div> */}
       {/* About Page Journey Section End- */}
 
-      <WhyChooseus/>
+      <WhyChooseus />
 
       {/* <div className="home6-service-section mb-100">
         <div className="container">
@@ -770,7 +774,7 @@ const About = () => {
       {/* home1 faq Section End */}
 
       {/* Counter Section Start */}
-      <div className="counter-section mb-80">
+      <div className="counter-section mb-80" ref={ref}>
         <div className="container">
           <div className="row gy-md-5 gy-4">
             <div className="col-lg-3 col-sm-6 divider">
@@ -791,7 +795,11 @@ const About = () => {
                 </div>
                 <div className="content">
                   <div className="number">
-                    <h2 className="counter">26</h2>
+                    {/* <h2 className="counter">26</h2> */}
+                    <h2>
+                      {" "}
+                      {inView ? <CountUp end={26} duration={2.5} /> : "0"}
+                    </h2>
                     <span>K+</span>
                   </div>
                   <span>Tour Completed</span>
@@ -812,7 +820,11 @@ const About = () => {
                 </div>
                 <div className="content">
                   <div className="number">
-                    <h2 className="counter">12</h2>
+                    {/* <h2 className="counter">12</h2> */}
+                    <h2>
+                      {" "}
+                      {inView ? <CountUp end={12} duration={2.5} /> : "0"}
+                    </h2>
                     <span>+</span>
                   </div>
                   <span>Travel Experience</span>
@@ -840,7 +852,10 @@ const About = () => {
                 </div>
                 <div className="content">
                   <div className="number">
-                    <h2 className="counter">98</h2>
+                    {/* <h2 className="counter">98</h2> */}
+                    <h2>
+                      {inView ? <CountUp end={98} duration={2.5} /> : "0"}
+                    </h2>
                     <span>%</span>
                   </div>
                   <span>Retention Rate</span>
@@ -864,7 +879,10 @@ const About = () => {
                 </div>
                 <div className="content">
                   <div className="number">
-                    <h2 className="counter">200</h2>
+                    {/* <h2 className="counter">200</h2> */}
+                    <h2>
+                      {inView ? <CountUp end={200} duration={2.5} /> : "0"}
+                    </h2>
                     <span>+</span>
                   </div>
                   <span>Tour Guide</span>
