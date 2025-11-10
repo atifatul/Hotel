@@ -225,7 +225,8 @@ const ExploreTours = () => {
                               </ul>
                               <div className="btn-and-price-area">
                                 <Link
-                                  to={`/insideTour/${pkg.packageId}`}
+                                  to={`/insideTour/${pkg.packageId}?price=${pkg.price || 'N/A'} `}
+                                  state={{allpackages:allPackages}}
                                   className="primary-btn1"
                                 >
                                   {/* ... (Book Now Button JSX) ... */}

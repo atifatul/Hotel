@@ -1,12 +1,26 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { useParams, Link } from "react-router-dom"; // Link ko bhi import karein
+import {
+  useParams,
+  Link,
+  useSearchParams,
+  useLocation,
+} from "react-router-dom"; // Link ko bhi import karein
 import axios from "axios";
 import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
 import EnquiryForm from "./Enquiryform";
+import RelatedPackages from "./RelatedPackages";
 
 const InsideTour = () => {
   const { packageId } = useParams();
+
+  const [searchParams] = useSearchParams();
+  const price = searchParams.get("price");
+
+  const location = useLocation();
+  const allPackages = location.state?.allpackages;
+
+  const [randomPackages, setRandomPackages] = useState([]);
 
   // ----- STATES FOR ALL API DATA -----
   const [packageDetails, setPackageDetails] = useState(null);
@@ -169,8 +183,7 @@ const InsideTour = () => {
           <div className="container">
             <div className="banner-content">
               <span>
-                Starting From <strong>₹{packageDetails.price}</strong>/per
-                person
+                Starting From <strong>₹{price}</strong>/per person
               </span>
               <h1>{packageDetails.name}</h1>
               <div className="batch">
@@ -384,21 +397,19 @@ const InsideTour = () => {
               >
                 {" "}
                 {/* Sidebar wrapper */}
-                <EnquiryForm
-                  price={packageDetails.price}
-                  packageName={packageDetails.name}
-                />
+                <EnquiryForm price={price} packageName={packageDetails.name} />
                 {/* Agar koi aur widgets hain toh woh yahaan aa sakte hain */}
                 {/* Example:
                  <div className="widget-card widget-support"> ... </div>
                  */}
               </aside>
-
-              
             </div>
           </div>
         </div>
       </div>
+
+      {/* ===== NAYA CHANGE: Yahaan naye component ko call karein ===== */}
+      <RelatedPackages allPackages={allPackages} currentPackageId={packageId} />
     </>
   );
 };
